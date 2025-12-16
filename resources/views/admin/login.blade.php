@@ -45,7 +45,7 @@
                     {{-- <h5 class="text-primary">{{__("message.Welcome Back")}}</h5> --}}
                     <h1 class="h4 text-gray-900 mb-4">{{__("message.Sign in to continue to Admin")}}</h1>
                   </div>
-                  <form action="{{url('/postlogin')}}" method="post">
+                  <form action="{{url('dashboard/postlogin')}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"

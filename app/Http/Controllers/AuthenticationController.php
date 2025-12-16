@@ -57,7 +57,7 @@ class AuthenticationController extends Controller
                 setcookie('password', $request->get("password"), time() + (86400 * 30), "/");
                 setcookie('remember_me', 1, time() + (86400 * 30), "/");
             }
-            return  redirect("backend/dashboard");
+            return  redirect("/dashboard");
         } else {
             Session::flash('message', __("message.Login Credentials Are Wrong"));
             Session::flash('alert', 'danger');
@@ -172,7 +172,7 @@ class AuthenticationController extends Controller
         $user = Sentinel::getUser();
 
 
-        return redirect("backend");
+        return redirect("dashboard");
     }
 
     public function showsuser()
@@ -203,7 +203,7 @@ class AuthenticationController extends Controller
                 return $users->phone;
             })
             ->editColumn('action', function ($users) {
-                $delete = url('backend/deleteuser', array('id' => $users->id));
+                $delete = url('/deleteuser', array('id' => $users->id));
                 $return = '<a onclick="delete_record(' . "'" . $delete . "'" . ')" rel="tooltip" title="" class="m-b-10 m-l-5" data-original-title="Remove"><i class="fa fa-trash f-s-25"></i></a>';
                 return $return;
             })

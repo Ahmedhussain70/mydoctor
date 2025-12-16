@@ -46,7 +46,7 @@
                     
                     <h1 class="h4 text-gray-900 mb-4"><?php echo e(__("message.Sign in to continue to Admin")); ?></h1>
                   </div>
-                  <form action="<?php echo e(url('backend/postlogin')); ?>" method="post">
+                  <form action="<?php echo e(url('/postlogin')); ?>" method="post">
                     <?php echo e(csrf_field()); ?>
 
                     <div class="form-group">

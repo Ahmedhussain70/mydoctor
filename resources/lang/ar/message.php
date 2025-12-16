@@ -172,7 +172,7 @@ return array(
     "Enter Subject" => "أدخل الموضوع",
     "Enter Your Message" => "أدخل رسالتك",
     "Send Message" => "إرسال الرسالة",
-    "Find A Doctor" => "ابحث عن طبيب!",
+    "Find A Doctor" => "ابحث  طبيب!",
     "Amet consectetur adipisicing elit sed do eiusmod" => "أميت كونسيتيتور أديبيسشينغ إيليت سيد دو إيوسيمود.",
     "Ex. Name" => "مثال: اسم الطبيب",
     "Category" => "الفئة",

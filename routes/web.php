@@ -239,7 +239,7 @@ Route::group(['middleware' => ['Localization']], function () {
 
 
 
-    Route::group(['prefix' => 'dashboard'], function () {
+    Route::group(['prefix' => 'backend'], function () {
 
         Route::get("/", [AuthenticationController::class, "showlogin"]);
         Route::post("postlogin", [AuthenticationController::class, "postlogin"]);

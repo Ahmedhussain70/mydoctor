@@ -1960,6 +1960,9 @@ class ApiController extends Controller
                         $inset->profile_type = 2;
                     } elseif ($request->get("type") == 3) {
                         $inset->profile_type = 3;
+
+                    } elseif ($request->get("type") == 4){
+                        $inset->profile_type = 4;           
                     } else {
                         $inset->profile_type = 1;
                     }
@@ -2207,11 +2210,14 @@ class ApiController extends Controller
             $rules['pharmacy_id'] = 'required';
         } else if ($request->type == 3) {
             $rules['laboratory_id'] = 'required';
+        } else if ($request->type == 4) {
+            $rules['hospital_id'] = 'required';
         }
         $messages = array(
             'doctor_id.required' => "doctor_id is required",
             'pharmacy_id.required' => "pharmacy_id is required",
             'laboratory_id.required' => "laboratory_id is required",
+            'hospital_id.required' => "hospital_id is required",
             'type.required' => "type is required",
         );
 
@@ -2286,6 +2292,27 @@ class ApiController extends Controller
                     $getdetail->image = asset('public/upload/doctors') . '/' . $getdetail->image;
                     $response['success'] = "1";
                     $response['register'] = __("message.Laboratory_Get_Success");
+                    $response['data'] = $getdetail;
+                }
+            }elseif ($request->type == 4) {
+                $getdetail = Doctors::where('id', $request->get("hospital_id"))->where('profile_type', 4)->first();
+                unset($getdetail->state);
+                unset($getdetail->city);
+                if (empty($getdetail)) {
+                    $response['success'] = "0";
+                    $response['register'] = __("message.Hospital_Not_Found");
+                } else {
+                    $getdepartment = Services::find($getdetail->department_id);
+                    if ($getdepartment) {
+                        $getdetail->department_name = $getdepartment->name;
+                    } else {
+                        $getdetail->department_name = "";
+                    }
+                    $getdetail->avgratting = Review::where('doc_id', $request->get("hospital_id"))->avg('rating');
+                    $getdetail->total_review = count(Review::where('doc_id', $request->get("hospital_id"))->get());
+                    $getdetail->image = asset('public/upload/doctors') . '/' . $getdetail->image;
+                    $response['success'] = "1";
+                    $response['register'] = __("message.Hospital_Get_Success");
                     $response['data'] = $getdetail;
                 }
             }
@@ -2782,11 +2809,16 @@ class ApiController extends Controller
             $rules = [
                 'laboratory_id' => 'required'
             ];
+        } else if ($request->type == '4') {
+            $rules = [
+                'hospital_id' => 'required'
+            ];
         }
         $messages = array(
             'type.required' => "type is required",
             'laboratory_id.requored' => "laboratory_id is required",
             'pharmacy_id.required' => "pharmacy_id is required",
+            'hospital_id.required' => "hospital_id is required",
             'doctor_id.required' => "doctor_id is required",
         );
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -2899,6 +2931,24 @@ class ApiController extends Controller
                         $data->image = 'user.png';
                     }
                     $data->avgratting = round(Review::where("doc_id", $request->get("laboratory_id"))->avg('rating'));
+                    $response['success'] = "1";
+                    $response['register'] =  __("message.Doctor_Get_Success");
+                    $response['data'] = $data;
+                }
+            }else if ($request->type == '4') {
+
+                $data = Doctors::where('id', $request->get("hospital_id"))->where('profile_type', '4')->orderBy('id', 'desc')->first();
+                if (empty($data)) {
+                    $response['success'] = "0";
+                    $response['register'] = __("message.Doctor_Not_Found");
+                } else {
+                    unset($data->department_id);
+                    if (isset($data->image) && !empty($data->image)) {
+                        $data->image = $data->image;
+                    } else {
+                        $data->image = 'user.png';
+                    }
+                    $data->avgratting = round(Review::where("doc_id", $request->get("hospital_id"))->avg('rating'));
                     $response['success'] = "1";
                     $response['register'] =  __("message.Doctor_Get_Success");
                     $response['data'] = $data;
@@ -3502,6 +3552,54 @@ class ApiController extends Controller
                 } else {
                     $response['success'] = "0";
                     $response['register'] = __("message.Laboratory_Not_Found");
+                }
+            } else if ($request->type == '4') {
+                $store = Doctors::where('profile_type', '4')->where('id', $request->get("hospital_id"))->first();
+                if ($store) {
+                    DB::beginTransaction();
+                    try {
+                        $img_url = $store->image;
+                        $rel_url = $store->image;
+                        if ($request->file('image')) {
+
+                            $file = $request->file('image');
+                            $filename = $file->getClientOriginalName();
+                            $extension = $file->getClientOriginalExtension() ?: 'png';
+                            $folderName = '/upload/doctors/';
+                            $picture = time() . '.' . $extension;
+                            $destinationPath = public_path() . $folderName;
+                            $request->file('image')->move($destinationPath, $picture);
+                            $img_url = $picture;
+                            $image_path = public_path() . "/upload/doctors/" . $rel_url;
+                            if (file_exists($image_path) && $rel_url != "") {
+                                try {
+                                    unlink($image_path);
+                                } catch (Exception $e) {
+                                }
+                            }
+                        }
+                        $store->name = $request->get("name");
+                        $store->phoneno = $request->get("phoneno");
+                        $store->aboutus = $request->get("aboutus");
+                        $store->address = $request->get("address");
+                        $store->lat = $request->get("lat");
+                        $store->lon = $request->get("lon");
+                        $store->email = $request->get("email");
+                        $store->working_time = $request->get("working_time");
+                        $store->city_id = $request->get("city_id");
+                        $store->image = $img_url;
+                        $store->save();
+                        DB::commit();
+                        $response['success'] = "1";
+                        $response['register'] = __("message.Profile Update Successfully");
+                    } catch (Exception $e) {
+                        DB::rollback();
+                        $response['success'] = "0";
+                        $response['register'] = __("message.something getting wrong");
+                    }
+                } else {
+                    $response['success'] = "0";
+                    $response['register'] = __("message.Hospital_Not_Found");
                 }
             }
         }

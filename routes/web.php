@@ -268,7 +268,7 @@ Route::group(['middleware' => ['Localization']], function () {
 
                 Route::get("doctors", [DoctorController::class, "showdoctors"]);
                 Route::get("doctorstable", [DoctorController::class, "doctorstable"]);
-                Route::get("savedoctor/{id}", [DoctorController::class, "savedoctor"]);
+                Route::get("savedoctor/{id}", [DoctorController::class, "savedoctor"])->name('savedoctor');
                 Route::post("updatedoctor", [DoctorController::class, "updatedoctor"]);
                 Route::get("doctortiming/{id}", [DoctorController::class, "doctortiming"]);
                 Route::get("findpossibletime", [DoctorController::class, "findpossibletime"]);

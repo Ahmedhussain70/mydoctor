@@ -13,7 +13,7 @@ class ChatController extends Controller
 
         $apiKey = env('GEMINI_API_KEY');
         // $apiKey = 'AIzaSyCeJcVRNZ1AG3e6DExTHAUYrCieqTdFI9o';
-        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey";
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey";
 
         // Retrieve chat history from session
         $chatHistory = session('chat_history', []);

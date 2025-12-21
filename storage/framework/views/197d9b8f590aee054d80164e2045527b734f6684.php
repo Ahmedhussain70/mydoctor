@@ -9,10 +9,10 @@
     <meta name="author" content="">
     <link href="<?php echo e(Session::get('favicon')); ?>" rel="icon">
     <title><?php echo $__env->yieldContent('title'); ?></title>
-    <link href="<?php echo e(asset('public/admin')); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo e(asset('public/admin')); ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo e(asset('/admin')); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo e(asset('/admin')); ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <?php if(__('message.RTL') == 0): ?>
-        <link href="<?php echo e(asset('public/admin')); ?>/vendor/bootstrap/css/bootstrapRTL.min.css" rel="stylesheet"
+        <link href="<?php echo e(asset('/admin')); ?>/vendor/bootstrap/css/bootstrapRTL.min.css" rel="stylesheet"
             type="text/css">
         <style>
             body {
@@ -36,8 +36,8 @@
             }
         </style>
     <?php endif; ?>
-    <link href="<?php echo e(asset('public/admin')); ?>/css/ruang-admin.min.css" rel="stylesheet">
-    <link href="<?php echo e(asset('public/admin')); ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?php echo e(asset('/admin')); ?>/css/ruang-admin.min.css" rel="stylesheet">
+    <link href="<?php echo e(asset('/admin')); ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <?php
         $color = app\models\Setting::find(1);
     ?>
@@ -232,6 +232,25 @@
                     <span><?php echo e(__('message.Laboratory Order')); ?></span>
                 </a>
             </li>
+
+             <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                <?php echo e(__('message.Hospital')); ?>
+
+            </div>
+            <li class="nav-item <?php echo e(Request::is('backend/hospital') ? 'active' : ''); ?>">
+                <a class="nav-link" href="<?php echo e(url('backend/hospital')); ?>">
+                 <i class="fas fa-hospital"></i>
+                    <span><?php echo e(__('message.Hospital')); ?></span>
+                </a>
+            </li>
+            <!-- <li class="nav-item <?php echo e(Request::is('backend/hospitalorder') ? 'active' : ''); ?>">
+                <a class="nav-link" href="<?php echo e(url('backend/hospitalorder')); ?>">
+                 <i class="fas fa-flask"></i>
+                    <span><?php echo e(__('message.Hospital Order')); ?></span>
+                </a>
+            </li> -->
+
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
                 <?php echo e(__('message.Other')); ?>
@@ -461,7 +480,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="img-profile rounded-circle"
-                                    src="<?php echo e(asset('public/upload/profile/profile.png')); ?>" style="max-width: 60px">
+                                    src="<?php echo e(asset('/upload/profile/profile.png')); ?>" style="max-width: 60px">
                                 <span
                                     class="ml-2 d-none d-lg-inline text-white small"><?php echo e(optional(Sentinel::getUser())->first_name ?? 'Admin'); ?></span>
                             </a>
@@ -520,16 +539,19 @@
     <input type="hidden" id="today_no_appointment_msg"
         value='<?php echo e(__('message.You dont have any  appointments for today')); ?>' />
     <input type="hidden" id="demo" value="<?php echo e(Session::get('is_demo')); ?>" />
-    <input type="hidden" id="soundnotify" value="<?php echo e(asset('public/sound/notification/notification.mp3')); ?>" />
-    <script src="<?php echo e(asset('public/admin')); ?>/vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo e(asset('public/admin')); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo e(asset('public/admin')); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="<?php echo e(asset('public/admin')); ?>/js/ruang-admin.min.js"></script>
-    <script src="<?php echo e(asset('public/admin')); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo e(asset('public/admin')); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php echo e(asset('public/admin')); ?>/vendor/chart.js/Chart.min.js"></script>
-    <script src="<?php echo e(url('public/js/locationpicker.js')); ?>"></script>
-    <script type="text/javascript" src="<?php echo e(asset('public/js/admin.js?v=rgtrygr')); ?>"></script>
+    <input type="hidden" id="soundnotify" value="<?php echo e(asset('/sound/notification/notification.mp3')); ?>" />
+    <script src="<?php echo e(asset('/admin')); ?>/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo e(asset('/admin')); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo e(asset('/admin')); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?php echo e(asset('/admin')); ?>/js/ruang-admin.min.js"></script>
+    <script src="<?php echo e(asset('/admin')); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo e(asset('/admin')); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo e(asset('/admin')); ?>/vendor/chart.js/Chart.min.js"></script>
+    <script src="<?php echo e(url('/js/locationpicker.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('/js/admin.js?v=rgtrygr')); ?>"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/select2-theme-bootstrap5@0.1.1/Gruntfile.min.js
+"></script>
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({

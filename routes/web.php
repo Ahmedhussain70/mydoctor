@@ -25,6 +25,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MedicinesController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\LaboratoryController;
+use App\Http\Controllers\HospitalController;
 use App\Models\Laboratory;
 use Illuminate\Support\Facades\Artisan;
 /*
@@ -199,25 +200,25 @@ Route::group(['middleware' => ['Localization']], function () {
         Route::get('addCart/{id}', [LaboratoryController::class, 'addCart']);
 
 
-        Route::post("postlaboratoryregister",[LaboratoryController::class,"postlaboratoryregister"]);
+        Route::post("postlaboratoryregister", [LaboratoryController::class, "postlaboratoryregister"]);
         Route::post("laboratorylogin", [LaboratoryController::class, "laboratorylogin"]);
-    //  Route::post("postloginlaboratory",[LaboratoryController::class,"postloginlaboratory"]);
-        Route::view('laboratorydashboard','user.laboratory.dashboard');
-        Route::get('laboratorydashboard',[LaboratoryController::class,"laboratorydashboard"]);
-        Route::get('laboratoryreport',[LaboratoryController::class,'laboratoryreport']);
-        Route::post('updatereportfront',[LaboratoryController::class,'updatereportfront']);
+        //  Route::post("postloginlaboratory",[LaboratoryController::class,"postloginlaboratory"]);
+        Route::view('laboratorydashboard', 'user.laboratory.dashboard');
+        Route::get('laboratorydashboard', [LaboratoryController::class, "laboratorydashboard"]);
+        Route::get('laboratoryreport', [LaboratoryController::class, 'laboratoryreport']);
+        Route::post('updatereportfront', [LaboratoryController::class, 'updatereportfront']);
         Route::get("laboratoryreview", [LaboratoryController::class, "laboratoryreview"]);
-        Route::get('laboratoryeditprofile',[LaboratoryController::class,'laboratoryeditprofile']);
+        Route::get('laboratoryeditprofile', [LaboratoryController::class, 'laboratoryeditprofile']);
         Route::get("laboratorychangepassword", [LaboratoryController::class, "laboratorychangepassword"]);
-        Route::get("viewlaboratory/{id}",[LaboratoryController::class,"viewlaboratory"]);
-        Route::post('addlaboratoryorder',[LaboratoryController::class,'addlaboratoryorder']);
-          Route::get('userlabreportlist', [LaboratoryController::class, 'userlabreportlist']);
+        Route::get("viewlaboratory/{id}", [LaboratoryController::class, "viewlaboratory"]);
+        Route::post('addlaboratoryorder', [LaboratoryController::class, 'addlaboratoryorder']);
+        Route::get('userlabreportlist', [LaboratoryController::class, 'userlabreportlist']);
         Route::get("searchlaboratory", [LaboratoryController::class, "searchlaboratory"]);
 
-         Route::get("reportdeletefront/{laboratory_id}", [LaboratoryController::class, "reportdeletefront"])->name('reportdeletefront');
+        Route::get("reportdeletefront/{laboratory_id}", [LaboratoryController::class, "reportdeletefront"])->name('reportdeletefront');
         Route::get("getdatalaboratory/{id}", [LaboratoryController::class, "getdatalaboratory"]);
         Route::get("deleteimglaboratory/{id}", [LaboratoryController::class, "deleteimglaboratory"]);
-        
+
         Route::get("laboratoryorderchangestatus/{id}/{status}", [LaboratoryController::class, "laboratoryorderchangestatus"]);
         Route::get('get_reportdata/{id}', [LaboratoryController::class, 'get_reportdata']);
 
@@ -226,163 +227,176 @@ Route::group(['middleware' => ['Localization']], function () {
 
 
 
-    Route::prefix('backend/languages')->group(function () {
-        Route::get('/{lang}', [LanguageController::class, 'index'])->name('languages.index');
-        Route::get('/{lang}/edit/{key}', [LanguageController::class, 'edit'])->name('languages.edit');
-        Route::put('/{lang}/update/{key}', [LanguageController::class, 'update'])->name('languages.update');
-        // Route::get('/{lang}/create', [LanguageController::class, 'create'])->name('languages.create');
-        // Route::post('/{lang}/store', [LanguageController::class, 'store'])->name('languages.store');
-        // Route::delete('/{lang}/delete/{key}', [LanguageController::class, 'destroy'])->name('languages.destroy');
-    });
+        Route::prefix('backend/languages')->group(function () {
+            Route::get('/{lang}', [LanguageController::class, 'index'])->name('languages.index');
+            Route::get('/{lang}/edit/{key}', [LanguageController::class, 'edit'])->name('languages.edit');
+            Route::put('/{lang}/update/{key}', [LanguageController::class, 'update'])->name('languages.update');
+            // Route::get('/{lang}/create', [LanguageController::class, 'create'])->name('languages.create');
+            // Route::post('/{lang}/store', [LanguageController::class, 'store'])->name('languages.store');
+            // Route::delete('/{lang}/delete/{key}', [LanguageController::class, 'destroy'])->name('languages.destroy');
+        });
 
-    Route::get('local/{lang}', [LanguageController::class, 'setlocal']);
+        Route::get('local/{lang}', [LanguageController::class, 'setlocal']);
 
 
 
-    Route::group(['prefix' => 'backend'], function () {
+        Route::group(['prefix' => 'backend'], function () {
 
-        Route::get("/", [AuthenticationController::class, "showlogin"]);
-        Route::post("postlogin", [AuthenticationController::class, "postlogin"]);
+            Route::get("/", [AuthenticationController::class, "showlogin"]);
+            Route::post("postlogin", [AuthenticationController::class, "postlogin"]);
 
-        Route::group(['middleware' => ['AdminCheck']], function () {
+            Route::group(['middleware' => ['AdminCheck']], function () {
 
-            Route::get('medicines', [MedicinesController::class, 'showmedicines'])->name('medicines');
-            Route::get('medicinesadd', [MedicinesController::class, 'medicinesadd1']);
-            Route::any('addmedicinessave', [MedicinesController::class, 'addmedicinessave'])->name('add');
-            Route::any('deletemedicines/{id}', [MedicinesController::class, 'deletemedicines'])->name('deletemedicines');
-            Route::any('editmedicines/{id}', [MedicinesController::class, 'editmedicines'])->name('editmedicines');
-            Route::any('editmedicinessave', [MedicinesController::class, 'editmedicinessave'])->name('editmedicinessave');
-            Route::get("medicine", [MedicinesController::class, "medicine"]);
+                Route::get('medicines', [MedicinesController::class, 'showmedicines'])->name('medicines');
+                Route::get('medicinesadd', [MedicinesController::class, 'medicinesadd1']);
+                Route::any('addmedicinessave', [MedicinesController::class, 'addmedicinessave'])->name('add');
+                Route::any('deletemedicines/{id}', [MedicinesController::class, 'deletemedicines'])->name('deletemedicines');
+                Route::any('editmedicines/{id}', [MedicinesController::class, 'editmedicines'])->name('editmedicines');
+                Route::any('editmedicinessave', [MedicinesController::class, 'editmedicinessave'])->name('editmedicinessave');
+                Route::get("medicine", [MedicinesController::class, "medicine"]);
 
-            Route::get("dashboard", [AuthenticationController::class, 'showdashboard'])->name('dashboard');
-            Route::get("logout", [AuthenticationController::class, 'logout']);
-            Route::get("reset_password/{code}", [AuthenticationController::class, "reset_password"]);
-            Route::get("services", [ProductController::class, 'showservice']);
-            Route::any("reset_new_pwd", [AuthenticationController::class, "reset_new_pwd"]);
+                Route::get("dashboard", [AuthenticationController::class, 'showdashboard'])->name('dashboard');
+                Route::get("logout", [AuthenticationController::class, 'logout']);
+                Route::get("reset_password/{code}", [AuthenticationController::class, "reset_password"]);
+                Route::get("services", [ProductController::class, 'showservice']);
+                Route::any("reset_new_pwd", [AuthenticationController::class, "reset_new_pwd"]);
 
-            Route::get("saveservices/{id}", [ProductController::class, "saveservices"]);
-            Route::post("updateservice", [ProductController::class, "updateservice"]);
-            Route::get("servicestable", [ProductController::class, "servicestable"]);
-            Route::get("deleteservices/{id}", [ProductController::class, "deleteservices"]);
+                Route::get("saveservices/{id}", [ProductController::class, "saveservices"]);
+                Route::post("updateservice", [ProductController::class, "updateservice"]);
+                Route::get("servicestable", [ProductController::class, "servicestable"]);
+                Route::get("deleteservices/{id}", [ProductController::class, "deleteservices"]);
 
-            Route::get("doctors", [DoctorController::class, "showdoctors"]);
-            Route::get("doctorstable", [DoctorController::class, "doctorstable"]);
-            Route::get("savedoctor/{id}", [DoctorController::class, "savedoctor"]);
-            Route::post("updatedoctor", [DoctorController::class, "updatedoctor"]);
-            Route::get("doctortiming/{id}", [DoctorController::class, "doctortiming"]);
-            Route::get("findpossibletime", [DoctorController::class, "findpossibletime"]);
-            Route::get("generateslot", [DoctorController::class, "generateslot"]);
-            Route::post("savescheduledata", [DoctorController::class, "savescheduledata"]);
-            Route::get("deletedoctor/{id}", [DoctorController::class, "deletedoctor"]);
-            Route::get("approvedoctor/{id}/{status}", [DoctorController::class, "postapprovedoctor"]);
+                Route::get("doctors", [DoctorController::class, "showdoctors"]);
+                Route::get("doctorstable", [DoctorController::class, "doctorstable"]);
+                Route::get("savedoctor/{id}", [DoctorController::class, "savedoctor"]);
+                Route::post("updatedoctor", [DoctorController::class, "updatedoctor"]);
+                Route::get("doctortiming/{id}", [DoctorController::class, "doctortiming"]);
+                Route::get("findpossibletime", [DoctorController::class, "findpossibletime"]);
+                Route::get("generateslot", [DoctorController::class, "generateslot"]);
+                Route::post("savescheduledata", [DoctorController::class, "savescheduledata"]);
+                Route::get("deletedoctor/{id}", [DoctorController::class, "deletedoctor"]);
+                Route::get("approvedoctor/{id}/{status}", [DoctorController::class, "postapprovedoctor"]);
 
-            Route::get("reviews", [DoctorController::class, 'showreviews']);
-            Route::get("reviewtable", [DoctorController::class, "reviewtable"]);
-            Route::get("deletereview/{id}", [DoctorController::class, "deletereview"]);
+                Route::get("reviews", [DoctorController::class, 'showreviews']);
+                Route::get("reviewtable", [DoctorController::class, "reviewtable"]);
+                Route::get("deletereview/{id}", [DoctorController::class, "deletereview"]);
 
-            Route::get("patients", [AuthenticationController::class, "showsuser"]);
-            Route::get("userstable", [AuthenticationController::class, "userstable"]);
-            Route::get("deleteuser/{id}", [AuthenticationController::class, "deleteuser"]);
+                Route::get("patients", [AuthenticationController::class, "showsuser"]);
+                Route::get("userstable", [AuthenticationController::class, "userstable"]);
+                Route::get("deleteuser/{id}", [AuthenticationController::class, "deleteuser"]);
 
-            Route::get("editprofile", [AuthenticationController::class, "editprofile"]);
-            Route::post("updateprofile", [AuthenticationController::class, "updateprofile"]);
+                Route::get("editprofile", [AuthenticationController::class, "editprofile"]);
+                Route::post("updateprofile", [AuthenticationController::class, "updateprofile"]);
 
-            Route::get("changepassword", [AuthenticationController::class, "changepassword"]);
-            Route::post("updatepassword", [AuthenticationController::class, "updatepassword"]);
-            Route::get("check_password_same/{val}", [AuthenticationController::class, "checkcurrentpassword"]);
-            Route::post("updateaccount", [AuthenticationController::class, "updateaccount"]);
+                Route::get("changepassword", [AuthenticationController::class, "changepassword"]);
+                Route::post("updatepassword", [AuthenticationController::class, "updatepassword"]);
+                Route::get("check_password_same/{val}", [AuthenticationController::class, "checkcurrentpassword"]);
+                Route::post("updateaccount", [AuthenticationController::class, "updateaccount"]);
 
-            Route::get("appointment", [AppointmentController::class, "showappointment"]);
-            Route::get("appointmenttable", [AppointmentController::class, "appointmenttable"]);
-            Route::get("changeappstatus/{id}/{status_id}", [AppointmentController::class, "changeappstatus"]);
+                Route::get("appointment", [AppointmentController::class, "showappointment"]);
+                Route::get("appointmenttable", [AppointmentController::class, "appointmenttable"]);
+                Route::get("changeappstatus/{id}/{status_id}", [AppointmentController::class, "changeappstatus"]);
 
-            Route::get("sendnotification", [NotificationController::class, "showsendnotification"]);
-            Route::get("notificationkey", [NotificationController::class, "notificationkey"]);
-            Route::post("updatenotificationkey", [NotificationController::class, "updatenotificationkey"]);
-            Route::get("notificationtable", [NotificationController::class, "notificationtable"]);
+                Route::get("sendnotification", [NotificationController::class, "showsendnotification"]);
+                Route::get("notificationkey", [NotificationController::class, "notificationkey"]);
+                Route::post("updatenotificationkey", [NotificationController::class, "updatenotificationkey"]);
+                Route::get("notificationtable", [NotificationController::class, "notificationtable"]);
 
-            Route::get("savenotification", [NotificationController::class, "savenotification"]);
-            Route::post("sendnotificationtouser", [NotificationController::class, "sendnotificationtouser"]);
-            Route::get("notification/{id}", [AppointmentController::class, "notification"]);
-            Route::get("latsrappointmenttable", [AppointmentController::class, "latsrappointmenttable"]);
-            Route::post("updatesettingfour", [AuthenticationController::class, "updatesettingfour"]);
-            Route::get("complain", [AuthenticationController::class, "showcomplain"]);
-            Route::get("compaintable", [AuthenticationController::class, "compaintable"]);
+                Route::get("savenotification", [NotificationController::class, "savenotification"]);
+                Route::post("sendnotificationtouser", [NotificationController::class, "sendnotificationtouser"]);
+                Route::get("notification/{id}", [AppointmentController::class, "notification"]);
+                Route::get("latsrappointmenttable", [AppointmentController::class, "latsrappointmenttable"]);
+                Route::post("updatesettingfour", [AuthenticationController::class, "updatesettingfour"]);
+                Route::get("complain", [AuthenticationController::class, "showcomplain"]);
+                Route::get("compaintable", [AuthenticationController::class, "compaintable"]);
 
-            Route::get("setting", [AuthenticationController::class, "showsetting"]);
-            Route::post("updatesettingone", [AuthenticationController::class, "updatesettingone"]);
-            Route::post("updatesettingtwo", [AuthenticationController::class, "updatesettingtwo"]);
+                Route::get("setting", [AuthenticationController::class, "showsetting"]);
+                Route::post("updatesettingone", [AuthenticationController::class, "updatesettingone"]);
+                Route::post("updatesettingtwo", [AuthenticationController::class, "updatesettingtwo"]);
 
-            Route::post("store_keys", [AuthenticationController::class, "store_keys"])->name("store_keys");
+                Route::post("store_keys", [AuthenticationController::class, "store_keys"])->name("store_keys");
 
-            Route::get("pending_payment", [PaymentController::class, "show_pending_payment"])->name("pending_payment");
-            Route::get("pendingpaymenttable", [PaymentController::class, "show_pendingpaymenttable"])->name("pendingpaymenttable");
-            Route::get("payamount/{doc_id}", [PaymentController::class, "show_payamount"]);
-            Route::post("updatepayment", [PaymentController::class, "updatepayment"]);
-            Route::get("complete_payment", [PaymentController::class, "complete_payment"])->name("complete_payment");
-            Route::get("completepaymenttable", [PaymentController::class, "show_completepaymenttable"])->name("completepaymenttable");
-            Route::get("refundappointment/{id}", [AppointmentController::class, "show_refundappointment"]);
+                Route::get("pending_payment", [PaymentController::class, "show_pending_payment"])->name("pending_payment");
+                Route::get("pendingpaymenttable", [PaymentController::class, "show_pendingpaymenttable"])->name("pendingpaymenttable");
+                Route::get("payamount/{doc_id}", [PaymentController::class, "show_payamount"]);
+                Route::post("updatepayment", [PaymentController::class, "updatepayment"]);
+                Route::get("complete_payment", [PaymentController::class, "complete_payment"])->name("complete_payment");
+                Route::get("completepaymenttable", [PaymentController::class, "show_completepaymenttable"])->name("completepaymenttable");
+                Route::get("refundappointment/{id}", [AppointmentController::class, "show_refundappointment"]);
 
-            Route::get("payment-setting", [PaymentSettingController::class, "show_payment_setting"])->name('payment-setting');
-            Route::post("updategateway", [PaymentSettingController::class, "show_update_gateway"])->name('updategateway');
+                Route::get("payment-setting", [PaymentSettingController::class, "show_payment_setting"])->name('payment-setting');
+                Route::post("updategateway", [PaymentSettingController::class, "show_update_gateway"])->name('updategateway');
 
-            Route::get("contact_list", [PaymentController::class, "show_contact_list"])->name("contact_list");
-            Route::get("contact_list_table", [PaymentController::class, "contact_list_table"])->name("contact_list_table");
+                Route::get("contact_list", [PaymentController::class, "show_contact_list"])->name("contact_list");
+                Route::get("contact_list_table", [PaymentController::class, "contact_list_table"])->name("contact_list_table");
 
-            Route::get("news", [PaymentController::class, "show_news"])->name("news");
-            Route::post("sendnews", [PaymentController::class, "sendnews"])->name("sendnews");
+                Route::get("news", [PaymentController::class, "show_news"])->name("news");
+                Route::post("sendnews", [PaymentController::class, "sendnews"])->name("sendnews");
 
-            Route::get("subscription", [SubscriptionController::class, "show_subscription"])->name("Subscription");
-            Route::get("subscriptiontable", [SubscriptionController::class, "show_subscriptiontable"])->name("subscriptiontable");
-            Route::get("edit_subscription_price/{id}", [SubscriptionController::class, "edit_subscription_price"]);
+                Route::get("subscription", [SubscriptionController::class, "show_subscription"])->name("Subscription");
+                Route::get("subscriptiontable", [SubscriptionController::class, "show_subscriptiontable"])->name("subscriptiontable");
+                Route::get("edit_subscription_price/{id}", [SubscriptionController::class, "edit_subscription_price"]);
 
-            Route::get("subscriber_doc", [SubscriptionController::class, "subscriber_doc"])->name("subscriber_doc");
-            Route::get("subscribetable", [SubscriptionController::class, "show_subscribetable"])->name("subscribetable");
+                Route::get("subscriber_doc", [SubscriptionController::class, "subscriber_doc"])->name("subscriber_doc");
+                Route::get("subscribetable", [SubscriptionController::class, "show_subscribetable"])->name("subscribetable");
 
-            Route::get("view_subscription_price/{id}", [SubscriptionController::class, "view_subscription_price"]);
+                Route::get("view_subscription_price/{id}", [SubscriptionController::class, "view_subscription_price"]);
 
-            Route::post("update_subscriptio_price", [SubscriptionController::class, "update_subscriptio_price"]);
+                Route::post("update_subscriptio_price", [SubscriptionController::class, "update_subscriptio_price"]);
 
-            Route::any("disable_order", [SubscriptionController::class, "disable_order"])->name("disable-order");
+                Route::any("disable_order", [SubscriptionController::class, "disable_order"])->name("disable-order");
 
-            Route::any("active_order", [SubscriptionController::class, "active_order"])->name("active-order");
+                Route::any("active_order", [SubscriptionController::class, "active_order"])->name("active-order");
 
-            Route::get("banner", [BannerController::class, "showbanner"]);
-            Route::get("bannertable", [BannerController::class, "bannertable"]);
-            Route::post("savebanner", [BannerController::class, "savebanner"]);
-            Route::get("edit-img/{id}", [BannerController::class, "edit_banner"]);
-            Route::post("updatebanner", [BannerController::class, "updatebanner"]);
-            Route::get("deletebanner/{id}", [BannerController::class, "deletebanner"]);
+                Route::get("banner", [BannerController::class, "showbanner"]);
+                Route::get("bannertable", [BannerController::class, "bannertable"]);
+                Route::post("savebanner", [BannerController::class, "savebanner"]);
+                Route::get("edit-img/{id}", [BannerController::class, "edit_banner"]);
+                Route::post("updatebanner", [BannerController::class, "updatebanner"]);
+                Route::get("deletebanner/{id}", [BannerController::class, "deletebanner"]);
 
-            Route::get("about", [FrontController::class, "about"]);
-            Route::get("Terms_condition", [FrontController::class, "admin_privacy"]);
-            Route::get("app_privacy", [FrontController::class, "app_privacy"]);
-            Route::get("data_deletion", [FrontController::class, "data_deletion"]);
+                Route::get("about", [FrontController::class, "about"]);
+                Route::get("Terms_condition", [FrontController::class, "admin_privacy"]);
+                Route::get("app_privacy", [FrontController::class, "app_privacy"]);
+                Route::get("data_deletion", [FrontController::class, "data_deletion"]);
 
-            Route::post("edit_about", [FrontController::class, "edit_about"]);
-            Route::post("edit_terms", [FrontController::class, "edit_terms"]);
-            Route::post("edit_app_privacy", [FrontController::class, "edit_app_privacy"]);
-            Route::post("edit_data_deletion", [FrontController::class, "edit_data_deletion"]);
+                Route::post("edit_about", [FrontController::class, "edit_about"]);
+                Route::post("edit_terms", [FrontController::class, "edit_terms"]);
+                Route::post("edit_app_privacy", [FrontController::class, "edit_app_privacy"]);
+                Route::post("edit_data_deletion", [FrontController::class, "edit_data_deletion"]);
 
-            Route::get("doctor_report", [ReportController::class, "doctor_report"])->name('doctor_report');
-            Route::get("user_report", [ReportController::class, "user_report"])->name('user_report');
-            Route::get("do_sub_report", [ReportController::class, "do_sub_report"])->name('do_sub_report');
-            Route::get("app_book_report", [ReportController::class, "app_book_report"])->name('app_book_report');
+                Route::get("doctor_report", [ReportController::class, "doctor_report"])->name('doctor_report');
+                Route::get("user_report", [ReportController::class, "user_report"])->name('user_report');
+                Route::get("do_sub_report", [ReportController::class, "do_sub_report"])->name('do_sub_report');
+                Route::get("app_book_report", [ReportController::class, "app_book_report"])->name('app_book_report');
 
-            Route::get("pharmacy", [PharmacyController::class, "pharmacy"])->name('pharmacy');
-            Route::get("addpharmacy/{id}", [PharmacyController::class, "addpharmacy"])->name('addpharmacy');
-            Route::post("updatepharmacy", [PharmacyController::class, "updatepharmacy"])->name('updatepharmacy');
-            Route::get("deletepharmacy/{id}", [PharmacyController::class, "deletepharmacy"])->name('deletepharmacy');
+                Route::get("pharmacy", [PharmacyController::class, "pharmacy"])->name('pharmacy');
+                Route::get("addpharmacy/{id}", [PharmacyController::class, "addpharmacy"])->name('addpharmacy');
+                Route::post("updatepharmacy", [PharmacyController::class, "updatepharmacy"])->name('updatepharmacy');
+                Route::get("deletepharmacy/{id}", [PharmacyController::class, "deletepharmacy"])->name('deletepharmacy');
 
-            Route::get('laboratory', [LaboratoryController::class, 'laboratory'])->name('laboratory');
-            Route::get('addlaboratory/{id}', [LaboratoryController::class, 'addlaboratory'])->name('addlaboratory');
-            Route::post("updatelaboratory", [LaboratoryController::class, "updatelaboratory"])->name('updatelaboratory');
-            Route::get("deletelaboratory/{id}", [LaboratoryController::class, "deletelaboratory"])->name('deletelaboratory');
-            Route::get('googlemap', [LaboratoryController::class, 'googlemap']);
-            Route::get('laboratorylogin', [LaboratoryController::class, 'laboratorylogin']);
-            
-             Route::get("laboratoryorder", [LaboratoryController::class, "laboratoryorder"])->name('laboratoryorder');
-    });
+                Route::get('laboratory', [LaboratoryController::class, 'laboratory'])->name('laboratory');
+                Route::get('addlaboratory/{id}', [LaboratoryController::class, 'addlaboratory'])->name('addlaboratory');
+                Route::post("updatelaboratory", [LaboratoryController::class, "updatelaboratory"])->name('updatelaboratory');
+                Route::get("deletelaboratory/{id}", [LaboratoryController::class, "deletelaboratory"])->name('deletelaboratory');
+                Route::get('googlemap', [LaboratoryController::class, 'googlemap']);
+                Route::get('laboratorylogin', [LaboratoryController::class, 'laboratorylogin']);
+
+                Route::get("laboratoryorder", [LaboratoryController::class, "laboratoryorder"])->name('laboratoryorder');
+
+
+                Route::get('hospital', [HospitalController::class, 'hospital'])->name('hospital');
+                Route::get('addhospital/{id}', [HospitalController::class, 'addhospital'])->name('addhospital');
+                Route::post("updatehospital", [HospitalController::class, "updatehospital"])->name('updatehospital');
+                Route::get("deletehospital/{id}", [HospitalController::class, "deletehospital"])->name('deletehospital');
+                Route::get('hospital_doctors/{id}', [HospitalController::class, 'hospital_doctors'])->name('hospital_doctors');
+                Route::post('assign_doctor/{hospital_id}', [HospitalController::class, 'assign_doctor'])->name('assign_doctor');
+                Route::get('remove_doctor/{hospital_id}/{doctor_id}', [HospitalController::class, 'remove_doctor'])->name('remove_doctor');
+                Route::get('googlemap', [HospitalController::class, 'googlemap']);
+                Route::get('hospitallogin', [HospitalController::class, 'hospitallogin']);
+                Route::get("savedoctor/{}", [DoctorController::class, "savedoctor"]);
+                // Route::get("laboratoryorder", [HospitalController::class, "laboratoryorder"])->name('laboratoryorder');
+            });
 
 
             Route::get("medicine/{pharmacy_id}", [PharmacyController::class, "medicine"])->name('medicine');

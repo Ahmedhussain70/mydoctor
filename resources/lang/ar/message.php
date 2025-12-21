@@ -662,5 +662,18 @@ return array(
     'Earning Reports' => 'تقارير الأرباح',
     'Map' => 'خريطة',
     'google_map' => 'خرائط جوجل',
-    'openstreetmap' => 'خرائط الشوارع المفتوحة'
+    'openstreetmap' => 'خرائط الشوارع المفتوحة',
+    'Hospital' => 'المراكز الطبية',
+    'Add hospital' => 'إضافة مستشفى',
+    'Hospital_list' => 'قائمة المستشفيات',
+    'Hospital Not Found' => 'المستشفى غير موجود',
+    'Hospital Add Successfully' => 'تمت إضافة المستشفى بنجاح',
+    'Hospital Update Successfully' => 'تم تحديث المستشفى بنجاح',
+    'Assign Hospital to Doctor' => 'تعيين مستشفى للطبيب',
+    'Select Hospital' => 'اختر المستشفى',
+    'Doctor Hospital Assign Successfully' => 'تم تعيين مستشفى الطبيب بنجاح',
+    'Doctor Hospital Remove Successfully' => 'تمت إزالة مستشفى الطبيب بنجاح',
+    'Assigned Hospitals' => 'المستشفيات المعينة',
+    'No any Hospital assigned to this doctor' => 'لا يوجد أي مستشفى معين لهذا الطبيب'
+
 );

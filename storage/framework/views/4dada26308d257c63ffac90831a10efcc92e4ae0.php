@@ -5,19 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>@yield('title')</title>
-    @yield('meta-data')
-    @php
+    <title><?php echo $__env->yieldContent('title'); ?></title>
+    <?php echo $__env->yieldContent('meta-data'); ?>
+    <?php
         $fav = app\models\Setting::find(1)->favicon;
-    @endphp
+    ?>
 
-    <link rel="icon" href="{{ asset('/upload/image_web/' . $fav) }}">
+    <link rel="icon" href="<?php echo e(asset('/upload/image_web/' . $fav)); ?>">
 
 
 
-    <link rel="icon" href="{{ asset('/front_pro/assets/images/favicon.ico') }}" type="image/x-icon">
-    {{--
-    <link rel="stylesheet" href="{{ asset('/front_pro/assets/css/app.css') }}"> i add this css --}}
+    <link rel="icon" href="<?php echo e(asset('/front_pro/assets/images/favicon.ico')); ?>" type="image/x-icon">
+    
 
     <link
         href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
@@ -26,17 +25,17 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
         rel="stylesheet">
 
-    <link href="{{ asset('/front_pro/assets/css/font-awesome-all.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/front_pro/assets/css/font-awesome-all.css') }}">
+    <link href="<?php echo e(asset('/front_pro/assets/css/font-awesome-all.css')); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo e(asset('/front_pro/assets/css/font-awesome-all.css')); ?>">
 
 
-    <link href="{{ asset('/front_pro/assets/css/flaticon.css') }}" rel="stylesheet">
-    <link href="{{ asset('/front_pro/assets/css/owl.css') }}" rel="stylesheet">
-    <link href="{{ asset('/front_pro/assets/css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('/front_pro/assets/css/jquery.fancybox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/front_pro/assets/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('/front_pro/assets/css/color.css') }}" rel="stylesheet">
-    <link href="{{ asset('/front_pro/assets/css/jquery-ui.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/flaticon.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/owl.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/bootstrap.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/jquery.fancybox.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/animate.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/color.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/jquery-ui.css')); ?>" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <!--<link href="https://fonts.googleapis.com/css2?family=Andika&display=swap" rel="stylesheet">-->
@@ -51,10 +50,10 @@
         /*}*/
     </style>
 
-    <link href="{{ asset('/front_pro/assets/css/timePicker.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/timePicker.css')); ?>" rel="stylesheet">
 
-    @if ($setting->is_rtl == '1')
-        <link href="{{ asset('/front_pro/assets/css/rtl.css?v=232') }}" rel="stylesheet">
+    <?php if($setting->is_rtl == '1'): ?>
+        <link href="<?php echo e(asset('/front_pro/assets/css/rtl.css?v=232')); ?>" rel="stylesheet">
         <style>
             .fr {
                 float: right;
@@ -201,22 +200,22 @@
                 border: unset !important;
             }
         </style>
-    @else
-    @endif
-    <link href="{{ asset('/front_pro/assets/css/style.css?v=2324') }}" rel="stylesheet">
+    <?php else: ?>
+    <?php endif; ?>
+    <link href="<?php echo e(asset('/front_pro/assets/css/style.css?v=2324')); ?>" rel="stylesheet">
 
 
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.css">
 
-    <link href="{{ asset('/front_pro/assets/css/responsive.css') }}" rel="stylesheet">
-    <link href="{{ asset('/front_pro/assets/css/monthly.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/responsive.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('/front_pro/assets/css/monthly.css')); ?>" rel="stylesheet">
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="text/javascript"
-        src='https://maps.google.com/maps/api/js?key={{ env('MAP_KEY') }}&sensor=false&libraries=places'></script>
+        src='https://maps.google.com/maps/api/js?key=<?php echo e(env('MAP_KEY')); ?>&sensor=false&libraries=places'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <style>
         .light {
@@ -225,31 +224,38 @@
 
         :root {
             --main:
-                {{ isset($setting->web_theme_color) ? $setting->web_theme_color : '#ff9136' }}
+                <?php echo e(isset($setting->web_theme_color) ? $setting->web_theme_color : '#ff9136'); ?>
+
             ;
             --font-main: #000;
             --font-gray: #767676;
             --light-black:
-                {{ isset($setting->web_bg_black) ? $setting->web_bg_black : '#323232' }}
+                <?php echo e(isset($setting->web_bg_black) ? $setting->web_bg_black : '#323232'); ?>
+
             ;
             --light-orange:
-                {{ isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe0c5' }}
+                <?php echo e(isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe0c5'); ?>
+
             ;
             --box-shadow:
-                {{ isset($setting->web_box_shadow) ? $setting->web_box_shadow : '#ffe7d1' }}
+                <?php echo e(isset($setting->web_box_shadow) ? $setting->web_box_shadow : '#ffe7d1'); ?>
+
             ;
             --w-orange: #fff1e5;
             --background-light:
-                {{ isset($setting->web_bg_light) ? $setting->web_bg_light : '#f3eae2' }}
+                <?php echo e(isset($setting->web_bg_light) ? $setting->web_bg_light : '#f3eae2'); ?>
+
             ;
             --background-ndark:
-                {{ isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe3ca' }}
+                <?php echo e(isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe3ca'); ?>
+
             ;
         }
 
         .main-header.style-two .header-top {
             background:
-                {{ isset($setting->web_bg_black) ? $setting->web_bg_black : '#1a2332' }}
+                <?php echo e(isset($setting->web_bg_black) ? $setting->web_bg_black : '#1a2332'); ?>
+
             ;
         }
 
@@ -265,12 +271,12 @@
 </head>
 
 <body>
-    @include('cookieConsent::index')
-    @if ($setting->is_rtl == '1')
+    <?php echo $__env->make('cookieConsent::index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if($setting->is_rtl == '1'): ?>
         <div class="boxed_wrapper rtl">
-    @else
+    <?php else: ?>
             <div class="boxed_wrapper">
-        @endif
+        <?php endif; ?>
             <div class="preloader"></div>
             <header class="main-header style-two">
                 <div class="header-top">
@@ -278,19 +284,19 @@
                         <div class="top-inner clearfix">
                             <div class="top-left pull-left">
                                 <ul class="info clearfix">
-                                    <li><i class="fas fa-map-marker-alt"></i>{{ $setting->address }}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i><?php echo e($setting->address); ?></li>
                                     <li><i class="fas fa-phone"></i><a
-                                            href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a></li>
+                                            href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a></li>
                                 </ul>
                             </div>
                             <div class="top-right pull-right">
                                 <ul class="info clearfix">
-                                    @if (Session::has('user_id'))
-                                        <li><a href="{{ url('logout') }}">{{ __('message.Logout') }}</a></li>
-                                    @else
-                                        <li><a href="{{ url('patientlogin') }}">{{ __('message.Sign in') }}</a></li>
+                                    <?php if(Session::has('user_id')): ?>
+                                        <li><a href="<?php echo e(url('logout')); ?>"><?php echo e(__('message.Logout')); ?></a></li>
+                                    <?php else: ?>
+                                        <li><a href="<?php echo e(url('patientlogin')); ?>"><?php echo e(__('message.Sign in')); ?></a></li>
                                         <li></li>
-                                    @endif
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -300,8 +306,8 @@
                     <div class="auto-container">
                         <div class="outer-box">
                             <div class="logo-box">
-                                <figure class="logo"><a href="{{ url('/') }}"><img
-                                            src="{{ asset('/image_web/') . '/' . $setting->logo }}" alt=""></a>
+                                <figure class="logo"><a href="<?php echo e(url('/')); ?>"><img
+                                            src="<?php echo e(asset('/image_web/') . '/' . $setting->logo); ?>" alt=""></a>
                                 </figure>
                             </div>
                             <div class="menu-area">
@@ -313,62 +319,62 @@
                                 <nav class="main-menu navbar-expand-md navbar-light">
                                     <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                         <ul class="navigation clearfix">
-                                            <li class="" id="home"><a href="{{ url('/') }}">{{ __('message.Home') }}</a>
+                                            <li class="" id="home"><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Home')); ?></a>
                                             </li>
                                             <li class="" id="home"><a
-                                                    href="{{ url('searchdoctor') }}">{{ __('message.Doctors') }}</a>
+                                                    href="<?php echo e(url('searchdoctor')); ?>"><?php echo e(__('message.Doctors')); ?></a>
                                             </li>
                                             <li class="" id="home"><a
-                                                    href="{{ url('searchpharmacy') }}">{{ __('message.Pharmacy') }}</a>
+                                                    href="<?php echo e(url('searchpharmacy')); ?>"><?php echo e(__('message.Pharmacy')); ?></a>
                                             </li>
                                             <li class="" id="home"><a
-                                                    href="{{ url('searchlaboratory') }}">{{ __('message.Laboratory') }}</a>
+                                                    href="<?php echo e(url('searchlaboratory')); ?>"><?php echo e(__('message.Laboratory')); ?></a>
                                             </li>
                                             <li class="" id="home"><a
-                                                    href="{{ url('viewspecialist') }}">{{ __('message.Specialist') }}</a>
+                                                    href="<?php echo e(url('viewspecialist')); ?>"><?php echo e(__('message.Specialist')); ?></a>
                                             </li>
                                             <li class="" id="home"><a
-                                                    href="{{ url('viewhospital') }}">{{ __('message.Hospital') }}</a>
+                                                    href="<?php echo e(url('viewhospital')); ?>"><?php echo e(__('message.Hospital')); ?></a>
                                             </li>
                                             <li class="" id="home"><a
-                                                    href="{{ url('contactus') }}">{{ __('message.Contact Us') }}</a>
+                                                    href="<?php echo e(url('contactus')); ?>"><?php echo e(__('message.Contact Us')); ?></a>
                                             </li>
                                             <li class="my-account-button" id="home">
-                                                @if (empty(Session::get('user_id')))
+                                                <?php if(empty(Session::get('user_id'))): ?>
                                                     <a
-                                                        href="{{ url('profilelogin') }}">{{ __('message.Join As Doctor') }}</a>
-                                                @else
-                                                    @if (Session::get('user_id') != '' && Session::get('role_id') == 1)
+                                                        href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.Join As Doctor')); ?></a>
+                                                <?php else: ?>
+                                                    <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
                                                         <a
-                                                            href="{{ url('userdashboard') }}">{{ __('message.My Dashboard') }}</a>
-                                                    @else
-                                                        <a href="{{ url('profilelogin') }}">{{ __('message.My Dashboard') }}</a>
-                                                    @endif
-                                                @endif
+                                                            href="<?php echo e(url('userdashboard')); ?>"><?php echo e(__('message.My Dashboard')); ?></a>
+                                                    <?php else: ?>
+                                                        <a href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.My Dashboard')); ?></a>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
                                             </li>
                                         </ul>
                                     </div>
                                 </nav>
                             </div>
                             <div class="btn-box">
-                                @if (empty(Session::get('user_id')))
-                                    <a href="{{ url('profilelogin') }}" class="theme-btn-one"><i
-                                            class="icon-image"></i>{{ __('message.Join As Profile') }}</a>
-                                @else
-                                    @if (Session::get('user_id') != '' && Session::get('role_id') == 1)
-                                        <a href="{{ url('userdashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @elseif (Session::get('user_id') != '' && Session::get('role_id') == 3)
-                                        <a href="{{ url('pharmacydashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @elseif (Session::get('user_id') != '' && Session::get('role_id') == 4)
-                                        <a href="{{ url('laboratorydashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @else
-                                        <a href="{{ url('doctordashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @endif
-                                @endif
+                                <?php if(empty(Session::get('user_id'))): ?>
+                                    <a href="<?php echo e(url('profilelogin')); ?>" class="theme-btn-one"><i
+                                            class="icon-image"></i><?php echo e(__('message.Join As Profile')); ?></a>
+                                <?php else: ?>
+                                    <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
+                                        <a href="<?php echo e(url('userdashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 3): ?>
+                                        <a href="<?php echo e(url('pharmacydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 4): ?>
+                                        <a href="<?php echo e(url('laboratorydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php else: ?>
+                                        <a href="<?php echo e(url('doctordashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -377,8 +383,8 @@
                     <div class="auto-container">
                         <div class="outer-box">
                             <div class="logo-box">
-                                <figure class="logo"><a href="{{ url('/') }}">
-                                        <img src="{{ asset('/image_web/') . '/' . $setting->logo }}" alt=""></a>
+                                <figure class="logo"><a href="<?php echo e(url('/')); ?>">
+                                        <img src="<?php echo e(asset('/image_web/') . '/' . $setting->logo); ?>" alt=""></a>
                                 </figure>
                             </div>
                             <div class="menu-area">
@@ -386,24 +392,24 @@
                                 </nav>
                             </div>
                             <div class="btn-box">
-                                @if (empty(Session::get('user_id')))
-                                    <a href="{{ url('profilelogin') }}" class="theme-btn-one"><i
-                                            class="icon-image"></i>{{ __('message.Join As Profile') }}</a>
-                                @else
-                                    @if (Session::get('user_id') != '' && Session::get('role_id') == 1)
-                                        <a href="{{ url('userdashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @elseif (Session::get('user_id') != '' && Session::get('role_id') == 3)
-                                        <a href="{{ url('pharmacydashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @elseif (Session::get('user_id') != '' && Session::get('role_id') == 4)
-                                        <a href="{{ url('pharmacydashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @else
-                                        <a href="{{ url('doctordashboard') }}"
-                                            class="theme-btn-one">{{ __('message.My Dashboard') }}</a>
-                                    @endif
-                                @endif
+                                <?php if(empty(Session::get('user_id'))): ?>
+                                    <a href="<?php echo e(url('profilelogin')); ?>" class="theme-btn-one"><i
+                                            class="icon-image"></i><?php echo e(__('message.Join As Profile')); ?></a>
+                                <?php else: ?>
+                                    <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
+                                        <a href="<?php echo e(url('userdashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 3): ?>
+                                        <a href="<?php echo e(url('pharmacydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 4): ?>
+                                        <a href="<?php echo e(url('pharmacydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php else: ?>
+                                        <a href="<?php echo e(url('doctordashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -413,38 +419,38 @@
                 <div class="menu-backdrop"></div>
                 <div class="close-btn"><i class="fas fa-times"></i></div>
                 <nav class="menu-box">
-                    <div class="nav-logo"><a href="{{ url('/') }}"><img
-                                src="{{ asset('/image_web/') . '/' . $setting->logo }}" alt="" title=""></a>
+                    <div class="nav-logo"><a href="<?php echo e(url('/')); ?>"><img
+                                src="<?php echo e(asset('/image_web/') . '/' . $setting->logo); ?>" alt="" title=""></a>
                     </div>
                     <div class="menu-outer"></div>
                     <div class="contact-info">
-                        <h4>{{ __('message.Contact Info') }}</h4>
+                        <h4><?php echo e(__('message.Contact Info')); ?></h4>
                         <ul>
-                            <li>{{ $setting->address }}</li>
-                            <li><a href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a></li>
-                            <li><a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a></li>
+                            <li><?php echo e($setting->address); ?></li>
+                            <li><a href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a></li>
+                            <li><a href="mailto:<?php echo e($setting->email); ?>"><?php echo e($setting->email); ?></a></li>
                         </ul>
                     </div>
                     <div class="social-links">
                         <ul class="clearfix">
-                            <li><a href="{{ url('/') }}"><span class="fab fa-twitter"></span></a></li>
-                            <li><a href="{{ url('/') }}"><span class="fab fa-facebook-square"></span></a></li>
-                            <li><a href="{{ url('/') }}"><span class="fab fa-pinterest-p"></span></a></li>
-                            <li><a href="{{ url('/') }}"><span class="fab fa-instagram"></span></a></li>
-                            <li><a href="{{ url('/') }}"><span class="fab fa-youtube"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-twitter"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-facebook-square"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-pinterest-p"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-instagram"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-youtube"></span></a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
             <footer class="main-footer">
                 <div class="footer-top">
                     <div class="pattern-layer">
                         <div class="pattern-1"
-                            style="background-image: url('{{ asset('/front_pro/assets/images/shape/shape-30.png') }}');">
+                            style="background-image: url('<?php echo e(asset('/front_pro/assets/images/shape/shape-30.png')); ?>');">
                         </div>
                         <div class="pattern-2"
-                            style="background-image: url('{{ asset('/front_pro/assets/images/shape/shape-31.png') }}');">
+                            style="background-image: url('<?php echo e(asset('/front_pro/assets/images/shape/shape-31.png')); ?>');">
                         </div>
                     </div>
                     <div class="auto-container">
@@ -452,27 +458,27 @@
                             <div class="row clearfix">
                                 <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
                                     <div class="footer-widget logo-widget">
-                                        <figure class="footer-logo"><a href="{{ url('/') }}">
-                                                <img src="{{ asset('/image_web/') . '/' . $setting->logo }}" alt=""></a>
+                                        <figure class="footer-logo"><a href="<?php echo e(url('/')); ?>">
+                                                <img src="<?php echo e(asset('/image_web/') . '/' . $setting->logo); ?>" alt=""></a>
                                         </figure>
                                         <div class="text">
-                                            <p>{{ __('message.Footer Content') }}</p>
+                                            <p><?php echo e(__('message.Footer Content')); ?></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
                                     <div class="footer-widget links-widget">
                                         <div class="widget-title">
-                                            <h3>{{ __('message.About') }}</h3>
+                                            <h3><?php echo e(__('message.About')); ?></h3>
                                         </div>
                                         <div class="widget-content">
                                             <ul class="links clearfix">
-                                                <li><a href="{{ url('aboutus') }}">{{ __('message.About Us') }}</a></li>
-                                                <li><a href="{{ url('contactus') }}">{{ __('message.Contact Us') }}</a>
+                                                <li><a href="<?php echo e(url('aboutus')); ?>"><?php echo e(__('message.About Us')); ?></a></li>
+                                                <li><a href="<?php echo e(url('contactus')); ?>"><?php echo e(__('message.Contact Us')); ?></a>
                                                 </li>
-                                                <li><a href="{{ url('/') }}">{{ __('message.Download apps') }}</a></li>
+                                                <li><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Download apps')); ?></a></li>
                                                 <li><a
-                                                        href="{{ url('Privacy_Policy') }}">{{ __('message.Privecy') }}</a>
+                                                        href="<?php echo e(url('Privacy_Policy')); ?>"><?php echo e(__('message.Privecy')); ?></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -481,17 +487,17 @@
                                 <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                                     <div class="footer-widget links-widget">
                                         <div class="widget-title">
-                                            <h3>{{ __('message.Useful Links') }}</h3>
+                                            <h3><?php echo e(__('message.Useful Links')); ?></h3>
                                         </div>
                                         <div class="widget-content">
                                             <ul class="links clearfix">
                                                 <li><a
-                                                        href="{{ url('viewspecialist') }}">{{ __('message.Specialist') }}</a>
+                                                        href="<?php echo e(url('viewspecialist')); ?>"><?php echo e(__('message.Specialist')); ?></a>
                                                 </li>
-                                                <li><a href="{{ url('searchdoctor') }}">{{ __('message.Doctors') }}</a>
+                                                <li><a href="<?php echo e(url('searchdoctor')); ?>"><?php echo e(__('message.Doctors')); ?></a>
                                                 </li>
                                                 <li><a
-                                                        href="{{ url('profilelogin') }}">{{ __('message.Join As Doctor') }}</a>
+                                                        href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.Join As Doctor')); ?></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -500,18 +506,19 @@
                                 <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                                     <div class="footer-widget contact-widget">
                                         <div class="widget-title">
-                                            <h3>{{ __('message.Contact Info') }}</h3>
+                                            <h3><?php echo e(__('message.Contact Info')); ?></h3>
                                         </div>
                                         <div class="widget-content">
                                             <ul class="info-list clearfix">
                                                 <li><i class="fas fa-map-marker-alt"></i>
-                                                    {{ $setting->address }}
+                                                    <?php echo e($setting->address); ?>
+
                                                 </li>
                                                 <li><i class="fas fa-microphone"></i>
-                                                    <a href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a>
+                                                    <a href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a>
                                                 </li>
                                                 <li><i class="fas fa-envelope"></i>
-                                                    <a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
+                                                    <a href="mailto:<?php echo e($setting->email); ?>"><?php echo e($setting->email); ?></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -545,7 +552,7 @@
                 </style>
 
                 <button type="button" class="theme-btn-one" id="bottomright" data-toggle="modal" data-target="#ai_chat">
-                    {{ __('message.al_chat') }} <span class="far fas fa-comment-dots"></span>
+                    <?php echo e(__('message.al_chat')); ?> <span class="far fas fa-comment-dots"></span>
                 </button>
 
                 <div class="modal fade" id="ai_chat" tabindex="-1" aria-hidden="true" data-backdrop="static"
@@ -553,45 +560,45 @@
                     <div class="modal-dialog modal-dialog-scrollable mb-0">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title text-center">{{ __('message.al_chat') }}</h3>
+                                <h3 class="modal-title text-center"><?php echo e(__('message.al_chat')); ?></h3>
                                 <button type="button" class="close" id="clearChat" data-dismiss="modal">&times;</button>
                             </div>
 
                             <div class="chat-box p-3 border rounded-lg bg-light" id="chatHistory">
-                                @if (empty(session('chat_history')))
+                                <?php if(empty(session('chat_history'))): ?>
                                     <div class="d-flex justify-content-center">
                                         <div class="p-2 rounded-lg text-center" style="color: black;">
-                                            <strong class="d-block">{{ __('message.Hello') }} </strong>
-                                            <span>{{ __('message.how_can_I_help_you') }}</span>
+                                            <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
+                                            <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
                                         </div>
                                     </div>
-                                @endif
-                                @foreach (session('chat_history', []) as $chat)
+                                <?php endif; ?>
+                                <?php $__currentLoopData = session('chat_history', []); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div
-                                        class="mb-2 d-flex {{ $chat['role'] == 'user' ? 'justify-content-end' : 'justify-content-start' }}">
+                                        class="mb-2 d-flex <?php echo e($chat['role'] == 'user' ? 'justify-content-end' : 'justify-content-start'); ?>">
                                         <div class="p-2 rounded-lg" style="max-width: 70%;
-                                        background: {{ $chat['role'] == 'user' ? '#f1f1f1' : '#f1f1f1' }};
-                                        color: {{ $chat['role'] == 'user' ? 'black' : 'black' }};">
-                                            <strong class="d-block">{{ $chat['role'] == 'user' ? 'You' : 'AI' }}</strong>
+                                        background: <?php echo e($chat['role'] == 'user' ? '#f1f1f1' : '#f1f1f1'); ?>;
+                                        color: <?php echo e($chat['role'] == 'user' ? 'black' : 'black'); ?>;">
+                                            <strong class="d-block"><?php echo e($chat['role'] == 'user' ? 'You' : 'AI'); ?></strong>
                                             <span
-                                                class="{{ $chat['role'] == 'model' ? 'ai-response' : '' }}">{{ $chat['text'] }}</span>
+                                                class="<?php echo e($chat['role'] == 'model' ? 'ai-response' : ''); ?>"><?php echo e($chat['text']); ?></span>
                                         </div>
                                     </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
 
                             <div class="p-3 border rounded-lg bg-light">
                                 <form id="chatForm">
-                                    @csrf
+                                    <?php echo csrf_field(); ?>
                                     <div class="row">
                                         <div class="col-9 pr-0">
                                             <input type="text" name="user_input" id="user_input" class="form-control"
-                                                placeholder="{{ __('message.type_msg_here') }}" required>
+                                                placeholder="<?php echo e(__('message.type_msg_here')); ?>" required>
                                         </div>
                                         <div class="col-3">
                                             <button type="submit" class="btn btn-info w-100 h-100"
                                                 style="border-radius: 13px;">
-                                                {{ __('message.Send') }} <span class="fa fa-send"></span>
+                                                <?php echo e(__('message.Send')); ?> <span class="fa fa-send"></span>
                                             </button>
                                         </div>
                                     </div>
@@ -642,10 +649,10 @@
                             scrollToBottom();
 
                             $.ajax({
-                                url: "{{ route('gemini.call') }}",
+                                url: "<?php echo e(route('gemini.call')); ?>",
                                 type: "POST",
                                 data: {
-                                    _token: "{{ csrf_token() }}",
+                                    _token: "<?php echo e(csrf_token()); ?>",
                                     user_input: userMessage
                                 },
                                 success: function (response) {
@@ -673,17 +680,17 @@
 
                         $('#clearChat').click(function () {
                             $.ajax({
-                                url: "{{ route('gemini.clear') }}",
+                                url: "<?php echo e(route('gemini.clear')); ?>",
                                 type: "POST",
                                 data: {
-                                    _token: "{{ csrf_token() }}"
+                                    _token: "<?php echo e(csrf_token()); ?>"
                                 },
                                 success: function () {
                                     $('#chatHistory').html(`
                 <div id="defaultMessage" class="d-flex justify-content-center">
                     <div class="p-2 rounded-lg text-center" style="color: black;">
-                         <strong class="d-block">{{ __('message.Hello') }} </strong>
-                        <span>{{ __('message.how_can_I_help_you') }}</span>
+                         <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
+                        <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
                     </div>
                 </div>
             `);
@@ -696,17 +703,17 @@
 
                         $('#bottomright').click(function () {
                             $.ajax({
-                                url: "{{ route('gemini.clear') }}",
+                                url: "<?php echo e(route('gemini.clear')); ?>",
                                 type: "POST",
                                 data: {
-                                    _token: "{{ csrf_token() }}"
+                                    _token: "<?php echo e(csrf_token()); ?>"
                                 },
                                 success: function () {
                                     $('#chatHistory').html(`
                 <div id="defaultMessage" class="d-flex justify-content-center">
                     <div class="p-2 rounded-lg text-center" style="color: black;">
-                         <strong class="d-block">{{ __('message.Hello') }} </strong>
-                        <span>{{ __('message.how_can_I_help_you') }}</span>
+                         <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
+                        <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
                     </div>
                 </div>
             `);
@@ -726,8 +733,9 @@
                     <div class="auto-container">
                         <div class="inner-box clearfix">
                             <div class="copyright pull-left">
-                                <p><a href="{{ url('/') }}">{{ __('message.System Name') }}</a> &copy;
-                                    {{ date('Y') }} {{ __('message.All Right Reserved') }}
+                                <p><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.System Name')); ?></a> &copy;
+                                    <?php echo e(date('Y')); ?> <?php echo e(__('message.All Right Reserved')); ?>
+
                                 </p>
                             </div>
                             <ul class="footer-nav pull-right clearfix">
@@ -750,50 +758,50 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <input type="hidden" id="currentuserlat">
         <input type="hidden" id="currentuserlong">
-        <input type="hidden" id="doctornotavilable" value='{{ __('message.Doctor isnot Avilable') }}'>
-        <input type="hidden" id="contactsuccssmsg" value="{{ __('message.Thank you for getting in touch!') }}">
-        <input type="hidden" id="successlabel" value="{{ __('message.Success') }}">
-        <input type="hidden" id="Errorlabel" value="{{ __('message.Error') }}">
+        <input type="hidden" id="doctornotavilable" value='<?php echo e(__('message.Doctor isnot Avilable')); ?>'>
+        <input type="hidden" id="contactsuccssmsg" value="<?php echo e(__('message.Thank you for getting in touch!')); ?>">
+        <input type="hidden" id="successlabel" value="<?php echo e(__('message.Success')); ?>">
+        <input type="hidden" id="Errorlabel" value="<?php echo e(__('message.Error')); ?>">
         <input type="hidden" id="emailinvaildlabel"
-            value="{{ __('message.You have entered an invalid email address') }}">
-        <input type="hidden" id="siteurl" value="{{ url('/') }}">
-        <input type="hidden" id="pwdmatch" value="{{ __('message.Password And Confirm Password Must Be Same') }}">
-        <input type="hidden" id="currentpwdwrong" value="{{ __('message.Current Password is Wrong') }}">
-        <input type="hidden" id="start1val" value='{{ __('message.Please Select Start Time First') }}'>
+            value="<?php echo e(__('message.You have entered an invalid email address')); ?>">
+        <input type="hidden" id="siteurl" value="<?php echo e(url('/')); ?>">
+        <input type="hidden" id="pwdmatch" value="<?php echo e(__('message.Password And Confirm Password Must Be Same')); ?>">
+        <input type="hidden" id="currentpwdwrong" value="<?php echo e(__('message.Current Password is Wrong')); ?>">
+        <input type="hidden" id="start1val" value='<?php echo e(__('message.Please Select Start Time First')); ?>'>
         <input type="hidden" id="loginmsg"
-            value="{{ __('message.To book appointment you must login first, please proceed with login now.') }}">
-        <input type="hidden" id="sge" value='{{ __('message.Start Time is greater than end time') }}'>
-        <input type="hidden" id="sequale" value='{{ __('message.Start Time equals end time') }}'>
-        <input type="hidden" id="selduration" value='{{ __('message.Please Select Any Duration') }}'>
-        <input type="hidden" id="startvaltext" value='{{ __('message.Start Time') }}'>
-        <input type="hidden" id="endvaltext" value='{{ __('message.End Time') }}'>
-        <input type="hidden" id="durationval" value='{{ __('message.Duration') }}'>
-        <input type="hidden" id="delete_record" value="{{ __('message.delete_record') }}" />
-        <input type="hidden" id="seldurationval" value='{{ __('message.Select Duration') }}'>
-        <input type="hidden" id="deletetext" value='{{ __('message.delete') }}'>
-        <script src="{{ asset('/front_pro/assets/js/jquery.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/popper.min.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/popper.min.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/owl.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/wow.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/validation.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/jquery.fancybox.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/appear.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/scrollbar.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/tilt.jquery.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/jquery.paroller.min.js') }}"></script>
-        <script src="{{ asset('/js/locationpicker.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/script.js') }}"></script>
+            value="<?php echo e(__('message.To book appointment you must login first, please proceed with login now.')); ?>">
+        <input type="hidden" id="sge" value='<?php echo e(__('message.Start Time is greater than end time')); ?>'>
+        <input type="hidden" id="sequale" value='<?php echo e(__('message.Start Time equals end time')); ?>'>
+        <input type="hidden" id="selduration" value='<?php echo e(__('message.Please Select Any Duration')); ?>'>
+        <input type="hidden" id="startvaltext" value='<?php echo e(__('message.Start Time')); ?>'>
+        <input type="hidden" id="endvaltext" value='<?php echo e(__('message.End Time')); ?>'>
+        <input type="hidden" id="durationval" value='<?php echo e(__('message.Duration')); ?>'>
+        <input type="hidden" id="delete_record" value="<?php echo e(__('message.delete_record')); ?>" />
+        <input type="hidden" id="seldurationval" value='<?php echo e(__('message.Select Duration')); ?>'>
+        <input type="hidden" id="deletetext" value='<?php echo e(__('message.delete')); ?>'>
+        <script src="<?php echo e(asset('/front_pro/assets/js/jquery.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/popper.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/popper.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/owl.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/wow.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/validation.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/jquery.fancybox.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/appear.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/scrollbar.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/tilt.jquery.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/jquery.paroller.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('/js/locationpicker.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/script.js')); ?>"></script>
 
-        <script src="{{ asset('/front_pro/assets/js/product-filter.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/jquery-ui.js') }}"></script>
-
-
-        <script src="{{ asset('/front_pro/assets/js/timePicker.js') }}"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/product-filter.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/jquery-ui.js')); ?>"></script>
 
 
-        <script src="{{ asset('/front_pro/assets/js/gmaps.js') }}"></script>
-        <script src="{{ asset('/front_pro/assets/js/map-helper.js') }}"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/timePicker.js')); ?>"></script>
+
+
+        <script src="<?php echo e(asset('/front_pro/assets/js/gmaps.js')); ?>"></script>
+        <script src="<?php echo e(asset('/front_pro/assets/js/map-helper.js')); ?>"></script>
         <!-- <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script> -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
@@ -806,14 +814,12 @@
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css">
-        {{--
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js'></script> --}}
-        <script type="text/javascript" src="{{ asset('/js/code.js?v=1.2312') }}"></script>
+        
+        <script type="text/javascript" src="<?php echo e(asset('/js/code.js?v=1.2312')); ?>"></script>
 
 
 
-        @yield('footer')
+        <?php echo $__env->yieldContent('footer'); ?>
         <script>
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
@@ -879,14 +885,14 @@
 
             function pleaselogin() {
                 Swal.fire({
-                    title: "{{ __('message.you must login first') }}",
-                    text: "{{ __('message.To book appointment you must login first, please proceed with login now.') }}",
+                    title: "<?php echo e(__('message.you must login first')); ?>",
+                    text: "<?php echo e(__('message.To book appointment you must login first, please proceed with login now.')); ?>",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: "{{ __('message.Login Now') }}",
-                    cancelButtonText: "{{ __('message.Cancel') }}"
+                    confirmButtonText: "<?php echo e(__('message.Login Now')); ?>",
+                    cancelButtonText: "<?php echo e(__('message.Cancel')); ?>"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = $("#siteurl").val() + '/patientlogin';
@@ -896,16 +902,16 @@
         </script>
 
         
-        {{-- jQuery (ONLY ONE – REQUIRED FOR SELECT2) --}}
+        
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-        {{-- Bootstrap 5 JS --}}
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        {{-- Select2 JS --}}
+        
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-        @stack('scripts')
+        <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\mydoctor\resources\views/user/layout.blade.php ENDPATH**/ ?>

@@ -663,7 +663,7 @@ return array(
     'Map' => 'خريطة',
     'google_map' => 'خرائط جوجل',
     'openstreetmap' => 'خرائط الشوارع المفتوحة',
-    'Hospital' => 'المراكز الطبية',
+    'Hospitals' => 'المراكز الطبية',
     'Add hospital' => 'إضافة مستشفى',
     'Hospital_list' => 'قائمة المستشفيات',
     'Hospital Not Found' => 'المستشفى غير موجود',

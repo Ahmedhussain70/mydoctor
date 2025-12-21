@@ -189,6 +189,31 @@
                     <span>{{ __('message.Department') }}</span>
                 </a>
             </li>
+
+
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                {{ __('message.Hospitals') }}
+            </div>
+            <li class="nav-item {{ Request::is('backend/appointment') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('backend/appointment') }}">
+                    <i class="fas fa-calendar fa-palette"></i>
+                    <span>{{ __('message.Appointment') }}</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('backend/hospitals') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('backend/hospitals') }}">
+                    <i class="fas fa-users fa-palette"></i>
+                    <span>{{ __('message.Hospitals') }}</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('backend/doctors') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('backend/doctors') }}">
+                    <i class="fas fa-users fa-palette"></i>
+                    <span>{{ __('message.Doctors') }}</span>
+                </a>
+            </li>
+
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
                 {{ __('message.Pharmacy') }}

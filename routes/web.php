@@ -384,7 +384,6 @@ Route::group(['middleware' => ['Localization']], function () {
 
                 Route::get("laboratoryorder", [LaboratoryController::class, "laboratoryorder"])->name('laboratoryorder');
 
-
                 Route::get('hospital', [HospitalController::class, 'hospital'])->name('hospital');
                 Route::get('addhospital/{id}', [HospitalController::class, 'addhospital'])->name('addhospital');
                 Route::post("updatehospital", [HospitalController::class, "updatehospital"])->name('updatehospital');
@@ -395,7 +394,6 @@ Route::group(['middleware' => ['Localization']], function () {
                 Route::get('googlemap', [HospitalController::class, 'googlemap']);
                 Route::get('hospitallogin', [HospitalController::class, 'hospitallogin']);
                 Route::get("savedoctor/{}", [DoctorController::class, "savedoctor"]);
-                // Route::get("laboratoryorder", [HospitalController::class, "laboratoryorder"])->name('laboratoryorder');
             });
 
 

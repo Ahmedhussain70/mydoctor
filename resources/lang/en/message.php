@@ -714,6 +714,7 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'Your subscription plan add successfully' => 'Your subscription plan add successfully -e, ö, ü, ğ, ç, ş',
   'Top Rated Specialists' => 'Top Rated Specialists',
 
+  'Hospital' => 'Hospital',
   'Hospitals' => 'Hospitals',
   'Add hospital' => 'Add Hospital',
   'Hospital_list' => 'Hospital List',

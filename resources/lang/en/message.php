@@ -726,6 +726,7 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'Doctor Hospital Assign Successfully' => 'Doctor Assigned to Hospital Successfully',
   'Doctor Hospital Remove Successfully' => 'Doctor Removed from Hospital Successfully',
   'Assigned Hospitals' => 'Assigned Hospitals',
+  'Enter Hospital Name' => 'Enter Hospital Name',
   'No any Hospital assigned to this doctor' => 'No Hospital Assigned to This Doctor'
 
 );

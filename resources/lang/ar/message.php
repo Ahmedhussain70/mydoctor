@@ -675,6 +675,7 @@ return array(
     'Doctor Hospital Assign Successfully' => 'تم تعيين مستشفى الطبيب بنجاح',
     'Doctor Hospital Remove Successfully' => 'تمت إزالة مستشفى الطبيب بنجاح',
     'Assigned Hospitals' => 'المستشفيات المعينة',
+    'Enter Hospital Name' => 'أدخل اسم المستشفى',
     'No any Hospital assigned to this doctor' => 'لا يوجد أي مستشفى معين لهذا الطبيب'
 
 );

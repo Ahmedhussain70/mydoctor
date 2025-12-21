@@ -116,7 +116,7 @@ class HospitalController extends Controller
 
         Session::flash('message', $msg);
         Session::flash('alert-class', 'alert-success');
-        return redirect("backend/hospital");
+        return redirect("backend/hospitals");
     }
 
     public function deletehospital($id)

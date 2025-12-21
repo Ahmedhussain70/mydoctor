@@ -393,7 +393,6 @@ Route::group(['middleware' => ['Localization']], function () {
                 Route::get('remove_doctor/{hospital_id}/{doctor_id}', [HospitalController::class, 'remove_doctor'])->name('remove_doctor');
                 Route::get('googlemap', [HospitalController::class, 'googlemap']);
                 Route::get('hospitallogin', [HospitalController::class, 'hospitallogin']);
-                Route::get("savedoctor/{}", [DoctorController::class, "savedoctor"]);
             });
 
 

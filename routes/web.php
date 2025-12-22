@@ -219,6 +219,16 @@ Route::group(['middleware' => ['Localization']], function () {
         Route::get("laboratoryorderchangestatus/{id}/{status}", [LaboratoryController::class, "laboratoryorderchangestatus"]);
         Route::get('get_reportdata/{id}', [LaboratoryController::class, 'get_reportdata']);
 
+        Route::get("searchhospital", [HospitalController::class, "searchhospital"]);
+
+        Route::get("viewhospital/{id}", [HospitalController::class, "viewhospital"]);
+
+        Route::get('addHospitalCart/{id}', [HospitalController::class, 'addHospitalCart']);
+
+        Route::post('addhospitalorder', [HospitalController::class, 'addhospitalorder']);
+
+        Route::get('userhospitalreportlist', [HospitalController::class, 'userhospitalreportlist']);
+
 
 
 

@@ -311,6 +311,8 @@
                                     <li class="" id="home"><a
                                             href="{{ url('searchlaboratory') }}">{{ __('message.Laboratory') }}</a></li>
                                     <li class="" id="home"><a
+                                            href="{{ url('searchhospital') }}">{{ __('message.Hospital') }}</a></li>
+                                    <li class="" id="home"><a
                                             href="{{ url('viewspecialist') }}">{{ __('message.Specialist') }}</a></li>
                                     <li class="" id="home"><a
                                             href="{{ url('contactus') }}">{{ __('message.Contact Us') }}</a></li>

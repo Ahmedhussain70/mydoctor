@@ -3,28 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Hospital;
 use App\Models\City;
 use App\Models\Setting;
 use App\Models\Doctors;
 use Illuminate\Support\Facades\Session;
 use Exception;
-use App\Models\BookAppointment;
-use Illuminate\Support\Facades\Hash;
-use DateTime;
-use App\Models\Subscription;
-use App\Models\Subscriber;
 use App\Models\Services;
 use App\Models\FavoriteDoc;
 use App\Models\HospitalOrder;
-use App\Models\PharmacyOrder;
 use App\Models\Patient;
 use App\Models\Review;
-use Carbon\Carbon;
-use App\Models\PharmacyProduct;
 use App\Models\PaymentGatewayDetail;
 use App\Models\HospitalOrderData;
-use App\Models\HospitalProduct;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
 use Illuminate\Support\Facades\DB;
 
@@ -365,66 +355,8 @@ class HospitalController extends Controller
 
 
 
-        public function hospitalreport(Request $request){
-            if (Session::get("user_id") != "" && Session::get("role_id") == '5') {
-            $setting = Setting::find(1);
-            $data = HospitalProduct::where('hospital_id', Session::get("user_id"))->get();
-            $doctordata = Doctors::with('departmentls')->find(Session::get("user_id"));
-            return view("user.hospital.reports")->with("setting", $setting)->with("doctordata", $doctordata)->with('data',$data);
-        }
-        else
-        {
-            return redirect("/");
-        }
-    }
 
 
-    public function updatehospitalreportfront(Request $request)
-    {
-        // return $request;
-        if ($request->order_id == 0) {
-            $data = new HospitalProduct();
-
-            $msg = __("message.Successfull Report Added");
-            $img_url = "";
-            $rel_url = "";
-        } else {
-            $data = HospitalProduct::find($request->order_id);
-
-            $msg = __("message.Successfull Report Update");
-            $img_url = $data->image;
-            $rel_url = $data->image;
-        }
-
-        if ($request->hasFile('upload_image')) {
-            $file = $request->file('upload_image');
-            $filename = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension() ?: 'png';
-            $folderName = '/upload/hospitalreport/';
-            $picture = time() . '.' . $extension;
-            $destinationPath = public_path() . $folderName;
-            $request->file('upload_image')->move($destinationPath, $picture);
-            $img_url = $picture;
-            $image_path = public_path() . "/upload/hospitalreport/" . $rel_url;
-            if (file_exists($image_path) && $rel_url != "") {
-                try {
-                    unlink($image_path);
-                } catch (Exception $e) {
-                }
-            }
-        }
-
-        $data->image = $img_url;
-        $data->hospital_id = $request->hospital_id;
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->price = $request->price;
-        $data->save();
-
-        Session::flash('message', $msg);
-        Session::flash('alert-class', 'alert-success');
-        return redirect()->back();
-    }
 
     public function hospitalchangepassword()
     {
@@ -492,8 +424,7 @@ class HospitalController extends Controller
             $arr[$k->gateway_name . "_" . $k->key] = $k->value;
         }
 
-        $medicine = HospitalProduct::where('hospital_id', $id)->get();
-        return view("user.viewhospital")->with("data", $data)->with("setting", $setting)->with("token", $token)->with("paymentdetail", $arr)->with("medicine", $medicine);
+        return view("user.viewhospital")->with("data", $data)->with("setting", $setting)->with("token", $token)->with("paymentdetail", $arr);
     }
 
 
@@ -907,66 +838,6 @@ class HospitalController extends Controller
 
 
 
-    // cart controller
-    public function addHospitalCart($id)
-    {
 
-        $product = HospitalProduct::find($id);
-
-        $cart = session()->get('cart');
-
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    "hospital_id" => $product->hospital_id,
-                    "id" => $product->id,
-                    "name" => $product->name,
-                    "quantity" => 1,
-                    "price" => $product->price,
-                ]
-            ];
-        } else {
-            if (isset($cart[$id])) {
-                $cart[$id]['quantity']++;
-            } else {
-                $cart[$id] = [
-                    "hospital_id" => $product->hospital_id,
-                    "id" => $product->id,
-                    "name" => $product->name,
-                    "quantity" => 1,
-                    "price" => $product->price,
-                ];
-            }
-        }
-        session()->put('cart', $cart);
-        Session::flash('message',  __("message.cart_report_add_success"));
-        Session::flash('alert-class', 'alert-success');
-        return redirect()->back();
-    }
-
-    public function getdatahospital($id){
-
-        $data = HospitalProduct::find($id);
-        return $data;
-    }
-
-    public function hospitalreportdeletefront($id)
-    {
-        $data = HospitalProduct::find($id);
-        $data->delete();
-        return redirect()->back();
-    }
-
-    public function deleteimghospital($id){
-        $data = HospitalProduct::find($id);
-        if( $data ){
-            $data->image = null;
-            $data->save();
-            return 1;
-        }else{
-            return 0;
-        }
-
-    }
 
 }

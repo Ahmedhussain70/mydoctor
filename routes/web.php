@@ -223,8 +223,6 @@ Route::group(['middleware' => ['Localization']], function () {
 
         Route::get("viewhospital/{id}", [HospitalController::class, "viewhospital"]);
 
-        Route::get('addHospitalCart/{id}', [HospitalController::class, 'addHospitalCart']);
-
         Route::post('addhospitalorder', [HospitalController::class, 'addhospitalorder']);
 
         Route::get('userhospitalreportlist', [HospitalController::class, 'userhospitalreportlist']);

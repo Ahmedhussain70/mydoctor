@@ -155,116 +155,15 @@
                             <div class="tabs-box">
                                 <div class="tab-btn-box centred">
                                     <ul class="tab-btns tab-buttons clearfix">
-                                        <li class="tab-btn active-btn" data-tab="#tab-3">{{ __('message.Report') }}</li>
-                                        <li class="tab-btn " data-tab="#tab-1">{{ __('message.About Us') }}</li>
+                                        <li class="tab-btn active-btn" data-tab="#tab-1">{{ __('message.About Us') }}</li>
                                         <li class="tab-btn" data-tab="#tab-2">{{ __('message.Services') }}</li>
                                         <li class="tab-btn" data-tab="#tab-4">{{ __('message.Review') }}</li>
                                     </ul>
                                 </div>
                                 <div class="tabs-content">
 
-                                    <div class="tab  active-tab" id="tab-3">
-                                        <div class="location-box">
-                                            <h3>{{ __('message.Report') }}</h3>
 
-                                            <div class="clinic-list-content list-item">
-                                                @foreach ($medicine as $dl)
-                                                    @if ($dl->image != '')
-                                                        <div class="clinic-block-one mb-3"
-                                                            style="border: 1px solid #e5e7ec;border-radius: 5px;">
-                                                            <div class="inner-box"
-                                                                style="margin-bottom: 0px; padding: 10px 40px 37px 260px;">
-                                                                <div class="pattern">
-                                                                    <div class="pattern-1"
-                                                                        style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-24.png') }}');">
-                                                                    </div>
-                                                                    <div class="pattern-2"
-                                                                        style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-25.png') }}');">
-                                                                    </div>
-                                                                </div>
-                                                                <figure class="image-box" style="height: 10px;top: 20px;">
-                                                                    <img src="{{ asset('public/upload/hospitalreport') . '/' . $dl->image }}"
-                                                                        alt="" style="height: 135px;">
-                                                                </figure>
-                                                                <div class="content-box">
-                                                                    <ul class="name-box clearfix">
-                                                                        <li class="name">
-                                                                            <h3><a
-                                                                                    href="{{ url('viewdoctor') . '/' . $dl->id }}">{{ $dl->name }}</a>
-                                                                            </h3>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <span
-                                                                        class="designation">{{ isset($dl->description) ? $dl->description : '' }}</span>
-
-                                                                    <div class="location-box" style="margin-top: 10px;">
-                                                                        <?php $currency = explode('-', $setting->currency); ?>
-                                                                        <p><b>{{ $dl->price }} {{ $currency[1] }}</b>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="btn-box" style=" bottom: 25px;">
-                                                                        @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                                                            <a href="{{ url('addHospitalCart/' . $dl->id) }}"
-                                                                                class="theme-btn-one">{{ __('message.Add Cart') }}</a>
-                                                                        @else
-                                                                            <a href="#" class="theme-btn-one"
-                                                                                onclick="pleaselogin()">{{ __('message.Add Cart') }}</a>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @else
-                                                        <div class="clinic-block-one mb-3"
-                                                            style="border: 1px solid #e5e7ec;border-radius: 5px;">
-                                                            <div class="inner-box"
-                                                                style="margin-bottom: 0px; padding: 10px 40px 37px 40px;">
-                                                                <div class="pattern">
-                                                                    <div class="pattern-1"
-                                                                        style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-24.png') }}');">
-                                                                    </div>
-                                                                    <div class="pattern-2"
-                                                                        style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-25.png') }}');">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="content-box">
-                                                                    <ul class="name-box clearfix">
-                                                                        <li class="name">
-                                                                            <h3><a
-                                                                                    href="{{ url('viewdoctor') . '/' . $dl->id }}">{{ $dl->name }}</a>
-                                                                            </h3>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <span
-                                                                        class="designation">{{ isset($dl->description) ? $dl->description : '' }}</span>
-
-                                                                    <div class="location-box" style="margin-top: 10px;">
-                                                                        <p><b>{{ $dl->price }} $</b></p>
-                                                                    </div>
-                                                                    <div class="btn-box" style=" bottom: 25px;">
-                                                                        @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                                                            <a href="{{ url('addHospitalCart/' . $dl->id) }}"
-                                                                                class="theme-btn-one">{{ __('message.Add Cart') }}</a>
-                                                                        @else
-                                                                            <a href="#" class="theme-btn-one"
-                                                                                onclick="pleaselogin()">{{ __('message.Add Cart') }}</a>
-                                                                        @endif
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-
-                                    <div class="tab" id="tab-1">
+                                    <div class="tab active-tab" id="tab-1">
                                         <div class="inner-box">
                                             <div class="text">
                                                 <h3>{{ __('message.About') }} {{ $data->name }}:</h3>
@@ -533,112 +432,9 @@
                         <div class="doctors-sidebar">
                             <div class="form-widget">
                                 <div class="form-title">
-                                    <h3>{{ __('message.Cart Details') }}</h3>
+                                    <h3>{{ __('message.Hospital Details') }}</h3>
                                     <p>{{ __('message.Monday to Sunday') }}: {{ $data->working_time }}</p>
                                 </div>
-                                <?php $currency = explode('-', $setting->currency); ?>
-                                <div class="form-inner">
-                                    <div class="appointment-time">
-                                        @if (Session::has('message'))
-                                            <div class="col-sm-12">
-                                                <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show"
-                                                    role="alert">
-                                                    {{ Session::get('message') }}
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        @endif
-
-                                        <div class="row">
-                                            @if (session()->get('cart') != null)
-                                                <?php
-                                                $cart = session()->get('cart');
-                                                $subtotal = 0;
-                                                $subtotal1 = 0;
-                                                $subtotal2 = 0;
-                                                ?>
-                                                @foreach ($cart as $item)
-                                                    <div class="col-12" style="border-bottom:1px solid #e5e7ec;">
-                                                        <p><b>{{ $item['name'] }}</b> <a style="float: right;"
-                                                                href="{{ url('removeCartItem/' . $item['id']) }}"><i
-                                                                    style="color: red;" class="far fa-trash"></i></a></p>
-                                                        <div class="row">
-                                                            <div class="col-4 pb-2">
-                                                                <p>{{ __('message.Price') }}:
-                                                                    {{ $item['price'] }}{{ $currency[1] }}</p>
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <p>{{ __('message.Qty') }}: {{ $item['quantity'] }}</p>
-                                                            </div>
-                                                            <div class="col-4" style="display: inline;">
-                                                                <p>{{ __('message.Total') }}:
-                                                                    {{ $item['price'] * $item['quantity'] }}{{ $currency[1] }}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @php
-                                                        $subtotal1 += $item['price'] * $item['quantity'];
-                                                    @endphp
-                                                @endforeach
-                                                <div class="col-12">
-                                                    @php
-                                                        $aa = $setting->pharmacy_delivery_charge + $subtotal1;
-                                                        $subtotal2 = ($aa * $setting->pharmacy_tax) / 100;
-
-                                                        $subtotal =
-                                                            $subtotal1 +
-                                                            $subtotal2 +
-                                                            $setting->pharmacy_delivery_charge;
-                                                    @endphp
-                                                    <div class="row">
-                                                        <div class="col-8" style="text-align: right;">
-                                                            <b>{{ __('message.Sub Total') }}:</b>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right;">
-                                                            <p> {{ $subtotal1 }}{{ $currency[1] }} </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-8" style="text-align: right;">
-                                                            <b>{{ __('message.Delivery Charge') }}:</b>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right;">
-                                                            <p> {{ $setting->pharmacy_delivery_charge }}{{ $currency[1] }}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-8" style="text-align: right;">
-                                                            <b>{{ __('message.Tax') }}({{ $setting->pharmacy_tax }}%):</b>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right;">
-                                                            <p> {{ $subtotal2 }}{{ $currency[1] }} </p>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <div class="col-8" style="text-align: right;">
-                                                            <b>{{ __('message.Total') }}:</b>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right;">
-                                                            <p> {{ $subtotal }}{{ $currency[1] }} </p>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                        </div>
-                                    @else
-                                        <?php
-                                        $subtotal = 0;
-                                        ?>
-                                        {{ __('message.Cart Is empty') }}
-    @endif
-    </div>
-    </div>
     @if (session()->get('cart') != null)
         <div class="choose-service">
             <h4>{{ __('message.Enter Information') }}</h4>

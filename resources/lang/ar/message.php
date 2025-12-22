@@ -677,6 +677,10 @@ return array(
     'Assigned Hospitals' => 'المستشفيات المعينة',
     'Enter Hospital Name' => 'أدخل اسم المستشفى',
     'Enter Hospital About' => 'أدخل نبذه عن المستشفي',
-    'No any Hospital assigned to this doctor' => 'لا يوجد أي مستشفى معين لهذا الطبيب'
+    'No any Hospital assigned to this doctor' => 'لا يوجد أي مستشفى معين لهذا الطبيب',
+    'Hospital Doctors' => 'أطباء المستشفى',
+    'Doctors for' => 'أطباء لـ',
+    'Assigned Doctors' => 'الأطباء المعينون',
+    'Select Doctor' => 'اختر طبيب'
 
 );

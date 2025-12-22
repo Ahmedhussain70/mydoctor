@@ -728,6 +728,10 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'Assigned Hospitals' => 'Assigned Hospitals',
   'Enter Hospital Name' => 'Enter Hospital Name',
   'Enter Hospital About' => 'Enter Hospital About',
-  'No any Hospital assigned to this doctor' => 'No Hospital Assigned to This Doctor'
+  'No any Hospital assigned to this doctor' => 'No Hospital Assigned to This Doctor',
+  'Hospital Doctors' => 'Hospital Doctors',
+  'Doctors for' => 'Doctors for',
+  'Assigned Doctors' => 'Assigned Doctors',
+  'Select Doctor' => 'Select Doctor'
 
 );

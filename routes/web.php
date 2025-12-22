@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\NotificationController;
@@ -26,7 +24,6 @@ use App\Http\Controllers\MedicinesController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\HospitalController;
-use App\Models\Laboratory;
 use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------

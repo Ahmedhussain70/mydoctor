@@ -188,28 +188,41 @@
                                             <div class="row">
                                                 @forelse ($hospitalDoctors as $doctor)
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <div class="doctor-card">
-                                                            <div class="card-inner">
+                                                        <div class="doctor-card-one">
+                                                            <div class="inner-box">
 
                                                                 <div class="image-box">
-                                                                    <img src="{{ asset('public/upload/doctors/' . $doctor->image) }}"
+                                                                    <img src="{{ $doctor->image 
+                                                                        ? asset('public/upload/doctors/'.$doctor->image) 
+                                                                        : asset('public/upload/doctors/defaultdoctor.png') }}"
                                                                         alt="{{ $doctor->name }}">
                                                                 </div>
 
                                                                 <div class="content-box">
                                                                     <h4>{{ $doctor->name }}</h4>
-                                                                    <p>{{ $doctor->working_time }}</p>
-                                                                    <p>{{ $doctor->address }}</p>
 
-                                                                    <a href="{{ url('viewdoctor' . '/' . $doctor->id) }}"
+                                                                    <span class="time">
+                                                                        <i class="far fa-clock"></i>
+                                                                        {{ $doctor->working_time }}
+                                                                    </span>
+
+                                                                    <p class="address">
+                                                                        <i class="fas fa-map-marker-alt"></i>
+                                                                        {{ $doctor->address }}
+                                                                    </p>
+
+                                                                    <div class="btn-box">
+                                                                        <a href="{{ url('viewdoctor/'.$doctor->id) }}"
                                                                         class="theme-btn btn-one">
-                                                                        {{ __('message.Visit Now') }}
-                                                                    </a>
+                                                                            {{ __('message.Visit Now') }}
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 @empty
                                                     <p>{{ __('message.No Doctors Found') }}</p>
                                                 @endforelse

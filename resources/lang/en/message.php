@@ -737,6 +737,7 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'Your Cart Is Empty' => 'Your Cart Is Empty',
   'Please Fillup All Field' => 'Please Fillup All Field',
   'please choose payment type' => 'please choose payment type',
-  'Enter Your address' => 'Enter Your address'
+  'Enter Your address' => 'Enter Your address',
+  'Search Hospital' => 'Search Hospital'
 
 );

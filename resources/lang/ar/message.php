@@ -686,6 +686,6 @@ return array(
     'Your Cart Is Empty' => 'سلتك فارغة',
     'Please Fillup All Field' => 'يرجى ملء جميع الحقول',
     'please choose payment type' => 'يرجى اختيار نوع الدفع',
-    'Enter Your address' => 'أدخل عنوانك'
-
+    'Enter Your address' => 'أدخل عنوانك',
+    'Search Hospital' => 'ابحث عن مستشفى'
 );

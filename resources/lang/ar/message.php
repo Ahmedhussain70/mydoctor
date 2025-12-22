@@ -681,6 +681,11 @@ return array(
     'Hospital Doctors' => 'أطباء المستشفى',
     'Doctors for' => 'أطباء لـ',
     'Assigned Doctors' => 'الأطباء المعينون',
-    'Select Doctor' => 'اختر طبيب'
+    'Select Doctor' => 'اختر طبيب',
+    'Hospital Details' => 'تفاصيل المستشفى',
+    'Your Cart Is Empty' => 'سلتك فارغة',
+    'Please Fillup All Field' => 'يرجى ملء جميع الحقول',
+    'please choose payment type' => 'يرجى اختيار نوع الدفع',
+    'Enter Your address' => 'أدخل عنوانك'
 
 );

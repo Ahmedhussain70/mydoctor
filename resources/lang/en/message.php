@@ -732,6 +732,11 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'Hospital Doctors' => 'Hospital Doctors',
   'Doctors for' => 'Doctors for',
   'Assigned Doctors' => 'Assigned Doctors',
-  'Select Doctor' => 'Select Doctor'
+  'Select Doctor' => 'Select Doctor',
+  'Hospital Details' => 'Hospital Details',
+  'Your Cart Is Empty' => 'Your Cart Is Empty',
+  'Please Fillup All Field' => 'Please Fillup All Field',
+  'please choose payment type' => 'please choose payment type',
+  'Enter Your address' => 'Enter Your address'
 
 );

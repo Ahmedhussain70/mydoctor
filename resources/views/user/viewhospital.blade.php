@@ -650,7 +650,7 @@
             </div>
             <div class="form-group">
                 <label>{{ __('message.Address') }}</label>
-                <input type="text" name="address" id="address" placeholder="{{ __('Enter Your address') }}"
+                <input type="text" name="address" id="address" placeholder="{{ __('message.Enter Your address') }}"
                     required="">
             </div>
             <div class="form-group">
@@ -881,7 +881,7 @@
                             onclick="bookshow()">{{ __('message.place order') }}<i
                                 class="icon-Arrow-Right"></i></button>
                     @else
-                        <button type="button" class="theme-btn-one" onclick="alert('your cart is emty')"
+                        <button type="button" class="theme-btn-one" onclick="alert('{{ __('message.Your Cart Is Empty') }}')"
                             id="show_book">{{ __('message.place order') }}<i class="icon-Arrow-Right"></i></button>
                     @endif
                 @else
@@ -1218,7 +1218,7 @@
 
 
             } else {
-                alert("Please Fillup All Field");
+                alert("{{ __('message.Please Fillup All Field') }}");
                 $("#payment_type_braintree").prop("checked", false)
                 $("#payment_type_stripe").prop("checked", false)
                 $("#payment_type_cod").prop("checked", false)
@@ -1237,9 +1237,9 @@
             var message = $("#message").val();
             var slot = $('input[name="slot"]:checked').val();
             if (phone_no != "" && message != "") {
-                alert("please choose payment type");
+                alert("{{ __('message.please choose payment type') }}");
             } else {
-                alert("Please Fillup All Field");
+                alert("{{ __('message.Please Fillup All Field') }}");
             }
         }
 

@@ -637,6 +637,13 @@ return array(
     "Your Appointment  with" => "موعدك مع",
     "You were absent on your appointment with" => "كنت غائبًا عن موعدك مع",
 
+    'Laboratory' => 'مختبر',
+    'Laboratories' => 'المختبرات',
+    'Add Laboratory' => 'إضافة مختبر',
+    'Laboratory_list' => 'قائمة المختبرات',
+    'Laboratory Not Found' => 'المختبر غير موجود',
+    'Laboratory Add Successfully' => 'تمت إضافة المختبر بنجاح',
+    'Laboratory Update Successfully' => 'تم تحديث المختبر بنجاح',
     "pharmacy_order_Accept_msg" => "تم قبول طلبك.",
     "pharmacy_order_reject_msg" => "تم رفض طلبك.",
     "pharmacy_order_complete_msg" => "تم إكمال طلبك.",

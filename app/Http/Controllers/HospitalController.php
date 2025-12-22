@@ -424,7 +424,12 @@ class HospitalController extends Controller
             $arr[$k->gateway_name . "_" . $k->key] = $k->value;
         }
 
-        return view("user.viewhospital")->with("data", $data)->with("setting", $setting)->with("token", $token)->with("paymentdetail", $arr);
+        $hospitalDoctorIds  = json_decode($data->doctor_id, true);
+
+        
+        $hospitalDoctors = Doctors::whereIn('id', $hospitalDoctorIds )->get();
+
+        return view("user.viewhospital")->with("data", $data)->with("setting", $setting)->with("token", $token)->with("paymentdetail", $arr)->with("hospitalDoctors", $hospitalDoctors);
     }
 
 

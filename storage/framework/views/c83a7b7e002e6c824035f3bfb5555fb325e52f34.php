@@ -1,49 +1,51 @@
-@extends('user.layout')
-@section('title')
-{{ __('message.Hospital Details') }}
-@stop
-@section('meta-data')
+
+<?php $__env->startSection('title'); ?>
+<?php echo e(__('message.Hospital Details')); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta-data'); ?>
 <meta property="og:type" content="website" />
-<meta property="og:url" content="{{ $data->name }}" />
-<meta property="og:title" content="{{ $data->name }}" />
-<meta property="og:image" content="{{ asset('public/upload/doctors') . '/' . $data->image }}" />
+<meta property="og:url" content="<?php echo e($data->name); ?>" />
+<meta property="og:title" content="<?php echo e($data->name); ?>" />
+<meta property="og:image" content="<?php echo e(asset('public/upload/doctors') . '/' . $data->image); ?>" />
 <meta property="og:image:width" content="250px" />
 <meta property="og:image:height" content="250px" />
-<meta property="og:site_name" content="{{ $data->name }}" />
-<meta property="og:description" content="{{ __('message.meta_description') }}" />
-<meta property="og:keyword" content="{{ __('message.Meta Keyword') }}" />
-<link rel="shortcut icon" href="{{ asset('public/image_web/') . '/' . $setting->favicon }}">
+<meta property="og:site_name" content="<?php echo e($data->name); ?>" />
+<meta property="og:description" content="<?php echo e(__('message.meta_description')); ?>" />
+<meta property="og:keyword" content="<?php echo e(__('message.Meta Keyword')); ?>" />
+<link rel="shortcut icon" href="<?php echo e(asset('public/image_web/') . '/' . $setting->favicon); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-@stop
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <section class="page-title-two">
     <div class="title-box centred bg-color-2">
         <div class="pattern-layer">
             <div class="pattern-1"
-                style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-70.png') }}');">
+                style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-70.png')); ?>');">
             </div>
             <div class="pattern-2"
-                style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-71.png') }}');">
+                style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-71.png')); ?>');">
             </div>
         </div>
         <div class="auto-container">
             <div class="title">
-                <h1>{{ __('message.Hospital Details') }}</h1>
+                <h1><?php echo e(__('message.Hospital Details')); ?></h1>
             </div>
         </div>
     </div>
     <div class="lower-content">
         <div class="auto-container">
             <ul class="bread-crumb clearfix">
-                <li><a href="{{ url('/') }}">{{ __('message.Home') }}</a></li>
-                <li>{{ __('message.Hospital Details') }}</li>
+                <li><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Home')); ?></a></li>
+                <li><?php echo e(__('message.Hospital Details')); ?></li>
             </ul>
         </div>
     </div>
 </section>
-@if (empty($data))
-    {{ __('message.Result Not Found') }}
-@else
+<?php if(empty($data)): ?>
+    <?php echo e(__('message.Result Not Found')); ?>
+
+<?php else: ?>
     <section class="doctor-details bg-color-3">
         <div class="auto-container">
             <div class="row clearfix">
@@ -61,25 +63,24 @@
         }
 
                                             ?>
-                                    {{-- <div class="doctor-detail-page-main-box"
-                                        style="background-image:url('{{$path}}'); background-size: 311px 220px;"></div> --}}
+                                    
                                     <div class="doctor-detail-page-main-box"
-                                        style="background-image:url('{{ $path }}'); background-size: 200px 220px;">
+                                        style="background-image:url('<?php echo e($path); ?>'); background-size: 200px 220px;">
                                     </div>
                                 </figure>
                                 <div class="content-box">
 
                                     <div class="like-box">
-                                        @if ($data->is_fav == '0')
-                                            @if (empty(Session::has('user_id')))
-                                                <a href="{{ url('patientlogin') }}" id="favdoc{{ $data->id }}">
-                                            @else
-                                                    <a href="javascript:userfavorite('{{ $data->id }}')" id="favdoc{{ $data->id }}">
-                                                @endif
-                                        @else
-                                                    <a href="javascript:userfavorite('{{ $data->id }}')" class="activefav"
-                                                        id="favdoc{{ $data->id }}">
-                                                @endif
+                                        <?php if($data->is_fav == '0'): ?>
+                                            <?php if(empty(Session::has('user_id'))): ?>
+                                                <a href="<?php echo e(url('patientlogin')); ?>" id="favdoc<?php echo e($data->id); ?>">
+                                            <?php else: ?>
+                                                    <a href="javascript:userfavorite('<?php echo e($data->id); ?>')" id="favdoc<?php echo e($data->id); ?>">
+                                                <?php endif; ?>
+                                        <?php else: ?>
+                                                    <a href="javascript:userfavorite('<?php echo e($data->id); ?>')" class="activefav"
+                                                        id="favdoc<?php echo e($data->id); ?>">
+                                                <?php endif; ?>
                                                     <i class="far fa-heart"></i>
                                                 </a>
                                     </div>
@@ -88,24 +89,24 @@
                                             <i class="show-btn fas fa-share-alt"></i>
                                             <div class="sm-menu">
                                                 <a
-                                                    href="https://www.facebook.com/sharer/sharer.php?u={{ url('viewdoctor') . '/' . $data->id }}"><i
+                                                    href="https://www.facebook.com/sharer/sharer.php?u=<?php echo e(url('viewdoctor') . '/' . $data->id); ?>"><i
                                                         class="fab fa-facebook-f"></i></a>
                                                 <a
-                                                    href="https://web.whatsapp.com/send?url={{ url('viewdoctor') . '/' . $data->id }}"><i
+                                                    href="https://web.whatsapp.com/send?url=<?php echo e(url('viewdoctor') . '/' . $data->id); ?>"><i
                                                         class="fab fa-whatsapp"></i></a>
                                                 <a
-                                                    href="https://twitter.com/intent/tweet?text={{ $data->name }}&url={{ url('viewdoctor') . '/' . $data->id }}"><i
+                                                    href="https://twitter.com/intent/tweet?text=<?php echo e($data->name); ?>&url=<?php echo e(url('viewdoctor') . '/' . $data->id); ?>"><i
                                                         class="fab fa-twitter"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <ul class="name-box clearfix">
                                         <li class="name">
-                                            <h2>{{ $data->name }}</h2>
+                                            <h2><?php echo e($data->name); ?></h2>
                                         </li>
                                     </ul>
                                     <span
-                                        class="designation">{{ isset($data->departmentls->name) ? $data->departmentls->name : '' }}</span>
+                                        class="designation"><?php echo e(isset($data->departmentls->name) ? $data->departmentls->name : ''); ?></span>
                                     <div class="rating-box clearfix">
                                         <ul class="rating clearfix">
                                             <?php
@@ -127,22 +128,23 @@
                 echo '<li class="light" style="color:gray !important"><i class="icon-Star"></i></li>';
             }
         } ?>
-                                            <li><a href="#">({{ $data->totalreview }})</a></li>
+                                            <li><a href="#">(<?php echo e($data->totalreview); ?>)</a></li>
                                         </ul>
                                     </div>
                                     <div class="text">
-                                        <p>{{ substr($data->aboutus, 0, 75) }}</p>
+                                        <p><?php echo e(substr($data->aboutus, 0, 75)); ?></p>
                                     </div>
                                     <div class="lower-box clearfix">
                                         <ul class="info clearfix">
-                                            <li><i class="fas fa-map-marker-alt"></i>{{ substr($data->address, 0, 40) }}
-                                                <a href="https://maps.google.com/?q={{ $data->lat }},{{ $data->lon }}"
+                                            <li><i class="fas fa-map-marker-alt"></i><?php echo e(substr($data->address, 0, 40)); ?>
+
+                                                <a href="https://maps.google.com/?q=<?php echo e($data->lat); ?>,<?php echo e($data->lon); ?>"
                                                     target="_blank" style="float: right;color: #01b4d9;">|
-                                                    {{ __('message.View Map') }}</a>
+                                                    <?php echo e(__('message.View Map')); ?></a>
                                             </li>
                                             <li style="text-align: center;">
                                                 <i class="fas fa-phone mt-2"></i><a
-                                                    href="{{ $data->phoneno }}">{{ $data->phoneno }}</a>
+                                                    href="<?php echo e($data->phoneno); ?>"><?php echo e($data->phoneno); ?></a>
 
                                             </li>
                                         </ul>
@@ -154,10 +156,10 @@
                         <div class="tabs-box">
                             <div class="tab-btn-box centred">
                                 <ul class="tab-btns tab-buttons clearfix">
-                                    <li class="tab-btn active-btn" data-tab="#tab-1">{{ __('message.About Us') }}</li>
-                                    <li class="tab-btn" data-tab="#tab-2">{{ __('message.Services') }}</li>
-                                    <li class="tab-btn" data-tab="#tab-3">{{ __('message.Doctors') }}</li>
-                                    <li class="tab-btn" data-tab="#tab-4">{{ __('message.Review') }}</li>
+                                    <li class="tab-btn active-btn" data-tab="#tab-1"><?php echo e(__('message.About Us')); ?></li>
+                                    <li class="tab-btn" data-tab="#tab-2"><?php echo e(__('message.Services')); ?></li>
+                                    <li class="tab-btn" data-tab="#tab-3"><?php echo e(__('message.Doctors')); ?></li>
+                                    <li class="tab-btn" data-tab="#tab-4"><?php echo e(__('message.Review')); ?></li>
                                 </ul>
                             </div>
                             <div class="tabs-content">
@@ -166,16 +168,16 @@
                                 <div class="tab active-tab" id="tab-1">
                                     <div class="inner-box">
                                         <div class="text">
-                                            <h3>{{ __('message.About') }} {{ $data->name }}:</h3>
-                                            <p>{{ $data->aboutus }}</p>
+                                            <h3><?php echo e(__('message.About')); ?> <?php echo e($data->name); ?>:</h3>
+                                            <p><?php echo e($data->aboutus); ?></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab" id="tab-2">
                                     <div class="experience-box">
                                         <div class="text">
-                                            <h3>{{ __('message.Services') }}</h3>
-                                            <p>{{ $data->services }}</p>
+                                            <h3><?php echo e(__('message.Services')); ?></h3>
+                                            <p><?php echo e($data->services); ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -183,36 +185,37 @@
                                 <div class="tab" id="tab-3">
                                     <div class="experience-box">
                                         <div class="text">
-                                            <h3>{{ __('message.Doctors') }}</h3>
+                                            <h3><?php echo e(__('message.Doctors')); ?></h3>
 
                                             <div class="row">
-                                                @forelse ($hospitalDoctors as $doctor)
+                                                <?php $__empty_1 = true; $__currentLoopData = $hospitalDoctors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $doctor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="doctor-card">
                                                             <div class="card-inner">
 
                                                                 <div class="image-box">
-                                                                    <img src="{{ asset('public/upload/doctors/' . $doctor->image) }}"
-                                                                        alt="{{ $doctor->name }}">
+                                                                    <img src="<?php echo e(asset('public/upload/doctors/' . $doctor->image)); ?>"
+                                                                        alt="<?php echo e($doctor->name); ?>">
                                                                 </div>
 
                                                                 <div class="content-box">
-                                                                    <h4>{{ $doctor->name }}</h4>
-                                                                    <p>{{ $doctor->working_time }}</p>
-                                                                    <p>{{ $doctor->address }}</p>
+                                                                    <h4><?php echo e($doctor->name); ?></h4>
+                                                                    <p><?php echo e($doctor->working_time); ?></p>
+                                                                    <p><?php echo e($doctor->address); ?></p>
 
-                                                                    <a href="{{ url('viewdoctor' . '/' . $doctor->id) }}"
+                                                                    <a href="<?php echo e(url('viewdoctor' . '/' . $doctor->id)); ?>"
                                                                         class="theme-btn btn-one">
-                                                                        {{ __('message.Visit Now') }}
+                                                                        <?php echo e(__('message.Visit Now')); ?>
+
                                                                     </a>
                                                                 </div>
 
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @empty
-                                                    <p>{{ __('message.No Doctors Found') }}</p>
-                                                @endforelse
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                    <p><?php echo e(__('message.No Doctors Found')); ?></p>
+                                                <?php endif; ?>
                                             </div>
 
                                         </div>
@@ -222,10 +225,11 @@
 
                                 <div class="tab" id="tab-4">
                                     <div class="review-box">
-                                        <h3>{{ $data->name }} {{ __('message.Review') }}</h3>
+                                        <h3><?php echo e($data->name); ?> <?php echo e(__('message.Review')); ?></h3>
                                         <div class="rating-inner">
                                             <div class="rating-box">
-                                                <h2>{{ isset($data->avgratting) ? number_format($data->avgratting, 2) : 0 }}
+                                                <h2><?php echo e(isset($data->avgratting) ? number_format($data->avgratting, 2) : 0); ?>
+
                                                 </h2>
                                                 <ul class="clearfix">
 
@@ -250,7 +254,7 @@
             }
         } ?>
                                                 </ul>
-                                                <span>{{ __('message.Based on 5 review') }}</span>
+                                                <span><?php echo e(__('message.Based on 5 review')); ?></span>
                                             </div>
                                             <div class="rating-pregress">
                                                 <div class="single-progress">
@@ -263,70 +267,75 @@
                                                     <style type="text/css">
                                                         .doctor-details-content .tabs-box .tabs-content .review-box .rating-inner .rating-pregress .single-progress:first-child .porgress-bar:before {
                                                             width:
-                                                                {{ $star5 }}
+                                                                <?php echo e($star5); ?>
+
                                                                 %;
                                                         }
 
                                                         .doctor-details-content .tabs-box .tabs-content .review-box .rating-inner .rating-pregress .single-progress:nth-child(2) .porgress-bar:before {
                                                             width:
-                                                                {{ $star4 }}
+                                                                <?php echo e($star4); ?>
+
                                                                 %;
                                                         }
 
                                                         .doctor-details-content .tabs-box .tabs-content .review-box .rating-inner .rating-pregress .single-progress:nth-child(3) .porgress-bar:before {
                                                             width:
-                                                                {{ $star3 }}
+                                                                <?php echo e($star3); ?>
+
                                                                 %;
                                                         }
 
                                                         .doctor-details-content .tabs-box .tabs-content .review-box .rating-inner .rating-pregress .single-progress:nth-child(4) .porgress-bar:before {
                                                             width:
-                                                                {{ $star2 }}
+                                                                <?php echo e($star2); ?>
+
                                                                 %;
                                                         }
 
                                                         .doctor-details-content .tabs-box .tabs-content .review-box .rating-inner .rating-pregress .single-progress:nth-child(5) .porgress-bar:before {
                                                             width:
-                                                                {{ $star1 }}
+                                                                <?php echo e($star1); ?>
+
                                                                 %;
                                                         }
                                                     </style>
                                                     <span class="porgress-bar"></span>
                                                     <div class="text">
-                                                        <p><i class="icon-Star"></i> {{ __('message.5 Stars') }}</p>
+                                                        <p><i class="icon-Star"></i> <?php echo e(__('message.5 Stars')); ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="single-progress">
                                                     <span class="porgress-bar"></span>
                                                     <div class="text">
-                                                        <p><i class="icon-Star"></i>{{ __('message.4 Stars') }}</p>
+                                                        <p><i class="icon-Star"></i><?php echo e(__('message.4 Stars')); ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="single-progress">
                                                     <span class="porgress-bar"></span>
                                                     <div class="text">
-                                                        <p><i class="icon-Star"></i>{{ __('message.3 Stars') }}</p>
+                                                        <p><i class="icon-Star"></i><?php echo e(__('message.3 Stars')); ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="single-progress">
                                                     <span class="porgress-bar"></span>
                                                     <div class="text">
-                                                        <p><i class="icon-Star"></i>{{ __('message.2 Stars') }}</p>
+                                                        <p><i class="icon-Star"></i><?php echo e(__('message.2 Stars')); ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="single-progress">
                                                     <span class="porgress-bar"></span>
                                                     <div class="text">
-                                                        <p><i class="icon-Star"></i>{{ __('message.1 Stars') }}</p>
+                                                        <p><i class="icon-Star"></i><?php echo e(__('message.1 Stars')); ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="review-inner">
-                                            @foreach ($data->reviewslist as $dr)
+                                            <?php $__currentLoopData = $data->reviewslist; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dr): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                                 <div class="single-review-box">
                                                                                     <figure class="image-box">
-                                                                                        <img src="{{ isset($dr->patientls->profile_pic) ? asset('public/upload/profile/' . $dr->patientls->profile_pic) : asset('public/upload/profile/profile.png') }}"
+                                                                                        <img src="<?php echo e(isset($dr->patientls->profile_pic) ? asset('public/upload/profile/' . $dr->patientls->profile_pic) : asset('public/upload/profile/profile.png')); ?>"
                                                                                             alt="">
                                                                                     </figure>
                                                                                     <ul class="rating clearfix">
@@ -350,23 +359,23 @@
                                                     }
                                                 } ?>
                                                                                     </ul>
-                                                                                    <h6>{{ isset($dr->patientls) ? $dr->patientls->name : '' }}<span>-
+                                                                                    <h6><?php echo e(isset($dr->patientls) ? $dr->patientls->name : ''); ?><span>-
                                                                                             <?php
-                                                                                                        ?>{{ date('F d, Y', strtotime($dr->created_at))
-                                                                                            }}</span>
+                                                                                                        ?><?php echo e(date('F d, Y', strtotime($dr->created_at))); ?></span>
                                                                                     </h6>
-                                                                                    <p>{{ $dr->description }}</p>
+                                                                                    <p><?php echo e($dr->description); ?></p>
                                                                                 </div>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                         <div class="btn-box">
-                                            <form action="{{ url('savereview') }}" method="post">
-                                                {{ csrf_field() }}
-                                                <input type="hidden" name="doctor_id" value="{{ $data->id }}">
-                                                <input type="hidden" name="user_id" value="{{ Session::get('user_id') }}">
+                                            <form action="<?php echo e(url('savereview')); ?>" method="post">
+                                                <?php echo e(csrf_field()); ?>
+
+                                                <input type="hidden" name="doctor_id" value="<?php echo e($data->id); ?>">
+                                                <input type="hidden" name="user_id" value="<?php echo e(Session::get('user_id')); ?>">
                                                 <div class="row clearfix">
                                                     <div class="col">
-                                                        <h3>{{ __('message.Add') }} {{ __('message.Review') }}</h3>
+                                                        <h3><?php echo e(__('message.Add')); ?> <?php echo e(__('message.Review')); ?></h3>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                                         <style type="text/css">
@@ -453,19 +462,19 @@
 
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                                        <label>{{ __('message.description') }}</label>
+                                                        <label><?php echo e(__('message.description')); ?></label>
                                                         <textarea name="description" required
-                                                            placeholder="{{ __('message.Enter Your Description') }}"></textarea>
+                                                            placeholder="<?php echo e(__('message.Enter Your Description')); ?>"></textarea>
 
                                                     </div>
 
-                                                    @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                                        <button class="theme-btn-one">{{ __('message.Submit Review') }}<i
+                                                    <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
+                                                        <button class="theme-btn-one"><?php echo e(__('message.Submit Review')); ?><i
                                                                 class="icon-Arrow-Right"></i></button>
-                                                    @else
+                                                    <?php else: ?>
                                                         <a href="#" class="theme-btn-one"
-                                                            onclick="pleaselogin()">{{ __('message.Submit Review') }}</a>
-                                                    @endif
+                                                            onclick="pleaselogin()"><?php echo e(__('message.Submit Review')); ?></a>
+                                                    <?php endif; ?>
 
                                                 </div>
                                             </form>
@@ -481,27 +490,27 @@
                     <div class="doctors-sidebar">
                         <div class="form-widget">
                             <div class="form-title">
-                                <h3>{{ __('message.Hospital Details') }}</h3>
-                                <p>{{ __('message.Monday to Sunday') }}: {{ $data->working_time }}</p>
+                                <h3><?php echo e(__('message.Hospital Details')); ?></h3>
+                                <p><?php echo e(__('message.Monday to Sunday')); ?>: <?php echo e($data->working_time); ?></p>
                             </div>
-                            @if (session()->get('cart') != null)
+                            <?php if(session()->get('cart') != null): ?>
                                 <div class="choose-service">
-                                    <h4>{{ __('message.Enter Information') }}</h4>
+                                    <h4><?php echo e(__('message.Enter Information')); ?></h4>
                                     <div class="form-group">
-                                        <label>{{ __('message.Phone no') }}</label>
+                                        <label><?php echo e(__('message.Phone no')); ?></label>
                                         <input type="text" name="phone_no" id="phone_no"
-                                            placeholder="{{ __('message.Enter Your Phone number') }}"
-                                            value="{{ Session::get('user_phone_no') }}" required="">
+                                            placeholder="<?php echo e(__('message.Enter Your Phone number')); ?>"
+                                            value="<?php echo e(Session::get('user_phone_no')); ?>" required="">
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('message.Address') }}</label>
+                                        <label><?php echo e(__('message.Address')); ?></label>
                                         <input type="text" name="address" id="address"
-                                            placeholder="{{ __('message.Enter Your address') }}" required="">
+                                            placeholder="<?php echo e(__('message.Enter Your address')); ?>" required="">
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('message.Message') }}</label>
+                                        <label><?php echo e(__('message.Message')); ?></label>
                                         <textarea id="message" rows="15" name="message"
-                                            placeholder="{{ __('message.Enter Your Message') }}"></textarea>
+                                            placeholder="<?php echo e(__('message.Enter Your Message')); ?>"></textarea>
                                     </div>
                                     <div class="row">
                                         <!--<div class="col-md-6">-->
@@ -511,7 +520,7 @@
                                         <!--                <input type="radio" class="material-control-input" name="payment_type"-->
                                         <!--                    id="payment_type_cod" value="3" onchange="changeform(this.value)">-->
                                         <!--                <span class="material-control-indicator"></span>-->
-                                        <!--                <span class="description">{{ __('message.COD') }}</span>-->
+                                        <!--                <span class="description"><?php echo e(__('message.COD')); ?></span>-->
                                         <!--            </label>-->
                                         <!--        </div>-->
                                         <!--    </div>-->
@@ -523,13 +532,13 @@
                                         <!--                <input type="radio" class="material-control-input" name="payment_type"-->
                                         <!--                    id="payment_type_stripe" value="2" onchange="changeform(this.value)">-->
                                         <!--                <span class="material-control-indicator"></span>-->
-                                        <!--                <span class="description">{{ __('message.Stripe') }}</span>-->
+                                        <!--                <span class="description"><?php echo e(__('message.Stripe')); ?></span>-->
                                         <!--            </label>-->
                                         <!--        </div>-->
                                         <!--    </div>-->
                                         <!--</div>-->
 
-                                        @if (isset($paymentdetail['cod_is_active']) && $paymentdetail['cod_is_active'] == '1')
+                                        <?php if(isset($paymentdetail['cod_is_active']) && $paymentdetail['cod_is_active'] == '1'): ?>
                                             <div class="col-md-6">
                                                 <div class="custom-check-box">
                                                     <div class="custom-controls-stacked">
@@ -537,13 +546,13 @@
                                                             <input type="radio" class="material-control-input" name="payment_type"
                                                                 id="payment_type_cod" value="3" onchange="changeform(this.value)">
                                                             <span class="material-control-indicator"></span>
-                                                            <span class="description">{{ __('message.COD') }}</span>
+                                                            <span class="description"><?php echo e(__('message.COD')); ?></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
-                                        @if (isset($paymentdetail['stripe_is_active']) && $paymentdetail['stripe_is_active'] == '1')
+                                        <?php endif; ?>
+                                        <?php if(isset($paymentdetail['stripe_is_active']) && $paymentdetail['stripe_is_active'] == '1'): ?>
                                             <div class="col-md-6">
                                                 <div class="custom-check-box">
                                                     <div class="custom-controls-stacked">
@@ -552,28 +561,18 @@
                                                                 id="payment_type_stripe" value="2"
                                                                 onchange="changeform(this.value)">
                                                             <span class="material-control-indicator"></span>
-                                                            <span class="description">{{ __('message.Stripe') }}</span>
+                                                            <span class="description"><?php echo e(__('message.Stripe')); ?></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
 
                                     </div>
 
                                     <div class="row">
-                                        <!--{{-- <div class="col-md-6">-->
-                                        <!--                    <div class="custom-check-box">-->
-                                        <!--                      <div class="custom-controls-stacked">-->
-                                        <!--                         <label class="custom-control material-checkbox fl">-->
-                                        <!--                         <input type="radio" class="material-control-input"  name="payment_type" id="payment_type_rave" value="4" onchange="changeform(this.value)">-->
-                                        <!--                         <span class="material-control-indicator"></span>-->
-                                        <!--                         <span class="description">{{ __('message.Rave') }}</span>-->
-                                        <!--                         </label>-->
-                                        <!--                      </div>-->
-                                        <!--                    </div>-->
-                                        <!--                </div> --}}-->
-                                        @if (isset($paymentdetail['rave_is_active']) && $paymentdetail['rave_is_active'] == '1')
+                                        <!---->
+                                        <?php if(isset($paymentdetail['rave_is_active']) && $paymentdetail['rave_is_active'] == '1'): ?>
                                             <div class="col-md-6">
                                                 <div class="custom-check-box">
                                                     <div class="custom-controls-stacked">
@@ -581,25 +580,15 @@
                                                             <input type="radio" class="material-control-input" name="payment_type"
                                                                 id="payment_type_rave" value="4" onchange="changeform(this.value)">
                                                             <span class="material-control-indicator"></span>
-                                                            <span class="description">{{ __('message.Rave') }}</span>
+                                                            <span class="description"><?php echo e(__('message.Rave')); ?></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
 
-                                        <!--{{-- <div class="col-md-6">-->
-                                        <!--                    <div class="custom-check-box">-->
-                                        <!--                      <div class="custom-controls-stacked">-->
-                                        <!--                         <label class="custom-control material-checkbox fl">-->
-                                        <!--                         <input type="radio" class="material-control-input"  name="payment_type" id="payment_type_paytm" value="5" onchange="changeform(this.value)">-->
-                                        <!--                         <span class="material-control-indicator"></span>-->
-                                        <!--                         <span class="description">{{ __('message.Paytm') }}</span>-->
-                                        <!--                         </label>-->
-                                        <!--                      </div>-->
-                                        <!--                   </div>-->
-                                        <!--                </div> --}}-->
-                                        @if (isset($paymentdetail['paytm_is_active']) && $paymentdetail['paytm_is_active'] == '1')
+                                        <!---->
+                                        <?php if(isset($paymentdetail['paytm_is_active']) && $paymentdetail['paytm_is_active'] == '1'): ?>
                                             <div class="col-md-6">
                                                 <div class="custom-check-box">
                                                     <div class="custom-controls-stacked">
@@ -607,29 +596,18 @@
                                                             <input type="radio" class="material-control-input" name="payment_type"
                                                                 id="payment_type_paytm" value="5" onchange="changeform(this.value)">
                                                             <span class="material-control-indicator"></span>
-                                                            <span class="description">{{ __('message.Paytm') }}</span>
+                                                            <span class="description"><?php echo e(__('message.Paytm')); ?></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
 
                                     </div>
 
                                     <div class="row">
-                                        <!--{{-- <div class="col-md-6">-->
-                                        <!--    <div class="custom-check-box">-->
-                                        <!--        <div class="custom-controls-stacked">-->
-                                        <!--            <label class="custom-control material-checkbox fl">-->
-                                        <!--                <input type="radio" class="material-control-input" name="payment_type"-->
-                                        <!--                    id="payment_type_braintree" value="1" onchange="changeform(this.value)">-->
-                                        <!--                <span class="material-control-indicator"></span>-->
-                                        <!--                <span class="description">{{ __('message.Braintree') }}</span>-->
-                                        <!--            </label>-->
-                                        <!--        </div>-->
-                                        <!--    </div>-->
-                                        <!--</div> --}}-->
-                                        @if (isset($paymentdetail['braintree_is_active']) && $paymentdetail['braintree_is_active'] == '1')
+                                        <!---->
+                                        <?php if(isset($paymentdetail['braintree_is_active']) && $paymentdetail['braintree_is_active'] == '1'): ?>
                                             <div class="col-md-6">
                                                 <div class="custom-check-box">
                                                     <div class="custom-controls-stacked">
@@ -638,25 +616,14 @@
                                                                 id="payment_type_braintree" value="1"
                                                                 onchange="changeform(this.value)">
                                                             <span class="material-control-indicator"></span>
-                                                            <span class="description">{{ __('message.Braintree') }}</span>
+                                                            <span class="description"><?php echo e(__('message.Braintree')); ?></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
-                                        <!--{{-- <div class="col-md-6">-->
-                                        <!--    <div class="custom-check-box">-->
-                                        <!--        <div class="custom-controls-stacked">-->
-                                        <!--            <label class="custom-control material-checkbox fl">-->
-                                        <!--                <input type="radio" class="material-control-input" name="payment_type"-->
-                                        <!--                    id="payment_type_razorpay" value="6" onchange="changeform(this.value)">-->
-                                        <!--                <span class="material-control-indicator"></span>-->
-                                        <!--                <span class="description">{{ __('message.Razorpay') }}</span>-->
-                                        <!--            </label>-->
-                                        <!--        </div>-->
-                                        <!--    </div>-->
-                                        <!--</div> --}}-->
-                                        @if (isset($paymentdetail['razorpay_is_active']) && $paymentdetail['razorpay_is_active'] == '1')
+                                        <?php endif; ?>
+                                        <!---->
+                                        <?php if(isset($paymentdetail['razorpay_is_active']) && $paymentdetail['razorpay_is_active'] == '1'): ?>
                                             <div class="col-md-6">
                                                 <div class="custom-check-box">
                                                     <div class="custom-controls-stacked">
@@ -665,26 +632,17 @@
                                                                 id="payment_type_razorpay" value="6"
                                                                 onchange="changeform(this.value)">
                                                             <span class="material-control-indicator"></span>
-                                                            <span class="description">{{ __('message.Razorpay') }}</span>
+                                                            <span class="description"><?php echo e(__('message.Razorpay')); ?></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="row">
                                         <!--<div class="col-md-12">-->
-                                        <!--    {{-- <div class="custom-check-box">-->
-                                        <!--        <div class="custom-controls-stacked">-->
-                                        <!--            <label class="custom-control material-checkbox fl">-->
-                                        <!--                <input type="radio" class="material-control-input" name="payment_type"-->
-                                        <!--                    id="payment_type_paystack" value="7" onchange="changeform(this.value)">-->
-                                        <!--                <span class="material-control-indicator"></span>-->
-                                        <!--                <span class="description">{{ __('message.Paystack') }}</span>-->
-                                        <!--            </label>-->
-                                        <!--        </div>-->
-                                        <!--    </div> --}}-->
-                                        @if (isset($paymentdetail['paystack_is_active']) && $paymentdetail['paystack_is_active'] == '1')
+                                        <!--    -->
+                                        <?php if(isset($paymentdetail['paystack_is_active']) && $paymentdetail['paystack_is_active'] == '1'): ?>
                                             <div class="col-md-12">
                                                 <div class="custom-check-box">
                                                     <div class="custom-controls-stacked">
@@ -693,13 +651,13 @@
                                                                 id="payment_type_paystack" value="7"
                                                                 onchange="changeform(this.value)">
                                                             <span class="material-control-indicator"></span>
-                                                            <span class="description">{{ __('message.Paystack') }}</span>
+                                                            <span class="description"><?php echo e(__('message.Paystack')); ?></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
-                                        <!-- @if (isset($paymentdetail['uploaded_receipt_is_active']) && $paymentdetail['uploaded_receipt_is_active'] == '1')-->
+                                        <?php endif; ?>
+                                        <!-- <?php if(isset($paymentdetail['uploaded_receipt_is_active']) && $paymentdetail['uploaded_receipt_is_active'] == '1'): ?>-->
                                         <!--    <div class="col-md-6">-->
                                         <!--        <div class="custom-check-box">-->
                                         <!--            <div class="custom-controls-stacked">-->
@@ -708,41 +666,42 @@
                                         <!--                        name="payment_type" id="payment_type_uploaded_receipt"-->
                                         <!--                        value="9" onchange="changeform(this.value)">-->
                                         <!--                    <span class="material-control-indicator"></span>-->
-                                        <!--                    <span class="description">{{ __('message.Receipt') }}</span>-->
+                                        <!--                    <span class="description"><?php echo e(__('message.Receipt')); ?></span>-->
                                         <!--                </label>-->
                                         <!--            </div>-->
                                         <!--        </div>-->
                                         <!--    </div>-->
-                                        <!--@endif-->
+                                        <!--<?php endif; ?>-->
                                         <!--</div>-->
                                     </div>
                                     <div class="text-center">
 
-                                        @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                            @if (session()->get('cart') != null)
+                                        <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
+                                            <?php if(session()->get('cart') != null): ?>
                                                 <button class="theme-btn-one centred" type="button" id="show_book"
-                                                    onclick="bookshow()">{{ __('message.place order') }}<i
+                                                    onclick="bookshow()"><?php echo e(__('message.place order')); ?><i
                                                         class="icon-Arrow-Right"></i></button>
-                                            @else
+                                            <?php else: ?>
                                                 <button type="button" class="theme-btn-one"
-                                                    onclick="alert('{{ __('message.Your Cart Is Empty') }}')"
-                                                    id="show_book">{{ __('message.place order') }}<i
+                                                    onclick="alert('<?php echo e(__('message.Your Cart Is Empty')); ?>')"
+                                                    id="show_book"><?php echo e(__('message.place order')); ?><i
                                                         class="icon-Arrow-Right"></i></button>
-                                            @endif
-                                        @else
+                                            <?php endif; ?>
+                                        <?php else: ?>
                                             <button type="button" class="theme-btn-one" onclick="pleaselogin()"
-                                                id="show_book">{{ __('message.place order') }}<i
+                                                id="show_book"><?php echo e(__('message.place order')); ?><i
                                                     class="icon-Arrow-Right"></i></button>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div id="braintree_div" style="display:none;">
-                                        <form action="{{ url('addhospitalorder') }}" method="post" id="payment-form">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="hospital_id" id="hospital_id" value="{{ $data->id }}">
-                                            <input type="hidden" name="total" value="{{ $subtotal }}">
-                                            <input type="hidden" name="tax" value="{{ $subtotal2 }}">
+                                        <form action="<?php echo e(url('addhospitalorder')); ?>" method="post" id="payment-form">
+                                            <?php echo e(csrf_field()); ?>
+
+                                            <input type="hidden" name="hospital_id" id="hospital_id" value="<?php echo e($data->id); ?>">
+                                            <input type="hidden" name="total" value="<?php echo e($subtotal); ?>">
+                                            <input type="hidden" name="tax" value="<?php echo e($subtotal2); ?>">
                                             <input type="hidden" name="delivery_charge"
-                                                value="{{ $setting->pharmacy_delivery_charge }}">
+                                                value="<?php echo e($setting->pharmacy_delivery_charge); ?>">
                                             <input type="hidden" name="phone_no" id="phone_no_1">
                                             <input type="hidden" name="address" id="address_1">
                                             <input type="hidden" name="slot" id="slot_1">
@@ -753,54 +712,56 @@
                                             </div>
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                                             <div class="btn-box" id="btnappointment">
-                                                @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                                    <button class="theme-btn-one" type="submit">{{ __('message.place order') }}<i
+                                                <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
+                                                    <button class="theme-btn-one" type="submit"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @else
+                                                <?php else: ?>
                                                     <button type="button" class="theme-btn-one"
-                                                        onclick="pleaselogin()">{{ __('message.place order') }}<i
+                                                        onclick="pleaselogin()"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                         </form>
                                     </div>
 
                                     <div id="stripe_div" style="display:none;">
-                                        <form action="{{ url('addhospitalorder') }}" method="post" id="stripe-form">
-                                            {{ csrf_field() }}
+                                        <form action="<?php echo e(url('addhospitalorder')); ?>" method="post" id="stripe-form">
+                                            <?php echo e(csrf_field()); ?>
+
                                             <input type="hidden" name="phone_no" id="phone_no_2">
                                             <input type="hidden" name="address" id="address_2">
                                             <input type="hidden" name="slot" id="slot_2">
                                             <input type="hidden" name="message" id="message_2">
                                             <input type="hidden" name="payment_type" value="stripe">
-                                            <input type="hidden" name="hospital_id" id="hospital_id" value="{{ $data->id }}">
-                                            <input type="hidden" name="total" value="{{ $subtotal }}">
-                                            <input type="hidden" name="tax" value="{{ $subtotal2 }}">
+                                            <input type="hidden" name="hospital_id" id="hospital_id" value="<?php echo e($data->id); ?>">
+                                            <input type="hidden" name="total" value="<?php echo e($subtotal); ?>">
+                                            <input type="hidden" name="tax" value="<?php echo e($subtotal2); ?>">
                                             <input type="hidden" name="delivery_charge"
-                                                value="{{ $setting->pharmacy_delivery_charge }}">
-                                            @if (Session::has('user_id') && Session::get('role_id') == '1')
+                                                value="<?php echo e($setting->pharmacy_delivery_charge); ?>">
+                                            <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
                                                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                    data-key="{{ env('STRIPE_KEY') }}" data-amount="{{ $subtotal * 100 }}"
-                                                    data-id="stripid" data-name="{{ __('message.System Name') }}"
-                                                    data-label="{{ __('message.place order') }}" data-description=""
-                                                    data-image="{{ asset('public/image_web/') . '/' . $setting->logo }}"
+                                                    data-key="<?php echo e(env('STRIPE_KEY')); ?>" data-amount="<?php echo e($subtotal * 100); ?>"
+                                                    data-id="stripid" data-name="<?php echo e(__('message.System Name')); ?>"
+                                                    data-label="<?php echo e(__('message.place order')); ?>" data-description=""
+                                                    data-image="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>"
                                                     data-locale="auto"></script>
-                                            @else
+                                            <?php else: ?>
                                                 <button type="button" class="theme-btn-one"
-                                                    onclick="pleaselogin()">{{ __('message.place order') }}<i
+                                                    onclick="pleaselogin()"><?php echo e(__('message.place order')); ?><i
                                                         class="icon-Arrow-Right"></i></button>
-                                            @endif
+                                            <?php endif; ?>
                                         </form>
                                     </div>
 
                                     <div id="cod_div" style="display:none;">
-                                        <form action="{{ url('addhospitalorder') }}" method="post" id="payment-form">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="hospital_id" id="hospital_id" value="{{ $data->id }}">
-                                            <input type="hidden" name="total" value="{{ $subtotal }}">
-                                            <input type="hidden" name="tax" value="{{ $subtotal2 }}">
+                                        <form action="<?php echo e(url('addhospitalorder')); ?>" method="post" id="payment-form">
+                                            <?php echo e(csrf_field()); ?>
+
+                                            <input type="hidden" name="hospital_id" id="hospital_id" value="<?php echo e($data->id); ?>">
+                                            <input type="hidden" name="total" value="<?php echo e($subtotal); ?>">
+                                            <input type="hidden" name="tax" value="<?php echo e($subtotal2); ?>">
                                             <input type="hidden" name="delivery_charge"
-                                                value="{{ $setting->pharmacy_delivery_charge }}">
+                                                value="<?php echo e($setting->pharmacy_delivery_charge); ?>">
                                             <input type="hidden" name="phone_no" id="phone_no_3">
                                             <input type="hidden" name="address" id="address_3">
                                             <input type="hidden" name="slot" id="slot_3">
@@ -811,26 +772,27 @@
                                             </div>
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                                             <div class="btn-box" id="btnappointment">
-                                                @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                                    <button class="theme-btn-one" type="submit">{{ __('message.place order') }}<i
+                                                <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
+                                                    <button class="theme-btn-one" type="submit"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @else
+                                                <?php else: ?>
                                                     <button type="button" class="theme-btn-one"
-                                                        onclick="pleaselogin()">{{ __('message.place order') }}<i
+                                                        onclick="pleaselogin()"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                         </form>
                                     </div>
 
                                     <div id="rave_div" style="display:none;">
-                                        <form action="{{ url('addhospitalorder') }}" method="post" id="payment-form">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="hospital_id" id="hospital_id" value="{{ $data->id }}">
-                                            <input type="hidden" name="total" value="{{ $subtotal }}">
-                                            <input type="hidden" name="tax" value="{{ $subtotal2 }}">
+                                        <form action="<?php echo e(url('addhospitalorder')); ?>" method="post" id="payment-form">
+                                            <?php echo e(csrf_field()); ?>
+
+                                            <input type="hidden" name="hospital_id" id="hospital_id" value="<?php echo e($data->id); ?>">
+                                            <input type="hidden" name="total" value="<?php echo e($subtotal); ?>">
+                                            <input type="hidden" name="tax" value="<?php echo e($subtotal2); ?>">
                                             <input type="hidden" name="delivery_charge"
-                                                value="{{ $setting->pharmacy_delivery_charge }}">
+                                                value="<?php echo e($setting->pharmacy_delivery_charge); ?>">
                                             <input type="hidden" name="phone_no" id="phone_no_4">
                                             <input type="hidden" name="address" id="address_4">
                                             <input type="hidden" name="slot" id="slot_4">
@@ -841,26 +803,27 @@
                                             </div>
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                                             <div class="btn-box" id="btnappointment">
-                                                @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                                    <button class="theme-btn-one" type="submit">{{ __('message.place order') }}<i
+                                                <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
+                                                    <button class="theme-btn-one" type="submit"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @else
+                                                <?php else: ?>
                                                     <button type="button" class="theme-btn-one"
-                                                        onclick="pleaselogin()">{{ __('message.place order') }}<i
+                                                        onclick="pleaselogin()"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                         </form>
                                     </div>
 
                                     <div id="paytm_div" style="display:none;">
-                                        <form action="{{ url('addhospitalorder') }}" method="post" id="payment-form">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="hospital_id" id="hospital_id" value="{{ $data->id }}">
-                                            <input type="hidden" name="total" value="{{ $subtotal }}">
-                                            <input type="hidden" name="tax" value="{{ $subtotal2 }}">
+                                        <form action="<?php echo e(url('addhospitalorder')); ?>" method="post" id="payment-form">
+                                            <?php echo e(csrf_field()); ?>
+
+                                            <input type="hidden" name="hospital_id" id="hospital_id" value="<?php echo e($data->id); ?>">
+                                            <input type="hidden" name="total" value="<?php echo e($subtotal); ?>">
+                                            <input type="hidden" name="tax" value="<?php echo e($subtotal2); ?>">
                                             <input type="hidden" name="delivery_charge"
-                                                value="{{ $setting->pharmacy_delivery_charge }}">
+                                                value="<?php echo e($setting->pharmacy_delivery_charge); ?>">
                                             <input type="hidden" name="phone_no" id="phone_no_5">
                                             <input type="hidden" name="address" id="address_5">
                                             <input type="hidden" name="slot" id="slot_5">
@@ -871,26 +834,27 @@
                                             </div>
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                                             <div class="btn-box" id="btnappointment">
-                                                @if (Session::has('user_id') && Session::get('role_id') == '1')
-                                                    <button class="theme-btn-one" type="submit">{{ __('message.place order') }}<i
+                                                <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
+                                                    <button class="theme-btn-one" type="submit"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @else
+                                                <?php else: ?>
                                                     <button type="button" class="theme-btn-one"
-                                                        onclick="pleaselogin()">{{ __('message.place order') }}<i
+                                                        onclick="pleaselogin()"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                         </form>
                                     </div>
 
                                     <div id="razorpay_div" style="display:none;">
-                                        <form action="{{ url('addhospitalorder') }}" method="post" id="payment-form">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="hospital_id" id="hospital_id" value="{{ $data->id }}">
-                                            <input type="hidden" name="total" value="{{ $subtotal }}">
-                                            <input type="hidden" name="tax" value="{{ $subtotal2 }}">
+                                        <form action="<?php echo e(url('addhospitalorder')); ?>" method="post" id="payment-form">
+                                            <?php echo e(csrf_field()); ?>
+
+                                            <input type="hidden" name="hospital_id" id="hospital_id" value="<?php echo e($data->id); ?>">
+                                            <input type="hidden" name="total" value="<?php echo e($subtotal); ?>">
+                                            <input type="hidden" name="tax" value="<?php echo e($subtotal2); ?>">
                                             <input type="hidden" name="delivery_charge"
-                                                value="{{ $setting->pharmacy_delivery_charge }}">
+                                                value="<?php echo e($setting->pharmacy_delivery_charge); ?>">
                                             <input type="hidden" name="phone_no" id="phone_no_6">
                                             <input type="hidden" name="address" id="address_6">
                                             <input type="hidden" name="slot" id="slot_6">
@@ -902,30 +866,31 @@
                                                 <div id="bt-dropin"></div>
                                             </div>
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
-                                            @if (Session::has('user_id') && Session::get('role_id') == '1')
+                                            <?php if(Session::has('user_id') && Session::get('role_id') == '1'): ?>
                                                 <script src="https://checkout.razorpay.com/v1/checkout.js"
-                                                    data-key="{{ $paymentdetail['razorpay_razorpay_key'] }}"
-                                                    data-amount="{{ (int) $subtotal * 100 }}"
-                                                    data-buttontext='{{ __('message.Pay') }}' data-name="{{ env('APP_NAME') }}"
+                                                    data-key="<?php echo e($paymentdetail['razorpay_razorpay_key']); ?>"
+                                                    data-amount="<?php echo e((int) $subtotal * 100); ?>"
+                                                    data-buttontext='<?php echo e(__('message.Pay')); ?>' data-name="<?php echo e(env('APP_NAME')); ?>"
                                                     data-description="Payment"
-                                                    data-image="{{ asset('public/image_web/896814.png') }}" data-prefill.name="name"
+                                                    data-image="<?php echo e(asset('public/image_web/896814.png')); ?>" data-prefill.name="name"
                                                     data-prefill.email="email" data-theme.color="#d18217"></script>
-                                            @else
+                                            <?php else: ?>
                                                 <button type="button" class="theme-btn-one"
-                                                    onclick="pleaselogin()">{{ __('message.place order') }}<i
+                                                    onclick="pleaselogin()"><?php echo e(__('message.place order')); ?><i
                                                         class="icon-Arrow-Right"></i></button>
-                                            @endif
+                                            <?php endif; ?>
                                         </form>
                                     </div>
 
                                     <div id="paystack_div" style="display:none;">
-                                        <form action="{{ url('addhospitalorder') }}" method="post" id="payment-form">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="hospital_id" id="hospital_id" value="{{ $data->id }}">
-                                            <input type="hidden" name="total" value="{{ $subtotal }}">
-                                            <input type="hidden" name="tax" value="{{ $subtotal2 }}">
+                                        <form action="<?php echo e(url('addhospitalorder')); ?>" method="post" id="payment-form">
+                                            <?php echo e(csrf_field()); ?>
+
+                                            <input type="hidden" name="hospital_id" id="hospital_id" value="<?php echo e($data->id); ?>">
+                                            <input type="hidden" name="total" value="<?php echo e($subtotal); ?>">
+                                            <input type="hidden" name="tax" value="<?php echo e($subtotal2); ?>">
                                             <input type="hidden" name="delivery_charge"
-                                                value="{{ $setting->pharmacy_delivery_charge }}">
+                                                value="<?php echo e($setting->pharmacy_delivery_charge); ?>">
                                             <input type="hidden" name="phone_no" id="phone_no_7">
                                             <input type="hidden" name="address" id="address_7">
                                             <input type="hidden" name="slot" id="slot_7">
@@ -936,28 +901,28 @@
                                             </div>
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                                             <div class="btn-box" id="btnappointment">
-                                                @if (Session::has('user_id') && Session::get('role_id') == '1' && Session::get('role_id') == '1')
-                                                    <button class="theme-btn-one" type="submit">{{ __('message.place order') }}<i
+                                                <?php if(Session::has('user_id') && Session::get('role_id') == '1' && Session::get('role_id') == '1'): ?>
+                                                    <button class="theme-btn-one" type="submit"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @else
+                                                <?php else: ?>
                                                     <button type="button" class="theme-btn-one"
-                                                        onclick="pleaselogin()">{{ __('message.place order') }}<i
+                                                        onclick="pleaselogin()"><?php echo e(__('message.place order')); ?><i
                                                             class="icon-Arrow-Right"></i></button>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                         </form>
                                     </div>
 
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
     </section>
-@endif
-@stop
-@section('footer')
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
 
 <script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
 <script type="text/javascript">
@@ -1075,7 +1040,7 @@
 
 
         } else {
-            alert("{{ __('message.Please Fillup All Field') }}");
+            alert("<?php echo e(__('message.Please Fillup All Field')); ?>");
             $("#payment_type_braintree").prop("checked", false)
             $("#payment_type_stripe").prop("checked", false)
             $("#payment_type_cod").prop("checked", false)
@@ -1094,16 +1059,16 @@
         var message = $("#message").val();
         var slot = $('input[name="slot"]:checked').val();
         if (phone_no != "" && message != "") {
-            alert("{{ __('message.please choose payment type') }}");
+            alert("<?php echo e(__('message.please choose payment type')); ?>");
         } else {
-            alert("{{ __('message.Please Fillup All Field') }}");
+            alert("<?php echo e(__('message.Please Fillup All Field')); ?>");
         }
     }
 
 
 
     var form = document.querySelector('#payment-form');
-    var client_token = "{{ $token }}";
+    var client_token = "<?php echo e($token); ?>";
 
     braintree.dropin.create({
         authorization: client_token,
@@ -1133,4 +1098,5 @@
     });
 </script>
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('user.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\mydoctor\resources\views/user/viewhospital.blade.php ENDPATH**/ ?>

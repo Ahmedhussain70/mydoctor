@@ -311,6 +311,8 @@
                                     <li class="" id="home"><a
                                             href="<?php echo e(url('searchlaboratory')); ?>"><?php echo e(__('message.Laboratory')); ?></a></li>
                                     <li class="" id="home"><a
+                                            href="<?php echo e(url('searchhospital')); ?>"><?php echo e(__('message.Hospital')); ?></a></li>
+                                    <li class="" id="home"><a
                                             href="<?php echo e(url('viewspecialist')); ?>"><?php echo e(__('message.Specialist')); ?></a></li>
                                     <li class="" id="home"><a
                                             href="<?php echo e(url('contactus')); ?>"><?php echo e(__('message.Contact Us')); ?></a></li>

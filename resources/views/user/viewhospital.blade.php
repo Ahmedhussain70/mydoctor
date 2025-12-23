@@ -185,9 +185,9 @@
                                         <div class="text">
                                             <div class="row">
                                                 @forelse ($hospitalDoctors as $doctor)
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                    <div class="col-lg-12 col-md-6 col-sm-12">
                                                         <div class="clinic-block-one">
-                                                            <div class="inner-box">
+                                                            <div class="inner-box" style="padding: 12px 64px 100px 260px;">
                                                                 <div class="image-box">
                                                                     <img src="{{ $doctor->image 
                                                                         ? asset('public/upload/doctors/'.$doctor->image) 

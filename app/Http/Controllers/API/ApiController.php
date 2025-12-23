@@ -2296,6 +2296,14 @@ class ApiController extends Controller
                 }
             }elseif ($request->type == 4) {
                 $getdetail = Doctors::where('id', $request->get("hospital_id"))->where('profile_type', 4)->first();
+
+                if (!empty($getdetail->doctor_id)) {
+                    $hospitalDoctorIds = json_decode($getdetail->doctor_id, true);
+                } else {
+                    $hospitalDoctorIds = [];
+                }
+                $hospitalDoctors = Doctors::whereIn('id', $hospitalDoctorIds)->get();
+    
                 unset($getdetail->state);
                 unset($getdetail->city);
                 if (empty($getdetail)) {

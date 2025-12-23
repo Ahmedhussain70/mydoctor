@@ -128,7 +128,7 @@ class ApiController extends Controller
                     } else {
                         $data->save();
                         $response['status'] = "1";
-                        $response['msg'] =  "ConnectCube Register Successfully";
+                        $response['msg'] = "ConnectCube Register Successfully";
                         $response['data'] = array("connectycube_user_id" => $data->connectycube_user_id, "login_id" => $login_field);
                     }
                 } else {
@@ -160,7 +160,7 @@ class ApiController extends Controller
                     } else {
                         $data->save();
                         $response['status'] = "1";
-                        $response['msg'] =  "ConnectCube Register Successfully";
+                        $response['msg'] = "ConnectCube Register Successfully";
                         $response['data'] = array("connectycube_user_id" => $data->connectycube_user_id, "login_id" => $login_field);
                     }
                 } else {
@@ -566,13 +566,13 @@ class ApiController extends Controller
                     $msg = __("message.pharmacy_order_user_Accept_msg");
                     $android = $this->sendNotifications($msg, $data->Pharmacy_id, "doctor_id", $data->id);
                 } else if ($request->get("status") == '6') { //cancel
-                    $msg =  __("message.pharmacy_order_user_reject_msg");
+                    $msg = __("message.pharmacy_order_user_reject_msg");
                     $android = $this->sendNotifications($msg, $data->Pharmacy_id, "doctor_id", $data->id);
                 } else if ($request->get("status") == '7') { //Prepared
-                    $msg =  __("message.pharmacy_order_Prepared_msg");
+                    $msg = __("message.pharmacy_order_Prepared_msg");
                     $android = $this->sendNotifications($msg, $data->user_id, "user_id", $data->id);
                 } else if ($request->get("status") == '8') { //Out_for_Delivery
-                    $msg =  __("message.pharmacy_order_Out_for_Delivery_msg");
+                    $msg = __("message.pharmacy_order_Out_for_Delivery_msg");
                     $android = $this->sendNotifications($msg, $data->user_id, "user_id", $data->id);
                 }
 
@@ -652,29 +652,29 @@ class ApiController extends Controller
             }
             $regIdChunk = array_chunk($reg_id, 1000);
             foreach ($regIdChunk as $k) {
-                $registrationIds =  $k;
+                $registrationIds = $k;
 
                 $message = array(
                     'message' => $msg,
-                    'title' =>  'Notification',
+                    'title' => 'Notification',
                     'notificationType' => 4,
                     'body' => $msg,
                 );
 
                 $message1 = array(
                     'body' => $msg,
-                    'title' =>  'Notification'
+                    'title' => 'Notification'
                 );
                 $fields = array(
-                    'registration_ids'  => $registrationIds,
-                    'data'              => $message
+                    'registration_ids' => $registrationIds,
+                    'data' => $message
                 );
                 $url = 'https://fcm.googleapis.com/fcm/send';
                 $headers = array(
                     'Authorization: key=' . $key, // . $api_key,
                     'Content-Type: application/json'
                 );
-                $json =  json_encode($fields);
+                $json = json_encode($fields);
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -826,7 +826,7 @@ class ApiController extends Controller
                         }
                     }
                     $response['status'] = "1";
-                    $response['msg'] =  __("message.Order_List_Get_Success");
+                    $response['msg'] = __("message.Order_List_Get_Success");
                     $response['data'] = $data;
                 } else {
                     $response['status'] = "0";
@@ -856,7 +856,7 @@ class ApiController extends Controller
 
 
                     $response['status'] = "1";
-                    $response['msg'] =  __("message.Order_List_Get_Success");
+                    $response['msg'] = __("message.Order_List_Get_Success");
                     $response['data'] = $data;
                 } else {
                     $response['status'] = "0";
@@ -997,7 +997,7 @@ class ApiController extends Controller
 
             if ($data) {
                 $response['success'] = "1";
-                $response['msg'] =  __("message.Doctors_Bank_Details");
+                $response['msg'] = __("message.Doctors_Bank_Details");
                 $response['data'] = $data;
             } else {
                 $response = array("status" => 0, "msg" => __("message.Doctor_Not_Found"));
@@ -1043,7 +1043,7 @@ class ApiController extends Controller
                 $data->save();
 
                 $response['success'] = "1";
-                $response['msg'] =  __("message.Doctors_Bank_Add_Success");
+                $response['msg'] = __("message.Doctors_Bank_Add_Success");
                 // $response['data']=$data;
 
 
@@ -1161,7 +1161,7 @@ class ApiController extends Controller
                 $data->delete();
 
                 $response['status'] = '1';
-                $response['message'] =  __("message.Image_Delete_Successfully");
+                $response['message'] = __("message.Image_Delete_Successfully");
             } else {
                 $response['status'] = '0';
                 $response['message'] = __("message.Image_allready_deleted");
@@ -1206,7 +1206,7 @@ class ApiController extends Controller
                 // $msg = "Doctor have sent E-Prescription for you";
                 // $android=$this->send_notification_android_user($set->android_key,$msg,$user->user_id);
 
-                $response = array("status" => 1, "msg" =>  __("message.Successfull Medicine Added")); //"Medicine successfully added to E-prescription."
+                $response = array("status" => 1, "msg" => __("message.Successfull Medicine Added")); //"Medicine successfully added to E-prescription."
             } else {
                 $response = array("status" => 0, "msg" => __("message.Appointment Not Found"));
             }
@@ -1700,7 +1700,7 @@ class ApiController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            $response['register'] =  __("message.enter_data_perfectly");
+            $response['register'] = __("message.enter_data_perfectly");
         } else {
             $store = new TokenData();
             $store->token = $request->get("token");
@@ -1961,8 +1961,8 @@ class ApiController extends Controller
                     } elseif ($request->get("type") == 3) {
                         $inset->profile_type = 3;
 
-                    } elseif ($request->get("type") == 4){
-                        $inset->profile_type = 4;           
+                    } elseif ($request->get("type") == 4) {
+                        $inset->profile_type = 4;
                     } else {
                         $inset->profile_type = 1;
                     }
@@ -1986,7 +1986,7 @@ class ApiController extends Controller
                 $inset->save();
                 $store = TokenData::where("token", $request->get("token"))->update(["user_id" => $inset->id]);
                 $response['success'] = "1";
-                $response['register'] = array("user_id" => $inset->id, "name" => $inset->name, "phone" => $inset->phoneno, "email" => $inset->email,);
+                $response['register'] = array("user_id" => $inset->id, "name" => $inset->name, "phone" => $inset->phoneno, "email" => $inset->email, );
             } else {
                 $response['success'] = "0";
                 $response['register'] = __("message.Email Already Existe");
@@ -2022,7 +2022,7 @@ class ApiController extends Controller
             }
             $response['register'] = $message;
         } else {
-            $getuser = Doctors::where("email", $request->get("email"))->where("password", $request->get("password"))->where("profile_type",  $request->get("type"))->first();
+            $getuser = Doctors::where("email", $request->get("email"))->where("password", $request->get("password"))->where("profile_type", $request->get("type"))->first();
 
             if ($getuser) { //update token
                 $store = TokenData::where("token", $request->get("token"))->first();
@@ -2294,35 +2294,53 @@ class ApiController extends Controller
                     $response['register'] = __("message.Laboratory_Get_Success");
                     $response['data'] = $getdetail;
                 }
-            }elseif ($request->type == 4) {
-                $getdetail = Doctors::where('id', $request->get("hospital_id"))->where('profile_type', 4)->first();
+            } elseif ($request->type == 4) {
 
-                if (!empty($getdetail->doctor_id)) {
-                    $hospitalDoctorIds = json_decode($getdetail->doctor_id, true);
-                } else {
-                    $hospitalDoctorIds = [];
-                }
-                $hospitalDoctors = Doctors::whereIn('id', $hospitalDoctorIds)->get();
-    
-                unset($getdetail->state);
-                unset($getdetail->city);
+                $getdetail = Doctors::where('id', $request->hospital_id)
+                    ->where('profile_type', 4)
+                    ->first();
+
                 if (empty($getdetail)) {
                     $response['success'] = "0";
                     $response['register'] = __("message.Hospital_Not_Found");
-                } else {
-                    $getdepartment = Services::find($getdetail->department_id);
-                    if ($getdepartment) {
-                        $getdetail->department_name = $getdepartment->name;
-                    } else {
-                        $getdetail->department_name = "";
-                    }
-                    $getdetail->avgratting = Review::where('doc_id', $request->get("hospital_id"))->avg('rating');
-                    $getdetail->total_review = count(Review::where('doc_id', $request->get("hospital_id"))->get());
-                    $getdetail->image = asset('public/upload/doctors') . '/' . $getdetail->image;
-                    $response['success'] = "1";
-                    $response['register'] = __("message.Hospital_Get_Success");
-                    $response['data'] = $getdetail;
+                    return response()->json($response);
                 }
+                
+                $hospitalDoctorIds = !empty($getdetail->doctor_id)
+                    ? json_decode($getdetail->doctor_id, true)
+                    : [];
+
+                $hospitalDoctors = Doctors::whereIn('id', $hospitalDoctorIds)->get();
+
+                $doctors = [];
+                foreach ($hospitalDoctors as $doctor) {
+                    $doctors[] = [
+                        'id' => $doctor->id,
+                        'name' => $doctor->name,
+                        'working_time' => $doctor->working_time,
+                        'address' => $doctor->address,
+                        'image' => asset('public/upload/doctors/' . $doctor->image),
+                        'rating' => Review::where('doc_id', $doctor->id)->avg('rating'),
+                        'total_review' => Review::where('doc_id', $doctor->id)->count(),
+                    ];
+                }
+
+                unset($getdetail->state, $getdetail->city);
+
+                $getdepartment = Services::find($getdetail->department_id);
+                $getdetail->department_name = $getdepartment ? $getdepartment->name : "";
+
+                $getdetail->avgratting = Review::where('doc_id', $getdetail->id)->avg('rating');
+                $getdetail->total_review = Review::where('doc_id', $getdetail->id)->count();
+                $getdetail->image = asset('public/upload/doctors/' . $getdetail->image);
+
+                $response['success'] = "1";
+                $response['register'] = __("message.Hospital_Get_Success");
+                $response['data'] = [
+                    'hospital' => $getdetail,
+                    'doctors' => $doctors
+                ];
+
             }
         }
         return json_encode($response, JSON_NUMERIC_CHECK);
@@ -2460,7 +2478,7 @@ class ApiController extends Controller
         } else {
             $lat = $request->get('lat');
             $lon = $request->get("lon");
-            $data =  $data = DB::table("doctors")
+            $data = $data = DB::table("doctors")
                 ->where("department_id", $request->get("department_id"))
                 ->where("is_approve", '1')
 
@@ -2898,7 +2916,7 @@ class ApiController extends Controller
                     }
 
                     $response['success'] = "1";
-                    $response['register'] =  __("message.Doctor_Get_Success");
+                    $response['register'] = __("message.Doctor_Get_Success");
                     $response['data'] = $data;
                 }
             } else if ($request->type == '2') {
@@ -2919,7 +2937,7 @@ class ApiController extends Controller
                     }
                     $data->avgratting = round(Review::where("doc_id", $request->get("pharmacy_id"))->avg('rating'));
                     $response['success'] = "1";
-                    $response['register'] =  __("message.Doctor_Get_Success");
+                    $response['register'] = __("message.Doctor_Get_Success");
                     $response['data'] = $data;
                 }
             } else if ($request->type == '3') {
@@ -2940,10 +2958,10 @@ class ApiController extends Controller
                     }
                     $data->avgratting = round(Review::where("doc_id", $request->get("laboratory_id"))->avg('rating'));
                     $response['success'] = "1";
-                    $response['register'] =  __("message.Doctor_Get_Success");
+                    $response['register'] = __("message.Doctor_Get_Success");
                     $response['data'] = $data;
                 }
-            }else if ($request->type == '4') {
+            } else if ($request->type == '4') {
 
                 $data = Doctors::where('id', $request->get("hospital_id"))->where('profile_type', '4')->orderBy('id', 'desc')->first();
                 if (empty($data)) {
@@ -2958,7 +2976,7 @@ class ApiController extends Controller
                     }
                     $data->avgratting = round(Review::where("doc_id", $request->get("hospital_id"))->avg('rating'));
                     $response['success'] = "1";
-                    $response['register'] =  __("message.Doctor_Get_Success");
+                    $response['register'] = __("message.Doctor_Get_Success");
                     $response['data'] = $data;
                 }
             }
@@ -3114,7 +3132,7 @@ class ApiController extends Controller
             }
             if ($data) {
                 $response['success'] = "1";
-                $response['msg'] =  __("message.Your subscription plan add successfully");
+                $response['msg'] = __("message.Your subscription plan add successfully");
                 $response['url'] = $url;
                 $response['id'] = $data->id;
             } else {
@@ -3175,8 +3193,10 @@ class ApiController extends Controller
                     $ls['user_id'] = $data->user_id;
                     $ls['date'] = $data->date;
                     $ls['slot'] = $data->slot_name;
-                    $ls['phone'] = isset($data->doctorls) ? $data->doctorls->phoneno : "";;
-                    $ls['email'] = isset($data->doctorls) ? $data->doctorls->email : "";;
+                    $ls['phone'] = isset($data->doctorls) ? $data->doctorls->phoneno : "";
+                    ;
+                    $ls['email'] = isset($data->doctorls) ? $data->doctorls->email : "";
+                    ;
                     $ls['description'] = $data->user_description;
                     $ls['connectycube_user_id'] = $data->doctorls->connectycube_user_id;
                     $ls['id'] = $data->id;
@@ -3214,7 +3234,7 @@ class ApiController extends Controller
                             $sunset = date("H:i", strtotime("+15 minutes", strtotime($sunrise)));
                             // echo $current_time." sunrise ".$sunrise." sunset".$sunset.' '.$sdchule_id;exit;
                             if (strtotime($current_time) >= strtotime($sunrise) && strtotime($current_time) <= strtotime($sunset)) {
-                                $ls['is_appointment_time']  = 1;
+                                $ls['is_appointment_time'] = 1;
                             }
                         }
                     }
@@ -3268,7 +3288,7 @@ class ApiController extends Controller
                             $sunset = date("H:i", strtotime("+15 minutes", strtotime($sunrise)));
                             // echo $current_time." sunrise ".$sunrise." sunset".$sunset.' '.$sdchule_id;exit;
                             if (strtotime($current_time) >= strtotime($sunrise) && strtotime($current_time) <= strtotime($sunset)) {
-                                $ls['is_appointment_time']  = 1;
+                                $ls['is_appointment_time'] = 1;
                             }
                         }
                     }
@@ -3337,8 +3357,8 @@ class ApiController extends Controller
                 "lon" => "required",
                 "phoneno" => "required",
                 "services" => "required",
-                "home_visit"=> "required",
-               "lab_visit"=> "required",
+                "home_visit" => "required",
+                "lab_visit" => "required",
             ];
         }
 
@@ -3360,8 +3380,8 @@ class ApiController extends Controller
             'consultation_fees.required' => "consultation_fees is required",
             // 'city_id.required' => "city_id is required",
             //'time_json.required' => "time_json is required"
-              "home_visit.required" => "home visit is required",
-             "lab_visit.required" => "lab visit is required",
+            "home_visit.required" => "home visit is required",
+            "lab_visit.required" => "lab visit is required",
 
         );
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -3618,8 +3638,8 @@ class ApiController extends Controller
     {
         $datetime1 = strtotime($start_time);
         $datetime2 = strtotime($end_time);
-        $interval  = abs($datetime2 - $datetime1);
-        $minutes   = round($interval / 60);
+        $interval = abs($datetime2 - $datetime1);
+        $minutes = round($interval / 60);
         $noofslot = $minutes / $duration;
         $slot = array();
         if ($noofslot > 0) {
@@ -3949,7 +3969,7 @@ class ApiController extends Controller
                     ),
                     "data" => array(
                         'message' => $msg,
-                        'title' =>  __('message.notification'),
+                        'title' => __('message.notification'),
                     )
                 )
             );
@@ -4157,7 +4177,7 @@ class ApiController extends Controller
 
                 //   exit();
                 try {
-                    $result =  Mail::send('email.reset_password', ['user' => $store], function ($message) use ($store) {
+                    $result = Mail::send('email.reset_password', ['user' => $store], function ($message) use ($store) {
                         $message->to($store['email'], $store['name'])->subject(__("message.System Name"));
                     });
                 } catch (\Exception $e) {
@@ -4195,11 +4215,11 @@ class ApiController extends Controller
             $data = Doctor_Hoilday::where("doctor_id", $request->get("doctor_id"))->orderby('id', 'DESC')->get();
             if (count($data) > 0) {
                 $response['success'] = "1";
-                $response['msg'] =  __("message.My Hoilday List");
+                $response['msg'] = __("message.My Hoilday List");
                 $response['data'] = $data;
             } else {
                 $response['success'] = "0";
-                $response['msg'] =  __("message.No Hoilday Data");
+                $response['msg'] = __("message.No Hoilday Data");
             }
         }
         return json_encode($response, JSON_NUMERIC_CHECK);
@@ -4287,7 +4307,7 @@ class ApiController extends Controller
             if (!empty($data)) {
                 $data->delete();
                 $response['success'] = "1";
-                $response['msg'] =  __("message.Hoilday Delete Successfully");
+                $response['msg'] = __("message.Hoilday Delete Successfully");
             } else {
                 $response['success'] = "0";
                 $response['msg'] = __("message.No Hoilday Data");
@@ -4400,7 +4420,7 @@ class ApiController extends Controller
                 $request->file('file')->move($destinationPath, $picture);
                 $img_url = $picture;
 
-                $response = array("status" => 1, "msg" =>  __("message.Media_Upload_Success"), "data" => $img_url);
+                $response = array("status" => 1, "msg" => __("message.Media_Upload_Success"), "data" => $img_url);
                 return Response::json($response);
             } else {
                 $response = array("status" => 0, "msg" => "Media Not Upload", "data" => array());
@@ -4474,7 +4494,7 @@ class ApiController extends Controller
             } else {
                 $report = array();
 
-                foreach ($data as  $d) {
+                foreach ($data as $d) {
                     $created_at = date('Y-m-d', strtotime($d->created_at));
 
                     $visitors = BookAppointment::select(DB::raw("(DATE_FORMAT(created_at, '%Y-%m-%d'))"))->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
@@ -4639,7 +4659,7 @@ class ApiController extends Controller
             } else {
                 $report = array();
 
-                foreach ($data as  $d) {
+                foreach ($data as $d) {
                     $created_at = date('Y-m-d', strtotime($d->created_at));
 
                     $visitors = PharmacyOrder::select(DB::raw("(DATE_FORMAT(created_at, '%Y-%m-%d'))"))->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
@@ -4968,7 +4988,7 @@ class ApiController extends Controller
             $response['status'] = "1";
             $response['msg'] = __("message.Report_Order_Success");
             $response['data'] = $data;
-           // $android = $this->sendNotifications($msg, $request->get("doctor_id"), "doctor_id", $data->id);
+            // $android = $this->sendNotifications($msg, $request->get("doctor_id"), "doctor_id", $data->id);
 
         }
         return json_encode($response, JSON_NUMERIC_CHECK);
@@ -5057,8 +5077,9 @@ class ApiController extends Controller
     }
 
 
-    public function view_report(Request $request){
-       $response = array("status" => 1, "msg" => "Validation error");
+    public function view_report(Request $request)
+    {
+        $response = array("status" => 1, "msg" => "Validation error");
         $rules = [
             "order_id" => "required",
 
@@ -5144,8 +5165,9 @@ class ApiController extends Controller
         return json_encode($response, JSON_NUMERIC_CHECK);
     }
 
-    public function get_laboratory_report_list(Request $request){
-         $response = array("status" => 1, "msg" => "Validation error");
+    public function get_laboratory_report_list(Request $request)
+    {
+        $response = array("status" => 1, "msg" => "Validation error");
         $rules = [
             "laboratory_id" => "required",
         ];
@@ -5182,7 +5204,7 @@ class ApiController extends Controller
                         }
                     }
                     $response['status'] = "1";
-                    $response['msg'] =  __("message.Report_List_Get_Success");
+                    $response['msg'] = __("message.Report_List_Get_Success");
                     $response['data'] = $data;
                 } else {
                     $response['status'] = "0";
@@ -5212,7 +5234,7 @@ class ApiController extends Controller
 
 
                     $response['status'] = "1";
-                    $response['msg'] =  __("message.Report_List_Get_Success");
+                    $response['msg'] = __("message.Report_List_Get_Success");
                     $response['data'] = $data;
                 } else {
                     $response['status'] = "0";

@@ -183,14 +183,11 @@
                                 <div class="tab" id="tab-3">
                                     <div class="experience-box">
                                         <div class="text">
-                                            <h3>{{ __('message.Doctors') }}</h3>
-
                                             <div class="row">
                                                 @forelse ($hospitalDoctors as $doctor)
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <div class="doctor-card-one">
+                                                        <div class="clinic-block-one">
                                                             <div class="inner-box">
-
                                                                 <div class="image-box">
                                                                     <img src="{{ $doctor->image 
                                                                         ? asset('public/upload/doctors/'.$doctor->image) 
@@ -201,16 +198,7 @@
                                                                 <div class="content-box">
                                                                     <h4>{{ $doctor->name }}</h4>
 
-                                                                    <span class="time">
-                                                                        <i class="far fa-clock"></i>
-                                                                        {{ $doctor->working_time }}
-                                                                    </span>
-
-                                                                    <p class="address">
-                                                                        <i class="fas fa-map-marker-alt"></i>
-                                                                        {{ $doctor->address }}
-                                                                    </p>
-
+                                                            
                                                                     <div class="btn-box">
                                                                         <a href="{{ url('viewdoctor/'.$doctor->id) }}"
                                                                         class="theme-btn btn-one">

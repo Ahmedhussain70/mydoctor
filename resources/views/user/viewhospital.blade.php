@@ -54,13 +54,12 @@
                             <div class="inner-box">
                                 <figure class="image-box">
                                     <?php
-        if ($data->image == '') {
-            $path = asset('public/upload/doctors/defaultdoctor.png');
-        } else {
-            $path = asset('public/upload/doctors') . '/' . $data->image;
-        }
-
-                                            ?>
+                                        if ($data->image == '') {
+                                            $path = asset('public/upload/doctors/defaultdoctor.png');
+                                        } else {
+                                            $path = asset('public/upload/doctors') . '/' . $data->image;
+                                        }
+                                    ?>
                                     {{-- <div class="doctor-detail-page-main-box"
                                         style="background-image:url('{{$path}}'); background-size: 311px 220px;"></div> --}}
                                     <div class="doctor-detail-page-main-box"

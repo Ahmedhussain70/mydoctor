@@ -144,7 +144,7 @@
                                             <div class="text">
                                                 <p>{{ substr($dl->aboutus, 0, 200) }}</p>
                                             </div>
-                                            <div class="rating-box clearfix">
+                                            <div class="rating-box clearfix" data-toggle="tooltip" data-placement="top" data-html="true" title="@if($dl->reviewslist->count() > 0) @foreach($dl->reviewslist as $review) <div><strong>{{ $review->patientls->name ?? '' }}</strong>: {{ substr($review->description, 0, 50) }}</div> @endforeach @else No reviews yet @endif">
                                                 <ul class="rating clearfix">
                                                     <?php
                                                     $arr = $dl->avgratting;
@@ -237,7 +237,7 @@
                                                     </ul>
                                                     <span
                                                         class="designation">{{ isset($dl->departmentls) ? $dl->departmentls->name : '' }}</span>
-                                                    <div class="rating-box clearfix">
+                                                    <div class="rating-box clearfix" data-toggle="tooltip" data-placement="top" data-html="true" title="@if($dl->reviewslist->count() > 0) @foreach($dl->reviewslist as $review) <div><strong>{{ $review->patientls->name ?? '' }}</strong>: {{ substr($review->description, 0, 50) }}</div> @endforeach @else No reviews yet @endif">
                                                         <ul class="rating clearfix">
                                                             <?php
                                                             $arr = $dl->avgratting;
@@ -306,6 +306,11 @@
 
 @stop
 @section('footer')
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
     <script type="text/javascript">
         function serachcity(val) {
             var term = $("#term").val();

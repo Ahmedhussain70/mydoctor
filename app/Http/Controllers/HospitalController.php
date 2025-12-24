@@ -290,6 +290,7 @@ class HospitalController extends Controller
         foreach ($doctorslist as $k) {
             $k->avgratting = Review::where('doc_id', $k->id)->avg('rating');
             $k->totalreview = count(Review::where('doc_id', $k->id)->get());
+            $k->reviewslist = Review::with('patientls')->where('doc_id', $k->id)->orderBy('created_at', 'desc')->take(3)->get();
             if (!empty(Session::get("user_id")) && Session::get('role_id') == '1') {
                 $lsfav = FavoriteDoc::where("doctor_id", $k->id)->where("user_id", Session::get("user_id"))->first();
                 if ($lsfav) {

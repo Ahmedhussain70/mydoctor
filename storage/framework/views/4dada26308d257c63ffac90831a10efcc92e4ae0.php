@@ -588,7 +588,7 @@
                                                 placeholder="Type message">
                                         </div>
                                         <div class="col-2">
-                                            <input type="file" name="file" class="form-control">
+                                            <input id="file" type="button" value="upload file" name="file" class="form-control btn btn-primary"/>
                                         </div>
                                         <div class="col-2">
                                             <button class="btn btn-info w-100">Send</button>
@@ -604,6 +604,13 @@
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
                 <script>
+
+                    $('#file').click(function(){
+                        $('<input type="file" name="file" id="fileInput" class="form-control mt-2" hidden/>').insertAfter('#file').click().change(function(){
+                            $('#file').val($(this).val().split('\\').pop());
+                        });
+                    });
+                    
                     $('#chatForm').submit(function (e) {
                         e.preventDefault();
 
@@ -671,9 +678,6 @@
                         });
                     });
                 </script>
-
-
-
 
                 <div class="footer-bottom">
                     <div class="auto-container">

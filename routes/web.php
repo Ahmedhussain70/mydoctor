@@ -199,6 +199,7 @@ Route::group(['middleware' => ['Localization']], function () {
 
         Route::post("postlaboratoryregister", [LaboratoryController::class, "postlaboratoryregister"]);
         Route::post("laboratorylogin", [LaboratoryController::class, "laboratorylogin"]);
+        Route::post("hospitallogin", [HospitalController::class, "hospitallogin"]);
         //  Route::post("postloginlaboratory",[LaboratoryController::class,"postloginlaboratory"]);
         Route::view('laboratorydashboard', 'user.laboratory.dashboard');
         Route::get('laboratorydashboard', [LaboratoryController::class, "laboratorydashboard"]);
@@ -220,13 +221,11 @@ Route::group(['middleware' => ['Localization']], function () {
         Route::get('get_reportdata/{id}', [LaboratoryController::class, 'get_reportdata']);
 
         Route::get("searchhospital", [HospitalController::class, "searchhospital"]);
-
         Route::get("viewhospital/{id}", [HospitalController::class, "viewhospital"]);
-
         Route::post('addhospitalorder', [HospitalController::class, 'addhospitalorder']);
-
         Route::get('userhospitalreportlist', [HospitalController::class, 'userhospitalreportlist']);
-
+        Route::view('hospitaldashboard', 'user.hospital.dashboard');
+        Route::get('hospitaldashboard', [HospitalController::class, "hospitaldashboard"]);
 
 
 

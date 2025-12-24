@@ -185,34 +185,35 @@
                                 <div class="tab" id="tab-3">
                                     <div class="experience-box">
                                         <div class="text">
-                                            <h3><?php echo e(__('message.Doctors')); ?></h3>
-
                                             <div class="row">
                                                 <?php $__empty_1 = true; $__currentLoopData = $hospitalDoctors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $doctor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <div class="doctor-card">
-                                                            <div class="card-inner">
-
+                                                    <div class="col-lg-12 col-md-6 col-sm-12">
+                                                        <div class="clinic-block-one">
+                                                            <div class="inner-box" style="padding: 12px 64px 100px 260px;">
                                                                 <div class="image-box">
-                                                                    <img src="<?php echo e(asset('public/upload/doctors/' . $doctor->image)); ?>"
+                                                                    <img src="<?php echo e($doctor->image 
+                                                                        ? asset('public/upload/doctors/'.$doctor->image) 
+                                                                        : asset('public/upload/doctors/defaultdoctor.png')); ?>"
                                                                         alt="<?php echo e($doctor->name); ?>">
                                                                 </div>
 
                                                                 <div class="content-box">
                                                                     <h4><?php echo e($doctor->name); ?></h4>
-                                                                    <p><?php echo e($doctor->working_time); ?></p>
-                                                                    <p><?php echo e($doctor->address); ?></p>
 
-                                                                    <a href="<?php echo e(url('viewdoctor' . '/' . $doctor->id)); ?>"
+                                                            
+                                                                    <div class="btn-box">
+                                                                        <a href="<?php echo e(url('viewdoctor/'.$doctor->id)); ?>"
                                                                         class="theme-btn btn-one">
-                                                                        <?php echo e(__('message.Visit Now')); ?>
+                                                                            <?php echo e(__('message.Visit Now')); ?>
 
-                                                                    </a>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                     <p><?php echo e(__('message.No Doctors Found')); ?></p>
                                                 <?php endif; ?>

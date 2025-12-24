@@ -16,7 +16,7 @@
 
 
     <link rel="icon" href="<?php echo e(asset('public/front_pro/assets/images/favicon.ico')); ?>" type="image/x-icon">
-   
+    
 
     <link
         href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
@@ -41,18 +41,15 @@
     <!--<link href="https://fonts.googleapis.com/css2?family=Andika&display=swap" rel="stylesheet">-->
 
 
-<style>
-/* body {*/
-/*  font-family: 'Andika', sans-serif;*/
-/*}*/
+    <style>
+        /* body {*/
+        /*  font-family: 'Andika', sans-serif;*/
+        /*}*/
 
-/*body *:not(i):not([class^="fa"]):not([class*=" fa-"]) {*/
-/*  font-family: 'Andika', sans-serif !important;*/
-/*}*/
-
-
-
-</style>
+        /*body *:not(i):not([class^="fa"]):not([class*=" fa-"]) {*/
+        /*  font-family: 'Andika', sans-serif !important;*/
+        /*}*/
+    </style>
 
     <link href="<?php echo e(asset('public/front_pro/assets/css/timePicker.css')); ?>" rel="stylesheet">
 
@@ -227,19 +224,40 @@
         }
 
         :root {
-            --main: <?php echo e(isset($setting->web_theme_color) ? $setting->web_theme_color : '#ff9136'); ?>;
+            --main:
+                <?php echo e(isset($setting->web_theme_color) ? $setting->web_theme_color : '#ff9136'); ?>
+
+            ;
             --font-main: #000;
             --font-gray: #767676;
-            --light-black: <?php echo e(isset($setting->web_bg_black) ? $setting->web_bg_black : '#323232'); ?>;
-            --light-orange: <?php echo e(isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe0c5'); ?>;
-            --box-shadow: <?php echo e(isset($setting->web_box_shadow) ? $setting->web_box_shadow : '#ffe7d1'); ?>;
+            --light-black:
+                <?php echo e(isset($setting->web_bg_black) ? $setting->web_bg_black : '#323232'); ?>
+
+            ;
+            --light-orange:
+                <?php echo e(isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe0c5'); ?>
+
+            ;
+            --box-shadow:
+                <?php echo e(isset($setting->web_box_shadow) ? $setting->web_box_shadow : '#ffe7d1'); ?>
+
+            ;
             --w-orange: #fff1e5;
-            --background-light: <?php echo e(isset($setting->web_bg_light) ? $setting->web_bg_light : '#f3eae2'); ?>;
-            --background-ndark: <?php echo e(isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe3ca'); ?>;
+            --background-light:
+                <?php echo e(isset($setting->web_bg_light) ? $setting->web_bg_light : '#f3eae2'); ?>
+
+            ;
+            --background-ndark:
+                <?php echo e(isset($setting->web_bg_dark) ? $setting->web_bg_dark : '#ffe3ca'); ?>
+
+            ;
         }
 
         .main-header.style-two .header-top {
-            background: <?php echo e(isset($setting->web_bg_black) ? $setting->web_bg_black : '#1a2332'); ?>;
+            background:
+                <?php echo e(isset($setting->web_bg_black) ? $setting->web_bg_black : '#1a2332'); ?>
+
+            ;
         }
 
         .doctors-sidebar .form-widget .appointment-time .form-group input[type='text'] {
@@ -257,352 +275,365 @@
     <?php echo $__env->make('cookieConsent::index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php if($setting->is_rtl == '1'): ?>
         <div class="boxed_wrapper rtl">
-        <?php else: ?>
+    <?php else: ?>
             <div class="boxed_wrapper">
-    <?php endif; ?>
-    <div class="preloader"></div>
-    <header class="main-header style-two">
-        <div class="header-top">
-            <div class="auto-container">
-                <div class="top-inner clearfix">
-                    <div class="top-left pull-left">
-                        <ul class="info clearfix">
-                            <li><i class="fas fa-map-marker-alt"></i><?php echo e($setting->address); ?></li>
-                            <li><i class="fas fa-phone"></i><a
-                                    href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a></li>
-                        </ul>
-                    </div>
-                    <div class="top-right pull-right">
-                        <ul class="info clearfix">
-                            <?php if(Session::has('user_id')): ?>
-                                <li><a href="<?php echo e(url('logout')); ?>"><?php echo e(__('message.Logout')); ?></a></li>
-                            <?php else: ?>
-                                <li><a href="<?php echo e(url('patientlogin')); ?>"><?php echo e(__('message.Sign in')); ?></a></li>
-                                <li></li>
-                            <?php endif; ?>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="header-lower">
-            <div class="auto-container">
-                <div class="outer-box">
-                    <div class="logo-box">
-                        <figure class="logo"><a href="<?php echo e(url('/')); ?>"><img
-                                    src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt=""></a>
-                        </figure>
-                    </div>
-                    <div class="menu-area">
-                        <div class="mobile-nav-toggler">
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
-                        </div>
-                        <nav class="main-menu navbar-expand-md navbar-light">
-                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
-                                <ul class="navigation clearfix">
-                                    <li class="" id="home"><a
-                                            href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Home')); ?></a></li>
-                                    <li class="" id="home"><a
-                                            href="<?php echo e(url('searchdoctor')); ?>"><?php echo e(__('message.Doctors')); ?></a></li>
-                                    <li class="" id="home"><a
-                                            href="<?php echo e(url('searchpharmacy')); ?>"><?php echo e(__('message.Pharmacy')); ?></a></li>
-                                    <li class="" id="home"><a
-                                            href="<?php echo e(url('searchlaboratory')); ?>"><?php echo e(__('message.Laboratory')); ?></a></li>
-                                    <li class="" id="home"><a
-                                            href="<?php echo e(url('searchhospital')); ?>"><?php echo e(__('message.Hospital')); ?></a></li>
-                                    <li class="" id="home"><a
-                                            href="<?php echo e(url('viewspecialist')); ?>"><?php echo e(__('message.Specialist')); ?></a></li>
-                                    <li class="" id="home"><a
-                                            href="<?php echo e(url('contactus')); ?>"><?php echo e(__('message.Contact Us')); ?></a></li>
-                                    <li class="my-account-button" id="home">
-                                        <?php if(empty(Session::get('user_id'))): ?>
-                                            <a href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.Join As Doctor')); ?></a>
-                                        <?php else: ?>
-                                            <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
-                                                <a
-                                                    href="<?php echo e(url('userdashboard')); ?>"><?php echo e(__('message.My Dashboard')); ?></a>
-                                            <?php else: ?>
-                                                <a
-                                                    href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.My Dashboard')); ?></a>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    </li>
+        <?php endif; ?>
+            <div class="preloader"></div>
+            <header class="main-header style-two">
+                <div class="header-top">
+                    <div class="auto-container">
+                        <div class="top-inner clearfix">
+                            <div class="top-left pull-left">
+                                <ul class="info clearfix">
+                                    <li><i class="fas fa-map-marker-alt"></i><?php echo e($setting->address); ?></li>
+                                    <li><i class="fas fa-phone"></i><a
+                                            href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a></li>
                                 </ul>
                             </div>
-                        </nav>
-                    </div>
-                    <div class="btn-box">
-                        <?php if(empty(Session::get('user_id'))): ?>
-                            <a href="<?php echo e(url('profilelogin')); ?>" class="theme-btn-one"><i
-                                    class="icon-image"></i><?php echo e(__('message.Join As Profile')); ?></a>
-                        <?php else: ?>
-                            <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
-                                <a href="<?php echo e(url('userdashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 3): ?>
-                                <a href="<?php echo e(url('pharmacydashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 4): ?>
-                                <a href="<?php echo e(url('laboratorydashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php else: ?>
-                                <a href="<?php echo e(url('doctordashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="sticky-header">
-            <div class="auto-container">
-                <div class="outer-box">
-                    <div class="logo-box">
-                        <figure class="logo"><a href="<?php echo e(url('/')); ?>">
-                                <img src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>"
-                                    alt=""></a>
-                        </figure>
-                    </div>
-                    <div class="menu-area">
-                        <nav class="main-menu clearfix">
-                        </nav>
-                    </div>
-                    <div class="btn-box">
-                        <?php if(empty(Session::get('user_id'))): ?>
-                            <a href="<?php echo e(url('profilelogin')); ?>" class="theme-btn-one"><i
-                                    class="icon-image"></i><?php echo e(__('message.Join As Profile')); ?></a>
-                        <?php else: ?>
-                            <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
-                                <a href="<?php echo e(url('userdashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 3): ?>
-                                <a href="<?php echo e(url('pharmacydashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 4): ?>
-                                <a href="<?php echo e(url('pharmacydashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php else: ?>
-                                <a href="<?php echo e(url('doctordashboard')); ?>"
-                                    class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="mobile-menu">
-        <div class="menu-backdrop"></div>
-        <div class="close-btn"><i class="fas fa-times"></i></div>
-        <nav class="menu-box">
-            <div class="nav-logo"><a href="<?php echo e(url('/')); ?>"><img
-                        src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt=""
-                        title=""></a>
-            </div>
-            <div class="menu-outer"></div>
-            <div class="contact-info">
-                <h4><?php echo e(__('message.Contact Info')); ?></h4>
-                <ul>
-                    <li><?php echo e($setting->address); ?></li>
-                    <li><a href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a></li>
-                    <li><a href="mailto:<?php echo e($setting->email); ?>"><?php echo e($setting->email); ?></a></li>
-                </ul>
-            </div>
-            <div class="social-links">
-                <ul class="clearfix">
-                    <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-twitter"></span></a></li>
-                    <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-facebook-square"></span></a></li>
-                    <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-pinterest-p"></span></a></li>
-                    <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-instagram"></span></a></li>
-                    <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-youtube"></span></a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <?php echo $__env->yieldContent('content'); ?>
-    <footer class="main-footer">
-        <div class="footer-top">
-            <div class="pattern-layer">
-                <div class="pattern-1"
-                    style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-30.png')); ?>');">
-                </div>
-                <div class="pattern-2"
-                    style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-31.png')); ?>');">
-                </div>
-            </div>
-            <div class="auto-container">
-                <div class="widget-section">
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
-                            <div class="footer-widget logo-widget">
-                                <figure class="footer-logo"><a href="<?php echo e(url('/')); ?>">
-                                        <img src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>"
-                                            alt=""></a></figure>
-                                <div class="text">
-                                    <p><?php echo e(__('message.Footer Content')); ?></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
-                            <div class="footer-widget links-widget">
-                                <div class="widget-title">
-                                    <h3><?php echo e(__('message.About')); ?></h3>
-                                </div>
-                                <div class="widget-content">
-                                    <ul class="links clearfix">
-                                        <li><a href="<?php echo e(url('aboutus')); ?>"><?php echo e(__('message.About Us')); ?></a></li>
-                                        <li><a href="<?php echo e(url('contactus')); ?>"><?php echo e(__('message.Contact Us')); ?></a></li>
-                                        <li><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Download apps')); ?></a></li>
-                                        <li><a href="<?php echo e(url('Privacy_Policy')); ?>"><?php echo e(__('message.Privecy')); ?></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
-                            <div class="footer-widget links-widget">
-                                <div class="widget-title">
-                                    <h3><?php echo e(__('message.Useful Links')); ?></h3>
-                                </div>
-                                <div class="widget-content">
-                                    <ul class="links clearfix">
-                                        <li><a href="<?php echo e(url('viewspecialist')); ?>"><?php echo e(__('message.Specialist')); ?></a>
-                                        </li>
-                                        <li><a href="<?php echo e(url('searchdoctor')); ?>"><?php echo e(__('message.Doctors')); ?></a></li>
-                                        <li><a
-                                                href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.Join As Doctor')); ?></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
-                            <div class="footer-widget contact-widget">
-                                <div class="widget-title">
-                                    <h3><?php echo e(__('message.Contact Info')); ?></h3>
-                                </div>
-                                <div class="widget-content">
-                                    <ul class="info-list clearfix">
-                                        <li><i class="fas fa-map-marker-alt"></i>
-                                            <?php echo e($setting->address); ?>
-
-                                        </li>
-                                        <li><i class="fas fa-microphone"></i>
-                                            <a href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a>
-                                        </li>
-                                        <li><i class="fas fa-envelope"></i>
-                                            <a href="mailto:<?php echo e($setting->email); ?>"><?php echo e($setting->email); ?></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="top-right pull-right">
+                                <ul class="info clearfix">
+                                    <?php if(Session::has('user_id')): ?>
+                                        <li><a href="<?php echo e(url('logout')); ?>"><?php echo e(__('message.Logout')); ?></a></li>
+                                    <?php else: ?>
+                                        <li><a href="<?php echo e(url('patientlogin')); ?>"><?php echo e(__('message.Sign in')); ?></a></li>
+                                        <li></li>
+                                    <?php endif; ?>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <style>
-            #bottomright {
-                position: fixed;
-                bottom: 13px;
-                right: 1%;
-                font-size: 18px;
-                z-index: 1000;
-            }
-
-            .chat-box {
-                max-height: 400px;
-                overflow-y: auto;
-            }
-
-            #ai_chat .modal-dialog {
-                position: fixed;
-                bottom: 2%;
-                right: 1%;
-                width: 100%;
-            }
-        </style>
-
-        <button type="button" class="theme-btn-one" id="bottomright" data-toggle="modal" data-target="#ai_chat">
-            <?php echo e(__('message.al_chat')); ?> <span class="far fas fa-comment-dots"></span>
-        </button>
-
-        <div class="modal fade" id="ai_chat" tabindex="-1" aria-hidden="true" data-backdrop="static"
-            data-keyboard="false" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable mb-0">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title text-center"><?php echo e(__('message.al_chat')); ?></h3>
-                        <button type="button" class="close" id="clearChat" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <div class="chat-box p-3 border rounded-lg bg-light" id="chatHistory">
-                        <?php if(empty(session('chat_history'))): ?>
-                            <div class="d-flex justify-content-center">
-                                <div class="p-2 rounded-lg text-center" style="color: black;">
-                                    <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
-                                    <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
-                                </div>
+                <div class="header-lower">
+                    <div class="auto-container">
+                        <div class="outer-box">
+                            <div class="logo-box">
+                                <figure class="logo"><a href="<?php echo e(url('/')); ?>"><img
+                                            src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt=""></a>
+                                </figure>
                             </div>
-                        <?php endif; ?>
-                        <?php $__currentLoopData = session('chat_history', []); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div
-                                class="mb-2 d-flex <?php echo e($chat['role'] == 'user' ? 'justify-content-end' : 'justify-content-start'); ?>">
-                                <div class="p-2 rounded-lg"
-                                    style="max-width: 70%;
-                background: <?php echo e($chat['role'] == 'user' ? '#f1f1f1' : '#f1f1f1'); ?>;
-                color: <?php echo e($chat['role'] == 'user' ? 'black' : 'black'); ?>;">
-                                    <strong class="d-block"><?php echo e($chat['role'] == 'user' ? 'You' : 'AI'); ?></strong>
-                                    <span
-                                        class="<?php echo e($chat['role'] == 'model' ? 'ai-response' : ''); ?>"><?php echo e($chat['text']); ?></span>
+                            <div class="menu-area">
+                                <div class="mobile-nav-toggler">
+                                    <i class="icon-bar"></i>
+                                    <i class="icon-bar"></i>
+                                    <i class="icon-bar"></i>
                                 </div>
+                                <nav class="main-menu navbar-expand-md navbar-light">
+                                    <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                        <ul class="navigation clearfix">
+                                            <li class="" id="home"><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Home')); ?></a>
+                                            </li>
+                                            <li class="" id="home"><a
+                                                    href="<?php echo e(url('searchdoctor')); ?>"><?php echo e(__('message.Doctors')); ?></a>
+                                            </li>
+                                            <li class="" id="home"><a
+                                                    href="<?php echo e(url('searchpharmacy')); ?>"><?php echo e(__('message.Pharmacy')); ?></a>
+                                            </li>
+                                            <li class="" id="home"><a
+                                                    href="<?php echo e(url('searchlaboratory')); ?>"><?php echo e(__('message.Laboratory')); ?></a>
+                                            </li>
+                                            <li class="" id="home"><a
+                                                    href="<?php echo e(url('searchhospital')); ?>"><?php echo e(__('message.Hospital')); ?></a>
+                                            </li>
+                                            <li class="" id="home"><a
+                                                    href="<?php echo e(url('viewspecialist')); ?>"><?php echo e(__('message.Specialist')); ?></a>
+                                            </li>
+                                            <li class="" id="home"><a
+                                                    href="<?php echo e(url('contactus')); ?>"><?php echo e(__('message.Contact Us')); ?></a>
+                                            </li>
+                                            <li class="my-account-button" id="home">
+                                                <?php if(empty(Session::get('user_id'))): ?>
+                                                    <a
+                                                        href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.Join As Doctor')); ?></a>
+                                                <?php else: ?>
+                                                    <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
+                                                        <a
+                                                            href="<?php echo e(url('userdashboard')); ?>"><?php echo e(__('message.My Dashboard')); ?></a>
+                                                    <?php else: ?>
+                                                        <a href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.My Dashboard')); ?></a>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
                             </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-
-                    <div class="p-3 border rounded-lg bg-light">
-                        <form id="chatForm">
-                            <?php echo csrf_field(); ?>
-                            <div class="row">
-                                <div class="col-9 pr-0">
-                                    <input type="text" name="user_input" id="user_input" class="form-control"
-                                        placeholder="<?php echo e(__('message.type_msg_here')); ?>" required>
-                                </div>
-                                <div class="col-3">
-                                    <button type="submit" class="btn btn-info w-100 h-100"
-                                        style="border-radius: 13px;">
-                                        <?php echo e(__('message.Send')); ?> <span class="fa fa-send"></span>
-                                    </button>
-                                </div>
+                            <div class="btn-box">
+                                <?php if(empty(Session::get('user_id'))): ?>
+                                    <a href="<?php echo e(url('profilelogin')); ?>" class="theme-btn-one"><i
+                                            class="icon-image"></i><?php echo e(__('message.Join As Profile')); ?></a>
+                                <?php else: ?>
+                                    <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
+                                        <a href="<?php echo e(url('userdashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 3): ?>
+                                        <a href="<?php echo e(url('pharmacydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 4): ?>
+                                        <a href="<?php echo e(url('laboratorydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 5): ?>
+                                        <a href="<?php echo e(url('hospitaldashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php else: ?>
+                                        <a href="<?php echo e(url('doctordashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div>
-                        </form>
+                        </div>
                     </div>
-
                 </div>
+                <div class="sticky-header">
+                    <div class="auto-container">
+                        <div class="outer-box">
+                            <div class="logo-box">
+                                <figure class="logo"><a href="<?php echo e(url('/')); ?>">
+                                        <img src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt=""></a>
+                                </figure>
+                            </div>
+                            <div class="menu-area">
+                                <nav class="main-menu clearfix">
+                                </nav>
+                            </div>
+                            <div class="btn-box">
+                                <?php if(empty(Session::get('user_id'))): ?>
+                                    <a href="<?php echo e(url('profilelogin')); ?>" class="theme-btn-one"><i
+                                            class="icon-image"></i><?php echo e(__('message.Join As Profile')); ?></a>
+                                <?php else: ?>
+                                    <?php if(Session::get('user_id') != '' && Session::get('role_id') == 1): ?>
+                                        <a href="<?php echo e(url('userdashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 3): ?>
+                                        <a href="<?php echo e(url('pharmacydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 4): ?>
+                                        <a href="<?php echo e(url('laboratorydashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php elseif(Session::get('user_id') != '' && Session::get('role_id') == 5): ?>
+                                        <a href="<?php echo e(url('hospitaldashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php else: ?>
+                                        <a href="<?php echo e(url('doctordashboard')); ?>"
+                                            class="theme-btn-one"><?php echo e(__('message.My Dashboard')); ?></a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="mobile-menu">
+                <div class="menu-backdrop"></div>
+                <div class="close-btn"><i class="fas fa-times"></i></div>
+                <nav class="menu-box">
+                    <div class="nav-logo"><a href="<?php echo e(url('/')); ?>"><img
+                                src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt="" title=""></a>
+                    </div>
+                    <div class="menu-outer"></div>
+                    <div class="contact-info">
+                        <h4><?php echo e(__('message.Contact Info')); ?></h4>
+                        <ul>
+                            <li><?php echo e($setting->address); ?></li>
+                            <li><a href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a></li>
+                            <li><a href="mailto:<?php echo e($setting->email); ?>"><?php echo e($setting->email); ?></a></li>
+                        </ul>
+                    </div>
+                    <div class="social-links">
+                        <ul class="clearfix">
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-twitter"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-facebook-square"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-pinterest-p"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-instagram"></span></a></li>
+                            <li><a href="<?php echo e(url('/')); ?>"><span class="fab fa-youtube"></span></a></li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </div>
+            <?php echo $__env->yieldContent('content'); ?>
+            <footer class="main-footer">
+                <div class="footer-top">
+                    <div class="pattern-layer">
+                        <div class="pattern-1"
+                            style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-30.png')); ?>');">
+                        </div>
+                        <div class="pattern-2"
+                            style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-31.png')); ?>');">
+                        </div>
+                    </div>
+                    <div class="auto-container">
+                        <div class="widget-section">
+                            <div class="row clearfix">
+                                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                                    <div class="footer-widget logo-widget">
+                                        <figure class="footer-logo"><a href="<?php echo e(url('/')); ?>">
+                                                <img src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>"
+                                                    alt=""></a></figure>
+                                        <div class="text">
+                                            <p><?php echo e(__('message.Footer Content')); ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+                                    <div class="footer-widget links-widget">
+                                        <div class="widget-title">
+                                            <h3><?php echo e(__('message.About')); ?></h3>
+                                        </div>
+                                        <div class="widget-content">
+                                            <ul class="links clearfix">
+                                                <li><a href="<?php echo e(url('aboutus')); ?>"><?php echo e(__('message.About Us')); ?></a></li>
+                                                <li><a href="<?php echo e(url('contactus')); ?>"><?php echo e(__('message.Contact Us')); ?></a>
+                                                </li>
+                                                <li><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Download apps')); ?></a></li>
+                                                <li><a
+                                                        href="<?php echo e(url('Privacy_Policy')); ?>"><?php echo e(__('message.Privecy')); ?></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                                    <div class="footer-widget links-widget">
+                                        <div class="widget-title">
+                                            <h3><?php echo e(__('message.Useful Links')); ?></h3>
+                                        </div>
+                                        <div class="widget-content">
+                                            <ul class="links clearfix">
+                                                <li><a
+                                                        href="<?php echo e(url('viewspecialist')); ?>"><?php echo e(__('message.Specialist')); ?></a>
+                                                </li>
+                                                <li><a href="<?php echo e(url('searchdoctor')); ?>"><?php echo e(__('message.Doctors')); ?></a>
+                                                </li>
+                                                <li><a
+                                                        href="<?php echo e(url('profilelogin')); ?>"><?php echo e(__('message.Join As Doctor')); ?></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                                    <div class="footer-widget contact-widget">
+                                        <div class="widget-title">
+                                            <h3><?php echo e(__('message.Contact Info')); ?></h3>
+                                        </div>
+                                        <div class="widget-content">
+                                            <ul class="info-list clearfix">
+                                                <li><i class="fas fa-map-marker-alt"></i>
+                                                    <?php echo e($setting->address); ?>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                function scrollToBottom() {
-                    var chatHistory = $('#chatHistory');
-                    chatHistory.scrollTop(chatHistory[0].scrollHeight);
-                }
+                                                </li>
+                                                <li><i class="fas fa-microphone"></i>
+                                                    <a href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a>
+                                                </li>
+                                                <li><i class="fas fa-envelope"></i>
+                                                    <a href="mailto:<?php echo e($setting->email); ?>"><?php echo e($setting->email); ?></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                $('#chatForm').submit(function(e) {
-                    e.preventDefault();
+                <style>
+                    #bottomright {
+                        position: fixed;
+                        bottom: 13px;
+                        right: 1%;
+                        font-size: 18px;
+                        z-index: 1000;
+                    }
 
-                    var userMessage = $('#user_input').val();
-                    if (!userMessage) return;
+                    .chat-box {
+                        max-height: 400px;
+                        overflow-y: auto;
+                    }
 
-                    $('#defaultMessage').remove(); // Remove default message if present
+                    #ai_chat .modal-dialog {
+                        position: fixed;
+                        bottom: 2%;
+                        right: 1%;
+                        width: 100%;
+                    }
+                </style>
 
-                    // Append user message (right-aligned)
-                    $('#chatHistory').append(`
+                <button type="button" class="theme-btn-one" id="bottomright" data-toggle="modal" data-target="#ai_chat">
+                    <?php echo e(__('message.al_chat')); ?> <span class="far fas fa-comment-dots"></span>
+                </button>
+
+                <div class="modal fade" id="ai_chat" tabindex="-1" aria-hidden="true" data-backdrop="static"
+                    data-keyboard="false" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable mb-0">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title text-center"><?php echo e(__('message.al_chat')); ?></h3>
+                                <button type="button" class="close" id="clearChat" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="chat-box p-3 border rounded-lg bg-light" id="chatHistory">
+                                <?php if(empty(session('chat_history'))): ?>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="p-2 rounded-lg text-center" style="color: black;">
+                                            <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
+                                            <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                                <?php $__currentLoopData = session('chat_history', []); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div
+                                        class="mb-2 d-flex <?php echo e($chat['role'] == 'user' ? 'justify-content-end' : 'justify-content-start'); ?>">
+                                        <div class="p-2 rounded-lg" style="max-width: 70%;
+                                        background: <?php echo e($chat['role'] == 'user' ? '#f1f1f1' : '#f1f1f1'); ?>;
+                                        color: <?php echo e($chat['role'] == 'user' ? 'black' : 'black'); ?>;">
+                                            <strong class="d-block"><?php echo e($chat['role'] == 'user' ? 'You' : 'AI'); ?></strong>
+                                            <span
+                                                class="<?php echo e($chat['role'] == 'model' ? 'ai-response' : ''); ?>"><?php echo e($chat['text']); ?></span>
+                                        </div>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+
+                            <div class="p-3 border rounded-lg bg-light">
+                                <form id="chatForm">
+                                    <?php echo csrf_field(); ?>
+                                    <div class="row">
+                                        <div class="col-9 pr-0">
+                                            <input type="text" name="user_input" id="user_input" class="form-control"
+                                                placeholder="<?php echo e(__('message.type_msg_here')); ?>" required>
+                                        </div>
+                                        <div class="col-3">
+                                            <button type="submit" class="btn btn-info w-100 h-100"
+                                                style="border-radius: 13px;">
+                                                <?php echo e(__('message.Send')); ?> <span class="fa fa-send"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        function scrollToBottom() {
+                            var chatHistory = $('#chatHistory');
+                            chatHistory.scrollTop(chatHistory[0].scrollHeight);
+                        }
+
+                        $('#chatForm').submit(function (e) {
+                            e.preventDefault();
+
+                            var userMessage = $('#user_input').val();
+                            if (!userMessage) return;
+
+                            $('#defaultMessage').remove(); // Remove default message if present
+
+                            // Append user message (right-aligned)
+                            $('#chatHistory').append(`
             <div class="mb-2 d-flex justify-content-end">
                 <div class="p-2 rounded-lg" style="max-width: 70%; background: #f1f1f1; color: black;">
                     <strong class="d-block">You</strong>
@@ -610,10 +641,10 @@
                 </div>
             </div>
         `);
-                    $('#user_input').val('');
-                    scrollToBottom();
-                    // Placeholder for AI response (empty initially)
-                    var aiResponseContainer = $(`
+                            $('#user_input').val('');
+                            scrollToBottom();
+                            // Placeholder for AI response (empty initially)
+                            var aiResponseContainer = $(`
             <div class="mb-2 d-flex justify-content-start">
                 <div class="p-2 rounded-lg" style="max-width: 70%; background: #f1f1f1; color: black;">
                     <strong class="d-block">AI</strong>
@@ -621,48 +652,48 @@
                 </div>
             </div>
         `);
-                    $('#chatHistory').append(aiResponseContainer);
-                    scrollToBottom();
+                            $('#chatHistory').append(aiResponseContainer);
+                            scrollToBottom();
 
-                    $.ajax({
-                        url: "<?php echo e(route('gemini.call')); ?>",
-                        type: "POST",
-                        data: {
-                            _token: "<?php echo e(csrf_token()); ?>",
-                            user_input: userMessage
-                        },
-                        success: function(response) {
-                            let aiText = response.ai_response;
-                            let aiSpan = aiResponseContainer.find('.ai-response');
+                            $.ajax({
+                                url: "<?php echo e(route('gemini.call')); ?>",
+                                type: "POST",
+                                data: {
+                                    _token: "<?php echo e(csrf_token()); ?>",
+                                    user_input: userMessage
+                                },
+                                success: function (response) {
+                                    let aiText = response.ai_response;
+                                    let aiSpan = aiResponseContainer.find('.ai-response');
 
-                            // Typewriter effect
-                            let index = 0;
+                                    // Typewriter effect
+                                    let index = 0;
 
-                            function typeWriter() {
-                                if (index < aiText.length) {
-                                    aiSpan.append(aiText.charAt(index));
-                                    index++;
-                                    setTimeout(typeWriter,
-                                        20); // Adjust speed here (lower is faster)
+                                    function typeWriter() {
+                                        if (index < aiText.length) {
+                                            aiSpan.append(aiText.charAt(index));
+                                            index++;
+                                            setTimeout(typeWriter,
+                                                20); // Adjust speed here (lower is faster)
+                                        }
+                                    }
+                                    typeWriter();
+                                },
+                                error: function () {
+                                    alert("Error communicating with AI.");
                                 }
-                            }
-                            typeWriter();
-                        },
-                        error: function() {
-                            alert("Error communicating with AI.");
-                        }
-                    });
-                });
+                            });
+                        });
 
-                $('#clearChat').click(function() {
-                    $.ajax({
-                        url: "<?php echo e(route('gemini.clear')); ?>",
-                        type: "POST",
-                        data: {
-                            _token: "<?php echo e(csrf_token()); ?>"
-                        },
-                        success: function() {
-                            $('#chatHistory').html(`
+                        $('#clearChat').click(function () {
+                            $.ajax({
+                                url: "<?php echo e(route('gemini.clear')); ?>",
+                                type: "POST",
+                                data: {
+                                    _token: "<?php echo e(csrf_token()); ?>"
+                                },
+                                success: function () {
+                                    $('#chatHistory').html(`
                 <div id="defaultMessage" class="d-flex justify-content-center">
                     <div class="p-2 rounded-lg text-center" style="color: black;">
                          <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
@@ -670,22 +701,22 @@
                     </div>
                 </div>
             `);
-                        },
-                        error: function() {
-                            alert("Failed to clear chat.");
-                        }
-                    });
-                });
+                                },
+                                error: function () {
+                                    alert("Failed to clear chat.");
+                                }
+                            });
+                        });
 
-                $('#bottomright').click(function() {
-                    $.ajax({
-                        url: "<?php echo e(route('gemini.clear')); ?>",
-                        type: "POST",
-                        data: {
-                            _token: "<?php echo e(csrf_token()); ?>"
-                        },
-                        success: function() {
-                            $('#chatHistory').html(`
+                        $('#bottomright').click(function () {
+                            $.ajax({
+                                url: "<?php echo e(route('gemini.clear')); ?>",
+                                type: "POST",
+                                data: {
+                                    _token: "<?php echo e(csrf_token()); ?>"
+                                },
+                                success: function () {
+                                    $('#chatHistory').html(`
                 <div id="defaultMessage" class="d-flex justify-content-center">
                     <div class="p-2 rounded-lg text-center" style="color: black;">
                          <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
@@ -693,185 +724,188 @@
                     </div>
                 </div>
             `);
-                        },
-                        error: function() {
-                            alert("Failed to clear chat.");
-                        }
+                                },
+                                error: function () {
+                                    alert("Failed to clear chat.");
+                                }
+                            });
+                        });
                     });
-                });
-            });
-        </script>
+                </script>
 
 
 
 
-        <div class="footer-bottom">
-            <div class="auto-container">
-                <div class="inner-box clearfix">
-                    <div class="copyright pull-left">
-                        <p><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.System Name')); ?></a> &copy;
-                            <?php echo e(date('Y')); ?> <?php echo e(__('message.All Right Reserved')); ?></p>
+                <div class="footer-bottom">
+                    <div class="auto-container">
+                        <div class="inner-box clearfix">
+                            <div class="copyright pull-left">
+                                <p><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.System Name')); ?></a> &copy;
+                                    <?php echo e(date('Y')); ?> <?php echo e(__('message.All Right Reserved')); ?>
+
+                                </p>
+                            </div>
+                            <ul class="footer-nav pull-right clearfix">
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="footer-nav pull-right clearfix">
-                    </ul>
                 </div>
-            </div>
+            </footer>
+
+            <style>
+                .scroll-top {
+                    left: 30px;
+                    right: 0px;
+                }
+            </style>
+            <button class="scroll-top scroll-to-target" data-target="html">
+                <span class="fa fa-arrow-up"></span>
+            </button>
         </div>
-    </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <input type="hidden" id="currentuserlat">
+        <input type="hidden" id="currentuserlong">
+        <input type="hidden" id="doctornotavilable" value='<?php echo e(__('message.Doctor isnot Avilable')); ?>'>
+        <input type="hidden" id="contactsuccssmsg" value="<?php echo e(__('message.Thank you for getting in touch!')); ?>">
+        <input type="hidden" id="successlabel" value="<?php echo e(__('message.Success')); ?>">
+        <input type="hidden" id="Errorlabel" value="<?php echo e(__('message.Error')); ?>">
+        <input type="hidden" id="emailinvaildlabel"
+            value="<?php echo e(__('message.You have entered an invalid email address')); ?>">
+        <input type="hidden" id="siteurl" value="<?php echo e(url('/')); ?>">
+        <input type="hidden" id="pwdmatch" value="<?php echo e(__('message.Password And Confirm Password Must Be Same')); ?>">
+        <input type="hidden" id="currentpwdwrong" value="<?php echo e(__('message.Current Password is Wrong')); ?>">
+        <input type="hidden" id="start1val" value='<?php echo e(__('message.Please Select Start Time First')); ?>'>
+        <input type="hidden" id="loginmsg"
+            value="<?php echo e(__('message.To book appointment you must login first, please proceed with login now.')); ?>">
+        <input type="hidden" id="sge" value='<?php echo e(__('message.Start Time is greater than end time')); ?>'>
+        <input type="hidden" id="sequale" value='<?php echo e(__('message.Start Time equals end time')); ?>'>
+        <input type="hidden" id="selduration" value='<?php echo e(__('message.Please Select Any Duration')); ?>'>
+        <input type="hidden" id="startvaltext" value='<?php echo e(__('message.Start Time')); ?>'>
+        <input type="hidden" id="endvaltext" value='<?php echo e(__('message.End Time')); ?>'>
+        <input type="hidden" id="durationval" value='<?php echo e(__('message.Duration')); ?>'>
+        <input type="hidden" id="delete_record" value="<?php echo e(__('message.delete_record')); ?>" />
+        <input type="hidden" id="seldurationval" value='<?php echo e(__('message.Select Duration')); ?>'>
+        <input type="hidden" id="deletetext" value='<?php echo e(__('message.delete')); ?>'>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/jquery.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/popper.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/popper.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/owl.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/wow.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/validation.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/jquery.fancybox.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/appear.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/scrollbar.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/tilt.jquery.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/jquery.paroller.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/js/locationpicker.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/script.js')); ?>"></script>
 
-    <style>
-        .scroll-top {
-            left: 30px;
-            right: 0px;
-        }
-    </style>
-    <button class="scroll-top scroll-to-target" data-target="html">
-        <span class="fa fa-arrow-up"></span>
-    </button>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <input type="hidden" id="currentuserlat">
-    <input type="hidden" id="currentuserlong">
-    <input type="hidden" id="doctornotavilable" value='<?php echo e(__('message.Doctor isnot Avilable')); ?>'>
-    <input type="hidden" id="contactsuccssmsg" value="<?php echo e(__('message.Thank you for getting in touch!')); ?>">
-    <input type="hidden" id="successlabel" value="<?php echo e(__('message.Success')); ?>">
-    <input type="hidden" id="Errorlabel" value="<?php echo e(__('message.Error')); ?>">
-    <input type="hidden" id="emailinvaildlabel"
-        value="<?php echo e(__('message.You have entered an invalid email address')); ?>">
-    <input type="hidden" id="siteurl" value="<?php echo e(url('/')); ?>">
-    <input type="hidden" id="pwdmatch" value="<?php echo e(__('message.Password And Confirm Password Must Be Same')); ?>">
-    <input type="hidden" id="currentpwdwrong" value="<?php echo e(__('message.Current Password is Wrong')); ?>">
-    <input type="hidden" id="start1val" value='<?php echo e(__('message.Please Select Start Time First')); ?>'>
-    <input type="hidden" id="loginmsg"
-        value="<?php echo e(__('message.To book appointment you must login first, please proceed with login now.')); ?>">
-    <input type="hidden" id="sge" value='<?php echo e(__('message.Start Time is greater than end time')); ?>'>
-    <input type="hidden" id="sequale" value='<?php echo e(__('message.Start Time equals end time')); ?>'>
-    <input type="hidden" id="selduration" value='<?php echo e(__('message.Please Select Any Duration')); ?>'>
-    <input type="hidden" id="startvaltext" value='<?php echo e(__('message.Start Time')); ?>'>
-    <input type="hidden" id="endvaltext" value='<?php echo e(__('message.End Time')); ?>'>
-    <input type="hidden" id="durationval" value='<?php echo e(__('message.Duration')); ?>'>
-    <input type="hidden" id="delete_record" value="<?php echo e(__('message.delete_record')); ?>" />
-    <input type="hidden" id="seldurationval" value='<?php echo e(__('message.Select Duration')); ?>'>
-    <input type="hidden" id="deletetext" value='<?php echo e(__('message.delete')); ?>'>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/jquery.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/popper.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/popper.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/owl.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/wow.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/validation.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/jquery.fancybox.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/appear.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/scrollbar.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/tilt.jquery.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/jquery.paroller.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/js/locationpicker.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/script.js')); ?>"></script>
-
-    <script src="<?php echo e(asset('public/front_pro/assets/js/product-filter.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/jquery-ui.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/product-filter.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/jquery-ui.js')); ?>"></script>
 
 
-    <script src="<?php echo e(asset('public/front_pro/assets/js/timePicker.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/timePicker.js')); ?>"></script>
 
 
-    <script src="<?php echo e(asset('public/front_pro/assets/js/gmaps.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/front_pro/assets/js/map-helper.js')); ?>"></script>
-    <!-- <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
-        integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/gmaps.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/front_pro/assets/js/map-helper.js')); ?>"></script>
+        <!-- <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+            integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css">
-    
-    <script type="text/javascript" src="<?php echo e(asset('public/js/code.js?v=1.2312')); ?>"></script>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css">
+        
+        <script type="text/javascript" src="<?php echo e(asset('public/js/code.js?v=1.2312')); ?>"></script>
 
-    </script>
-    <?php echo $__env->yieldContent('footer'); ?>
-    <script>
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-
-        function showPosition(position) {
-            console.log(position);
-            $("#currentuserlat").val(position.coords.latitude);
-            $("#currentuserlong").val(position.coords.longitude);
-
-        }
-
-        window.laravelCookieConsent = (function() {
-
-            const COOKIE_VALUE = 1;
-            const COOKIE_DOMAIN = 'https://demo.freaktemplate.com/';
-
-            function consentWithCookies() {
-                setCookie('laravel_cookie_consent', COOKIE_VALUE, 7300);
-                hideCookieDialog();
+        </script>
+        <?php echo $__env->yieldContent('footer'); ?>
+        <script>
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
             }
 
-            function cookieExists(name) {
-                return (document.cookie.split('; ').indexOf(name + '=' + COOKIE_VALUE) !== -1);
+            function showPosition(position) {
+                console.log(position);
+                $("#currentuserlat").val(position.coords.latitude);
+                $("#currentuserlong").val(position.coords.longitude);
+
             }
 
-            function hideCookieDialog() {
-                const dialogs = document.getElementsByClassName('js-cookie-consent');
+            window.laravelCookieConsent = (function () {
 
-                for (let i = 0; i < dialogs.length; ++i) {
-                    dialogs[i].style.display = 'none';
+                const COOKIE_VALUE = 1;
+                const COOKIE_DOMAIN = 'https://demo.freaktemplate.com/';
+
+                function consentWithCookies() {
+                    setCookie('laravel_cookie_consent', COOKIE_VALUE, 7300);
+                    hideCookieDialog();
                 }
-            }
 
-            function setCookie(name, value, expirationInDays) {
-                const date = new Date();
-                date.setTime(date.getTime() + (expirationInDays * 24 * 60 * 60 * 1000));
-                document.cookie = name + '=' + value +
-                    ';expires=' + date.toUTCString()
-                    // + ';domain=' + COOKIE_DOMAIN
-                    +
-                    ';path=/' +
-                    '';
-            }
-
-            if (cookieExists('laravel_cookie_consent')) {
-                hideCookieDialog();
-            }
-
-            const buttons = document.getElementsByClassName('js-cookie-consent-agree');
-
-            for (let i = 0; i < buttons.length; ++i) {
-                buttons[i].addEventListener('click', consentWithCookies);
-            }
-
-            return {
-                consentWithCookies: consentWithCookies,
-                hideCookieDialog: hideCookieDialog
-            };
-        })();
-
-        function pleaselogin() {
-            Swal.fire({
-                title: "<?php echo e(__('message.you must login first')); ?>",
-                text: "<?php echo e(__('message.To book appointment you must login first, please proceed with login now.')); ?>",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: "<?php echo e(__('message.Login Now')); ?>",
-                cancelButtonText: "<?php echo e(__('message.Cancel')); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = $("#siteurl").val() + '/patientlogin';
+                function cookieExists(name) {
+                    return (document.cookie.split('; ').indexOf(name + '=' + COOKIE_VALUE) !== -1);
                 }
-            });
-        }
-    </script>
+
+                function hideCookieDialog() {
+                    const dialogs = document.getElementsByClassName('js-cookie-consent');
+
+                    for (let i = 0; i < dialogs.length; ++i) {
+                        dialogs[i].style.display = 'none';
+                    }
+                }
+
+                function setCookie(name, value, expirationInDays) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (expirationInDays * 24 * 60 * 60 * 1000));
+                    document.cookie = name + '=' + value +
+                        ';expires=' + date.toUTCString()
+                        // + ';domain=' + COOKIE_DOMAIN
+                        +
+                        ';path=/' +
+                        '';
+                }
+
+                if (cookieExists('laravel_cookie_consent')) {
+                    hideCookieDialog();
+                }
+
+                const buttons = document.getElementsByClassName('js-cookie-consent-agree');
+
+                for (let i = 0; i < buttons.length; ++i) {
+                    buttons[i].addEventListener('click', consentWithCookies);
+                }
+
+                return {
+                    consentWithCookies: consentWithCookies,
+                    hideCookieDialog: hideCookieDialog
+                };
+            })();
+
+            function pleaselogin() {
+                Swal.fire({
+                    title: "<?php echo e(__('message.you must login first')); ?>",
+                    text: "<?php echo e(__('message.To book appointment you must login first, please proceed with login now.')); ?>",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: "<?php echo e(__('message.Login Now')); ?>",
+                    cancelButtonText: "<?php echo e(__('message.Cancel')); ?>"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = $("#siteurl").val() + '/patientlogin';
+                    }
+                });
+            }
+        </script>
 </body>
 
-</html>
-<?php /**PATH C:\xampp\htdocs\mydoctor\resources\views/user/layout.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\mydoctor\resources\views/user/layout.blade.php ENDPATH**/ ?>

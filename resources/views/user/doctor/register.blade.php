@@ -83,10 +83,15 @@
                                         aria-selected="false">{{ __('message.Pharmacy') }}</a>
                                 </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" id="pills-laboratory-tab" data-toggle="pill" href="#pills-laboratory"
-                                        role="tab" aria-controls="pills-laboratory"
-                                        aria-selected="false">{{ __('message.Laboratory') }}</a>
-                                </li>
+                                     <a class="nav-link" id="pills-laboratory-tab" data-toggle="pill" href="#pills-laboratory"
+                                         role="tab" aria-controls="pills-laboratory"
+                                         aria-selected="false">{{ __('message.Laboratory') }}</a>
+                                 </li>
+                                 <li class="nav-item">
+                                     <a class="nav-link" id="pills-hospital-tab" data-toggle="pill" href="#pills-hospital"
+                                         role="tab" aria-controls="pills-hospital"
+                                         aria-selected="false">{{ __('message.Hospital') }}</a>
+                                 </li>
 
                             </ul>
                              {{-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -222,6 +227,49 @@
                                                 <label class="fr">{{__('message.Confirm password')}}</label>
                                                 <input type="password" name="cpassword" id="cpwd1" onchange="checkbothpassword1(this.value)" placeholder="{{__('message.Enter Confirm password')}}" required="" />
                                                 <span id="cpwd_error1" style="color: red" ></span>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                                <div class="custom-check-box fr">
+                                                    <div class="custom-controls-stacked">
+                                                        <label class="custom-control ">
+                                                            <input type="checkbox" class="material-control-input" name="agree" value="1" required="" />
+                                                            <span class="material-control-indicator"></span>
+                                                            <span class="description">{{__('message.I accept')}} <a href="{{url('/')}}">{{__('message.terms')}}</a> {{__('message.and')}} <a href="{{url('/')}}">{{__('message.conditions')}}</a> {{__('message.and general policy')}}</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                                <button type="submit" class="theme-btn-one">{{__('message.Register Now')}}<i class="icon-Arrow-Right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="pills-hospital" role="tabpanel"
+                                    aria-labelledby="pills-hospital-tab">
+                                    <form action="{{url('posthospitalregister')}}" method="post" class="registration-form">
+                                        {{csrf_field()}}
+                                         <div class="row clearfix">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                                <label class="fr" >{{__('message.Name')}}</label>
+                                                <input type="text" id="name" name="name" placeholder="{{__('message.Your name')}}" required="" />
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                                <label class="fr">{{__('message.Phone Number')}}</label>
+                                                <input type="text" name="phone" id="phone" placeholder="{{__('message.Enter Your Phone number')}}" required="" />
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                                <label class="fr">{{__('message.Email')}}</label>
+                                                <input type="email" name="email" id="email" placeholder="{{__('message.Your email')}}" required="" />
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                                <label class="fr">{{__('message.Password')}}</label>
+                                                <input type="password" name="password" id="pwd2" placeholder="{{__('message.Enter password')}}" required="" />
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                                <label class="fr">{{__('message.Confirm password')}}</label>
+                                                <input type="password" name="cpassword" id="cpwd2" onchange="checkbothpassword2(this.value)" placeholder="{{__('message.Enter Confirm password')}}" required="" />
+                                                <span id="cpwd_error2" style="color: red" ></span>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                                 <div class="custom-check-box fr">
@@ -390,6 +438,7 @@
     document.getElementById("pills-home-tab").addEventListener("click", handleClick);
     document.getElementById("pills-profile-tab").addEventListener("click", handleClick);
     document.getElementById("pills-laboratory-tab").addEventListener("click", handleClick);
+    document.getElementById("pills-hospital-tab").addEventListener("click", handleClick);
 
 
 
@@ -408,6 +457,15 @@ function checkbothpassword1(value){
        var txt=$("#pwdmatch").val();
        $("#cpwd_error1").html(txt);
        $("#cpwd1").val("");
+   }
+}
+
+function checkbothpassword2(value){
+   var pwd=$("#pwd2").val();
+   if(pwd!=value){
+       var txt=$("#pwdmatch").val();
+       $("#cpwd_error2").html(txt);
+       $("#cpwd2").val("");
    }
 }
 

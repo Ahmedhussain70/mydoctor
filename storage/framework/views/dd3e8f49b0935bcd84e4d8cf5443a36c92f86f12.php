@@ -1,42 +1,42 @@
-@extends('user.layout')
-@section('title')
-    {{ __('message.Profile Login') }}
-@stop
-@section('meta-data')
+<?php $__env->startSection('title'); ?>
+    <?php echo e(__('message.Profile Login')); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta-data'); ?>
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ __('message.System Name') }}" />
-    <meta property="og:title" content="{{ __('message.System Name') }}" />
-    <meta property="og:image" content="{{ asset('public/image_web/') . '/' . $setting->favicon }}" />
+    <meta property="og:url" content="<?php echo e(__('message.System Name')); ?>" />
+    <meta property="og:title" content="<?php echo e(__('message.System Name')); ?>" />
+    <meta property="og:image" content="<?php echo e(asset('public/image_web/') . '/' . $setting->favicon); ?>" />
     <meta property="og:image:width" content="250px" />
     <meta property="og:image:height" content="250px" />
-    <meta property="og:site_name" content="{{ __('message.System Name') }}" />
-    <meta property="og:description" content="{{ __('message.meta_description') }}" />
-    <meta property="og:keyword" content="{{ __('message.Meta Keyword') }}" />
-    <link rel="shortcut icon" href="{{ asset('public/image_web/') . '/' . $setting->favicon }}">
+    <meta property="og:site_name" content="<?php echo e(__('message.System Name')); ?>" />
+    <meta property="og:description" content="<?php echo e(__('message.meta_description')); ?>" />
+    <meta property="og:keyword" content="<?php echo e(__('message.Meta Keyword')); ?>" />
+    <link rel="shortcut icon" href="<?php echo e(asset('public/image_web/') . '/' . $setting->favicon); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-@stop
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <section class="page-title-two">
         <div class="title-box centred bg-color-2">
             <div class="pattern-layer">
                 <div class="pattern-1"
-                    style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-70.png') }}');">
+                    style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-70.png')); ?>');">
                 </div>
                 <div class="pattern-2"
-                    style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-71.png') }}');">
+                    style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-71.png')); ?>');">
                 </div>
             </div>
             <div class="auto-container">
                 <div class="title">
-                    <h1 id="aa">{{ __('message.Doctor Login') }}</h1>
+                    <h1 id="aa"><?php echo e(__('message.Doctor Login')); ?></h1>
                 </div>
             </div>
         </div>
         <div class="lower-content">
             <div class="auto-container">
                 <ul class="bread-crumb clearfix">
-                    <li><a href="{{ url('/') }}">{{ __('message.Home') }}</a></li>
-                    <li id="aa1">{{ __('message.Doctor Login') }}</li>
+                    <li><a href="<?php echo e(url('/')); ?>"><?php echo e(__('message.Home')); ?></a></li>
+                    <li id="aa1"><?php echo e(__('message.Doctor Login')); ?></li>
                 </ul>
             </div>
         </div>
@@ -44,29 +44,30 @@
     <section class="registration-section bg-color-3">
         <div class="pattern">
             <div class="pattern-1"
-                style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-85.png') }}');"></div>
+                style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-85.png')); ?>');"></div>
             <div class="pattern-2"
-                style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-86.png') }}');"></div>
+                style="background-image: url('<?php echo e(asset('public/front_pro/assets/images/shape/shape-86.png')); ?>');"></div>
         </div>
         <div class="auto-container">
             <div class="inner-box">
                 <div class="content-box">
                         <div class="title-box">
-                            <h3 id="aa2">{{ __('message.Doctor Login') }}</h3>
-                            <a href="{{ url('doctorregister') }}">{{ __('message.Profile Register') }}</a>
+                            <h3 id="aa2"><?php echo e(__('message.Doctor Login')); ?></h3>
+                            <a href="<?php echo e(url('doctorregister')); ?>"><?php echo e(__('message.Profile Register')); ?></a>
                         </div>
                     <div class="inner">
-                        @if (Session::has('message'))
+                        <?php if(Session::has('message')): ?>
                             <div class="col-sm-12">
-                                <div class="alert  {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show"
+                                <div class="alert  <?php echo e(Session::get('alert-class', 'alert-info')); ?> alert-dismissible fade show"
                                     role="alert">
-                                    {{ Session::get('message') }}
+                                    <?php echo e(Session::get('message')); ?>
+
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                             </div>
-                        @endif
+                        <?php endif; ?>
                         <div id="error"></div>
                             <style>
                                 .nav-pills .nav-item .nav-link.active {
@@ -78,86 +79,68 @@
                             <li class="nav-item">
                                 <a class="nav-link  active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
                                     role="tab" aria-controls="pills-home"
-                                    aria-selected="true">{{ __('message.Doctors') }}</a>
+                                    aria-selected="true"><?php echo e(__('message.Doctors')); ?></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
                                     role="tab" aria-controls="pills-profile"
-                                    aria-selected="false">{{ __('message.Pharmacy') }}</a>
+                                    aria-selected="false"><?php echo e(__('message.Pharmacy')); ?></a>
                             </li>
                              <li class="nav-item">
                                  <a class="nav-link" id="pills-laboratory-tab" data-toggle="pill" href="#pills-laboratory"
                                      role="tab" aria-controls="pills-laboraory"
-                                     aria-selected="false">{{ __('message.Laboratory') }}</a>
+                                     aria-selected="false"><?php echo e(__('message.Laboratory')); ?></a>
                              </li>
                              <li class="nav-item">
                                  <a class="nav-link" id="pills-hospital-tab" data-toggle="pill" href="#pills-hospital"
                                      role="tab" aria-controls="pills-hospital"
-                                     aria-selected="false">{{ __('message.Hospital') }}</a>
+                                     aria-selected="false"><?php echo e(__('message.Hospital')); ?></a>
                              </li>
 
                         </ul>
-                        {{-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link {{ Request::is('profilelogin') ? 'active' : '' }}"
-                                    href="{{ url('profilelogin') }}">
-                                        {{ __('message.Doctors') }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link {{ Request::is('profilelogin') ? 'active' : '' }}"
-                                    href="{{ url('profilelogin') }}">
-                                        {{ __('message.Pharmacy') }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link {{ Request::is('laboratorylogin') ? 'active' : '' }}"
-                                    href="{{ url('laboratorylogin') }}">
-                                        {{ __('message.Laboratory') }}
-                                    </a>
-                                </li>
-                        </ul> --}}
+                        
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                 aria-labelledby="pills-home-tab">
-                                <form action="{{ url('postlogindoctor') }}" method="post" class="registration-form">
-                                    {{ csrf_field() }}
+                                <form action="<?php echo e(url('postlogindoctor')); ?>" method="post" class="registration-form">
+                                    <?php echo e(csrf_field()); ?>
+
                                     <div class="row clearfix">
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Email') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Email')); ?></label>
                                             <input type="email" name="email" id="email"
-                                                placeholder="{{ __('message.Your email') }}" required=""
-                                                value="{{ isset($_COOKIE['email']) ? $_COOKIE['email'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Your email')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['email']) ? $_COOKIE['email'] : ''); ?>">
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Password') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Password')); ?></label>
                                             <input type="password" name="password" id="password"
-                                                placeholder="{{ __('message.Enter password') }}" required=""
-                                                value="{{ isset($_COOKIE['password']) ? $_COOKIE['password'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Enter password')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['password']) ? $_COOKIE['password'] : ''); ?>">
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <div class="custom-check-box fr">
                                                 <div class="custom-controls-stacked">
                                                     <label class="custom-control material-checkbox">
-                                                        @if (isset($_COOKIE['rem_me']))
+                                                        <?php if(isset($_COOKIE['rem_me'])): ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me"
                                                                 checked="">
-                                                        @else
+                                                        <?php else: ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me">
-                                                        @endif
+                                                        <?php endif; ?>
 
                                                         <span class="material-control-indicator"></span>
-                                                        <span class="description">{{ __('message.Remember me') }}</span>
+                                                        <span class="description"><?php echo e(__('message.Remember me')); ?></span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                            <button type="submit" class="theme-btn-one">{{ __('message.Login') }}<i
+                                            <button type="submit" class="theme-btn-one"><?php echo e(__('message.Login')); ?><i
                                                     class="icon-Arrow-Right"></i></button>
                                         </div>
                                     </div>
@@ -165,44 +148,45 @@
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                                 aria-labelledby="pills-profile-tab">
-                                <form action="{{ url('pharmacylogin') }}" method="post" class="registration-form">
-                                    {{ csrf_field() }}
+                                <form action="<?php echo e(url('pharmacylogin')); ?>" method="post" class="registration-form">
+                                    <?php echo e(csrf_field()); ?>
+
                                     <div class="row clearfix">
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Email') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Email')); ?></label>
                                             <input type="email" name="email" id="email"
-                                                placeholder="{{ __('message.Your email') }}" required=""
-                                                value="{{ isset($_COOKIE['email']) ? $_COOKIE['email'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Your email')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['email']) ? $_COOKIE['email'] : ''); ?>">
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Password') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Password')); ?></label>
                                             <input type="password" name="password" id="password"
-                                                placeholder="{{ __('message.Enter password') }}" required=""
-                                                value="{{ isset($_COOKIE['password']) ? $_COOKIE['password'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Enter password')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['password']) ? $_COOKIE['password'] : ''); ?>">
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <div class="custom-check-box fr">
                                                 <div class="custom-controls-stacked">
                                                     <label class="custom-control material-checkbox">
-                                                        @if (isset($_COOKIE['rem_me']))
+                                                        <?php if(isset($_COOKIE['rem_me'])): ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me"
                                                                 checked="">
-                                                        @else
+                                                        <?php else: ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me">
-                                                        @endif
+                                                        <?php endif; ?>
 
                                                         <span class="material-control-indicator"></span>
-                                                        <span class="description">{{ __('message.Remember me') }}</span>
+                                                        <span class="description"><?php echo e(__('message.Remember me')); ?></span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                            <button type="submit" class="theme-btn-one">{{ __('message.Login') }}<i
+                                            <button type="submit" class="theme-btn-one"><?php echo e(__('message.Login')); ?><i
                                                     class="icon-Arrow-Right"></i></button>
                                         </div>
                                     </div>
@@ -212,44 +196,45 @@
 
                               <div class="tab-pane fade" id="pills-laboratory" role="tabpanel"
                                 aria-labelledby="pills-laboratory-tab">
-                                <form action="{{ url('laboratorylogin') }}" method="post" class="registration-form">
-                                    {{ csrf_field() }}
+                                <form action="<?php echo e(url('laboratorylogin')); ?>" method="post" class="registration-form">
+                                    <?php echo e(csrf_field()); ?>
+
                                     <div class="row clearfix">
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Email') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Email')); ?></label>
                                             <input type="email" name="email" id="email"
-                                                placeholder="{{ __('message.Your email') }}" required=""
-                                                value="{{ isset($_COOKIE['email']) ? $_COOKIE['email'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Your email')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['email']) ? $_COOKIE['email'] : ''); ?>">
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Password') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Password')); ?></label>
                                             <input type="password" name="password" id="password"
-                                                placeholder="{{ __('message.Enter password') }}" required=""
-                                                value="{{ isset($_COOKIE['password']) ? $_COOKIE['password'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Enter password')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['password']) ? $_COOKIE['password'] : ''); ?>">
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <div class="custom-check-box fr">
                                                 <div class="custom-controls-stacked">
                                                     <label class="custom-control material-checkbox">
-                                                        @if (isset($_COOKIE['rem_me']))
+                                                        <?php if(isset($_COOKIE['rem_me'])): ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me"
                                                                 checked="">
-                                                        @else
+                                                        <?php else: ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me">
-                                                        @endif
+                                                        <?php endif; ?>
 
                                                         <span class="material-control-indicator"></span>
-                                                        <span class="description">{{ __('message.Remember me') }}</span>
+                                                        <span class="description"><?php echo e(__('message.Remember me')); ?></span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                            <button type="submit" class="theme-btn-one">{{ __('message.Login') }}<i
+                                            <button type="submit" class="theme-btn-one"><?php echo e(__('message.Login')); ?><i
                                                     class="icon-Arrow-Right"></i></button>
                                         </div>
                                     </div>
@@ -257,44 +242,45 @@
                             </div>
                             <div class="tab-pane fade" id="pills-hospital" role="tabpanel"
                                 aria-labelledby="pills-hospital-tab">
-                                <form action="{{ url('hospitallogin') }}" method="post" class="registration-form">
-                                    {{ csrf_field() }}
+                                <form action="<?php echo e(url('hospitallogin')); ?>" method="post" class="registration-form">
+                                    <?php echo e(csrf_field()); ?>
+
                                     <div class="row clearfix">
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Email') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Email')); ?></label>
                                             <input type="email" name="email" id="email"
-                                                placeholder="{{ __('message.Your email') }}" required=""
-                                                value="{{ isset($_COOKIE['email']) ? $_COOKIE['email'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Your email')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['email']) ? $_COOKIE['email'] : ''); ?>">
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label class="fr">{{ __('message.Password') }}</label>
+                                            <label class="fr"><?php echo e(__('message.Password')); ?></label>
                                             <input type="password" name="password" id="password"
-                                                placeholder="{{ __('message.Enter password') }}" required=""
-                                                value="{{ isset($_COOKIE['password']) ? $_COOKIE['password'] : '' }}">
+                                                placeholder="<?php echo e(__('message.Enter password')); ?>" required=""
+                                                value="<?php echo e(isset($_COOKIE['password']) ? $_COOKIE['password'] : ''); ?>">
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <div class="custom-check-box fr">
                                                 <div class="custom-controls-stacked">
                                                     <label class="custom-control material-checkbox">
-                                                        @if (isset($_COOKIE['rem_me']))
+                                                        <?php if(isset($_COOKIE['rem_me'])): ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me"
                                                                 checked="">
-                                                        @else
+                                                        <?php else: ?>
                                                             <input type="checkbox" class="material-control-input"
                                                                 value="1" name="rem_me" id="rem_me">
-                                                        @endif
+                                                        <?php endif; ?>
 
                                                         <span class="material-control-indicator"></span>
-                                                        <span class="description">{{ __('message.Remember me') }}</span>
+                                                        <span class="description"><?php echo e(__('message.Remember me')); ?></span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                            <button type="submit" class="theme-btn-one">{{ __('message.Login') }}<i
+                                            <button type="submit" class="theme-btn-one"><?php echo e(__('message.Login')); ?><i
                                                     class="icon-Arrow-Right"></i></button>
                                         </div>
                                     </div>
@@ -303,11 +289,11 @@
                         </div>
 
 
-                        <div class="text"><span>{{ __('message.or') }}</span></div>
+                        <div class="text"><span><?php echo e(__('message.or')); ?></span></div>
 
                         <div class="login-now">
-                            <p>{{ __("message.Don't Remember Password") }} <a
-                                    href="{{ url('forgotpassword') }}">{{ __('message.Forgot Password') }}</a></p>
+                            <p><?php echo e(__("message.Don't Remember Password")); ?> <a
+                                    href="<?php echo e(url('forgotpassword')); ?>"><?php echo e(__('message.Forgot Password')); ?></a></p>
                         </div>
                     </div>
                 </div>
@@ -321,11 +307,11 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 left-column">
                         <div class="content_block_3">
                             <div class="content-box">
-                                <h3>{{ __('message.Emergency call') }}</h3>
+                                <h3><?php echo e(__('message.Emergency call')); ?></h3>
                                 <div class="support-box">
                                     <div class="icon-box"><i class="fas fa-phone"></i></div>
-                                    <span>{{ __('message.Telephone') }}</span>
-                                    <h3><a href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a></h3>
+                                    <span><?php echo e(__('message.Telephone')); ?></span>
+                                    <h3><a href="tel:<?php echo e($setting->phone); ?>"><?php echo e($setting->phone); ?></a></h3>
                                 </div>
                             </div>
                         </div>
@@ -333,13 +319,13 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 right-column">
                         <div class="content_block_4">
                             <div class="content-box">
-                                <h3>{{ __('message.Sign up for Newsletter today') }}</h3>
+                                <h3><?php echo e(__('message.Sign up for Newsletter today')); ?></h3>
                                 <form action="#" method="post" class="subscribe-form">
                                     <div class="form-group">
                                         <input type="email" name="email" id="emailnews"
-                                            placeholder="{{ __('message.Your email') }}" required="">
+                                            placeholder="<?php echo e(__('message.Your email')); ?>" required="">
                                         <button type="button" onclick="addnewsletter()"
-                                            class="theme-btn-one">{{ __('message.Submit now') }}<i
+                                            class="theme-btn-one"><?php echo e(__('message.Submit now')); ?><i
                                                 class="icon-Arrow-Right"></i></button>
                                     </div>
                                 </form>
@@ -361,15 +347,17 @@
 
             // Log the text content
             console.log(clickedText);
-            $('#aa').text(clickedText + '{{ __("message.Login") }}');
-            $('#aa1').text(clickedText + '{{ __("message.Login") }}');
-            $('#aa2').text(clickedText + '{{ __("message.Login") }}');
+            $('#aa').text(clickedText + '<?php echo e(__("message.Login")); ?>');
+            $('#aa1').text(clickedText + '<?php echo e(__("message.Login")); ?>');
+            $('#aa2').text(clickedText + '<?php echo e(__("message.Login")); ?>');
         }
         document.getElementById("pills-home-tab").addEventListener("click", handleClick);
         document.getElementById("pills-profile-tab").addEventListener("click", handleClick);
          document.getElementById("pills-laboratory-tab").addEventListener("click", handleClick);
          document.getElementById("pills-hospital-tab").addEventListener("click", handleClick);
     </script>
-@stop
-@section('footer')
-@stop
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('user.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\mydoctor\resources\views/user/doctor/login.blade.php ENDPATH**/ ?>

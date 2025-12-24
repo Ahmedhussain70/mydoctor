@@ -347,9 +347,9 @@
 
             // Log the text content
             console.log(clickedText);
-            $('#aa').text(clickedText + '<?php echo e(__("message.Login")); ?>');
-            $('#aa1').text(clickedText + '<?php echo e(__("message.Login")); ?>');
-            $('#aa2').text(clickedText + '<?php echo e(__("message.Login")); ?>');
+            $('#aa').text(clickedText + " " + '<?php echo e(__("message.Login")); ?>');
+            $('#aa1').text(clickedText + " " + '<?php echo e(__("message.Login")); ?>');
+            $('#aa2').text(clickedText + " " + '<?php echo e(__("message.Login")); ?>');
         }
         document.getElementById("pills-home-tab").addEventListener("click", handleClick);
         document.getElementById("pills-profile-tab").addEventListener("click", handleClick);

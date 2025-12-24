@@ -133,6 +133,57 @@
                             </div>
                         </div>
                     </div>
+                    <div class="profile-details mb-4">
+                        <div class="title-box">
+                            <h3>{{ __('message.Hospital Profile') }}</h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <p><strong>{{ __('message.Address') }}:</strong> {{ $doctordata->address }}</p>
+                                <p><strong>{{ __('message.Phone') }}:</strong> {{ $doctordata->phoneno }}</p>
+                                <p><strong>{{ __('message.Email') }}:</strong> {{ $doctordata->email }}</p>
+                                <p><strong>{{ __('message.Working Time') }}:</strong> {{ $doctordata->working_time }}</p>
+                                <p><strong>{{ __('message.Services') }}:</strong> {{ $doctordata->services }}</p>
+                                <p><strong>{{ __('message.About Us') }}:</strong> {{ substr($doctordata->aboutus, 0, 100) }}...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-section mb-4">
+                        <div class="title-box">
+                            <h3>{{ __('message.Latest Reviews') }} ({{ $totalreview }})</h3>
+                            <div class="btn-box">
+                                <a href="{{ url('hospitalreview') }}" class="theme-btn-one">{{ __('message.View All') }}</a>
+                            </div>
+                        </div>
+                        <div class="review-list">
+                            @forelse ($reviewdata as $review)
+                                <div class="single-review-box mb-3 p-3 border rounded">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>{{ isset($review->patientls) ? $review->patientls->name : '' }}</h6>
+                                        <small>{{ date('F d, Y', strtotime($review->created_at)) }}</small>
+                                    </div>
+                                    <ul class="rating mb-2">
+                                        <?php
+                                        $arr = $review->rating;
+                                        if (!empty($arr)) {
+                                            $i = 0;
+                                            for ($i = 0; $i < $arr; $i++) {
+                                                echo '<li><i class="icon-Star"></i></li>';
+                                            }
+                                            $remaing = 5 - $i;
+                                            for ($j = 0; $j < $remaing; $j++) {
+                                                echo '<li class="light"><i class="icon-Star"></i></li>';
+                                            }
+                                        }
+                                        ?>
+                                    </ul>
+                                    <p>{{ $review->description }}</p>
+                                </div>
+                            @empty
+                                <p>{{ __('message.No reviews yet') }}</p>
+                            @endforelse
+                        </div>
+                    </div>
                     <div class="doctors-appointment">
                         <div class="title-box">
                             <h3>{{ __('message.Order') }}</h3>

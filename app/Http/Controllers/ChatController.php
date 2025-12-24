@@ -9,42 +9,64 @@ class ChatController extends Controller
 {
     public function callGeminiAPI(Request $request)
     {
-        $request->validate(['user_input' => 'required|string']);
+        $request->validate([
+            'user_input' => 'required|string',
+            'file' => 'nullable|file|max:10240'
+        ]);
 
         $apiKey = env('GEMINI_API_KEY');
-        // $apiKey = 'AIzaSyCeJcVRNZ1AG3e6DExTHAUYrCieqTdFI9o';
         $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey";
 
-        // Retrieve chat history from session
         $chatHistory = session('chat_history', []);
 
-        // Add user input to chat history
-        $chatHistory[] = ['role' => 'user', 'text' => $request->user_input];
-
-        // Prepare payload for API
-        $payload = [
-            "contents" => array_map(function ($chat) {
-                return [
-                    "role" => $chat['role'],
-                    "parts" => [["text" => $chat['text']]]
-                ];
-            }, $chatHistory)
+        $chatHistory[] = [
+            'role' => 'user',
+            'text' => $request->user_input
         ];
 
-        // API Call
-        $response = Http::withHeaders(['Content-Type' => 'application/json'])
-            ->post($url, $payload);
+        $filePart = null;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePart = [
+                "inlineData" => [
+                    "mimeType" => $file->getMimeType(),
+                    "data" => base64_encode(file_get_contents($file->getRealPath()))
+                ]
+            ];
+        }
+
+        $contents = [];
+        foreach ($chatHistory as $chat) {
+            $parts = [
+                ["text" => $chat['text']]
+            ];
+
+            if ($chat['role'] === 'user' && $filePart) {
+                $parts[] = $filePart;
+            }
+
+            $contents[] = [
+                "role" => $chat['role'],
+                "parts" => $parts
+            ];
+        }
+
+        $response = Http::post($url, [
+            "contents" => $contents
+        ]);
 
         $aiResponse = $response->json()['candidates'][0]['content']['parts'][0]['text'] ?? 'No response';
 
-        // Add AI response to chat history
-        $chatHistory[] = ['role' => 'model', 'text' => $aiResponse];
+        $chatHistory[] = [
+            'role' => 'model',
+            'text' => $aiResponse
+        ];
 
-        // Store updated chat history in session
         session(['chat_history' => $chatHistory]);
 
         return response()->json(['ai_response' => $aiResponse]);
     }
+
 
     public function clearChat()
     {

@@ -323,7 +323,8 @@ class HospitalController extends Controller
             // }
 
             $doctordata = Doctors::with('departmentls')->find(Session::get("user_id"));
-            return view("user.hospital.dashboard")->with("setting", $setting)->with("doctordata", $doctordata)->with("totalreview", $totalreview);
+            $reviewdata = Review::with('patientls')->where("doc_id", Session::get("user_id"))->orderBy('created_at', 'desc')->take(5)->get();
+            return view("user.hospital.dashboard")->with("setting", $setting)->with("doctordata", $doctordata)->with("totalreview", $totalreview)->with("reviewdata", $reviewdata);
         } else {
             return redirect("/");
         }

@@ -562,51 +562,36 @@
                     <?php echo e(__('message.al_chat')); ?> <span class="far fas fa-comment-dots"></span>
                 </button>
 
-                <div class="modal fade" id="ai_chat" tabindex="-1" aria-hidden="true" data-backdrop="static"
-                    data-keyboard="false" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" id="ai_chat" tabindex="-1" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog modal-dialog-scrollable mb-0">
                         <div class="modal-content">
+
                             <div class="modal-header">
-                                <h3 class="modal-title text-center"><?php echo e(__('message.al_chat')); ?></h3>
+                                <h3 class="modal-title"><?php echo e(__('message.al_chat')); ?></h3>
                                 <button type="button" class="close" id="clearChat" data-dismiss="modal">&times;</button>
                             </div>
 
-                            <div class="chat-box p-3 border rounded-lg bg-light" id="chatHistory">
-                                <?php if(empty(session('chat_history'))): ?>
-                                    <div class="d-flex justify-content-center">
-                                        <div class="p-2 rounded-lg text-center" style="color: black;">
-                                            <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
-                                            <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                                <?php $__currentLoopData = session('chat_history', []); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div
-                                        class="mb-2 d-flex <?php echo e($chat['role'] == 'user' ? 'justify-content-end' : 'justify-content-start'); ?>">
-                                        <div class="p-2 rounded-lg" style="max-width: 70%;
-                                        background: <?php echo e($chat['role'] == 'user' ? '#f1f1f1' : '#f1f1f1'); ?>;
-                                        color: <?php echo e($chat['role'] == 'user' ? 'black' : 'black'); ?>;">
-                                            <strong class="d-block"><?php echo e($chat['role'] == 'user' ? 'You' : 'AI'); ?></strong>
-                                            <span
-                                                class="<?php echo e($chat['role'] == 'model' ? 'ai-response' : ''); ?>"><?php echo e($chat['text']); ?></span>
-                                        </div>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <div class="chat-box p-3 bg-light" id="chatHistory" style="height:400px; overflow-y:auto;">
+                                <div id="defaultMessage" class="text-center">
+                                    <strong><?php echo e(__('message.Hello')); ?></strong><br>
+                                    <?php echo e(__('message.how_can_I_help_you')); ?>
+
+                                </div>
                             </div>
 
-                            <div class="p-3 border rounded-lg bg-light">
-                                <form id="chatForm">
+                            <div class="p-3 bg-light">
+                                <form id="chatForm" enctype="multipart/form-data">
                                     <?php echo csrf_field(); ?>
                                     <div class="row">
-                                        <div class="col-9 pr-0">
+                                        <div class="col-8">
                                             <input type="text" name="user_input" id="user_input" class="form-control"
-                                                placeholder="<?php echo e(__('message.type_msg_here')); ?>" required>
+                                                placeholder="Type message">
                                         </div>
-                                        <div class="col-3">
-                                            <button type="submit" class="btn btn-info w-100 h-100"
-                                                style="border-radius: 13px;">
-                                                <?php echo e(__('message.Send')); ?> <span class="fa fa-send"></span>
-                                            </button>
+                                        <div class="col-2">
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                        <div class="col-2">
+                                            <button class="btn btn-info w-100">Send</button>
                                         </div>
                                     </div>
                                 </form>
@@ -617,118 +602,72 @@
                 </div>
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
                 <script>
-                    $(document).ready(function () {
-                        function scrollToBottom() {
-                            var chatHistory = $('#chatHistory');
-                            chatHistory.scrollTop(chatHistory[0].scrollHeight);
+                    $('#chatForm').submit(function (e) {
+                        e.preventDefault();
+
+                        let formData = new FormData(this);
+                        let message = $('#user_input').val();
+
+                        if (!message && !formData.get('file').name) return;
+
+                        $('#defaultMessage').remove();
+
+                        if (message) {
+                            $('#chatHistory').append(`
+            <div class="text-right mb-2">
+                <div class="d-inline-block p-2 bg-white rounded">
+                    <strong>You</strong><br>${message}
+                </div>
+            </div>
+        `);
                         }
 
-                        $('#chatForm').submit(function (e) {
-                            e.preventDefault();
+                        $('#user_input').val('');
+                        $('input[type=file]').val('');
 
-                            var userMessage = $('#user_input').val();
-                            if (!userMessage) return;
-
-                            $('#defaultMessage').remove(); // Remove default message if present
-
-                            // Append user message (right-aligned)
-                            $('#chatHistory').append(`
-            <div class="mb-2 d-flex justify-content-end">
-                <div class="p-2 rounded-lg" style="max-width: 70%; background: #f1f1f1; color: black;">
-                    <strong class="d-block">You</strong>
-                    <span>${userMessage}</span>
-                </div>
+                        let aiBox = $(`
+        <div class="text-left mb-2">
+            <div class="d-inline-block p-2 bg-white rounded">
+                <strong>AI</strong><br>
+                <span class="ai-response"></span>
             </div>
-        `);
-                            $('#user_input').val('');
-                            scrollToBottom();
-                            // Placeholder for AI response (empty initially)
-                            var aiResponseContainer = $(`
-            <div class="mb-2 d-flex justify-content-start">
-                <div class="p-2 rounded-lg" style="max-width: 70%; background: #f1f1f1; color: black;">
-                    <strong class="d-block">AI</strong>
-                    <span class="ai-response"></span>
-                </div>
-            </div>
-        `);
-                            $('#chatHistory').append(aiResponseContainer);
-                            scrollToBottom();
+        </div>
+    `);
 
-                            $.ajax({
-                                url: "<?php echo e(route('gemini.call')); ?>",
-                                type: "POST",
-                                data: {
-                                    _token: "<?php echo e(csrf_token()); ?>",
-                                    user_input: userMessage
-                                },
-                                success: function (response) {
-                                    let aiText = response.ai_response;
-                                    let aiSpan = aiResponseContainer.find('.ai-response');
+                        $('#chatHistory').append(aiBox);
+                        $('#chatHistory').scrollTop($('#chatHistory')[0].scrollHeight);
 
-                                    // Typewriter effect
-                                    let index = 0;
+                        $.ajax({
+                            url: "<?php echo e(route('gemini.call')); ?>",
+                            method: "POST",
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function (res) {
+                                let text = res.ai_response;
+                                let i = 0;
 
-                                    function typeWriter() {
-                                        if (index < aiText.length) {
-                                            aiSpan.append(aiText.charAt(index));
-                                            index++;
-                                            setTimeout(typeWriter,
-                                                20); // Adjust speed here (lower is faster)
-                                        }
+                                function typeWriter() {
+                                    if (i < text.length) {
+                                        aiBox.find('.ai-response').append(text.charAt(i));
+                                        i++;
+                                        setTimeout(typeWriter, 15);
                                     }
-                                    typeWriter();
-                                },
-                                error: function () {
-                                    alert("Error communicating with AI.");
                                 }
-                            });
+                                typeWriter();
+                            }
                         });
+                    });
 
-                        $('#clearChat').click(function () {
-                            $.ajax({
-                                url: "<?php echo e(route('gemini.clear')); ?>",
-                                type: "POST",
-                                data: {
-                                    _token: "<?php echo e(csrf_token()); ?>"
-                                },
-                                success: function () {
-                                    $('#chatHistory').html(`
-                <div id="defaultMessage" class="d-flex justify-content-center">
-                    <div class="p-2 rounded-lg text-center" style="color: black;">
-                         <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
-                        <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
-                    </div>
-                </div>
-            `);
-                                },
-                                error: function () {
-                                    alert("Failed to clear chat.");
-                                }
-                            });
-                        });
-
-                        $('#bottomright').click(function () {
-                            $.ajax({
-                                url: "<?php echo e(route('gemini.clear')); ?>",
-                                type: "POST",
-                                data: {
-                                    _token: "<?php echo e(csrf_token()); ?>"
-                                },
-                                success: function () {
-                                    $('#chatHistory').html(`
-                <div id="defaultMessage" class="d-flex justify-content-center">
-                    <div class="p-2 rounded-lg text-center" style="color: black;">
-                         <strong class="d-block"><?php echo e(__('message.Hello')); ?> </strong>
-                        <span><?php echo e(__('message.how_can_I_help_you')); ?></span>
-                    </div>
-                </div>
-            `);
-                                },
-                                error: function () {
-                                    alert("Failed to clear chat.");
-                                }
-                            });
+                    $('#clearChat').click(function () {
+                        $.post("<?php echo e(route('gemini.clear')); ?>", { _token: "<?php echo e(csrf_token()); ?>" }, function () {
+                            $('#chatHistory').html(`
+            <div id="defaultMessage" class="text-center">
+                <strong>Hello</strong><br>How can I help you?
+            </div>
+        `);
                         });
                     });
                 </script>

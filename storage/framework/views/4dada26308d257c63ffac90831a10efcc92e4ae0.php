@@ -606,9 +606,7 @@
                 <script>
 
                     $('#file').click(function(){
-                        $('<input type="file" name="file" id="fileInput" class="form-control mt-2" hidden/>').insertAfter('#file').click().change(function(){
-                            $('#file').val($(this).val().split('\\').pop());
-                        });
+                        $('<input type="file" name="file" id="fileInput" class="form-control mt-2" hidden/>').click();
                     });
                     
                     $('#chatForm').submit(function (e) {

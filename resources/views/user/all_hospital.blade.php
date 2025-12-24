@@ -16,7 +16,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 @stop
 @section('content')
-    <section class="page-title-two">
+<style>
+.clinic-block-one:hover, .team-block-three:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+</style>
+     <section class="page-title-two">
         <div class="title-box centred bg-color-2">
             <div class="pattern-layer">
                 <div class="pattern-1"
@@ -94,7 +101,7 @@
                     <div class="wrapper grid">
                         <div class="clinic-list-content list-item">
                             @foreach ($doctorlist as $dl)
-                                <div class="clinic-block-one">
+                                <div class="clinic-block-one" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php $title = ''; if($dl->reviewslist->count() > 0){ foreach($dl->reviewslist as $review){ $title .= '<div><strong>' . ($review->patientls->name ?? '') . '</strong>: ' . substr(htmlspecialchars($review->description), 0, 50) . '</div>'; } } else { $title = 'No reviews yet'; } echo $title; ?>">
                                     <div class="inner-box">
                                         <div class="pattern">
                                             <div class="pattern-1"
@@ -144,7 +151,7 @@
                                             <div class="text">
                                                 <p>{{ substr($dl->aboutus, 0, 200) }}</p>
                                             </div>
-                                            <div class="rating-box clearfix" data-toggle="tooltip" data-placement="top" data-html="true" title="@if($dl->reviewslist->count() > 0) @foreach($dl->reviewslist as $review) <div><strong>{{ $review->patientls->name ?? '' }}</strong>: {{ substr($review->description, 0, 50) }}</div> @endforeach @else No reviews yet @endif">
+                                            <div class="rating-box clearfix">
                                                 <ul class="rating clearfix">
                                                     <?php
                                                     $arr = $dl->avgratting;
@@ -200,7 +207,7 @@
                             <div class="row clearfix">
                                 @foreach ($doctorlist as $dl)
                                     <div class="col-lg-6 col-md-6 col-sm-12 team-block">
-                                        <div class="team-block-three">
+                                        <div class="team-block-three" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php $title = ''; if($dl->reviewslist->count() > 0){ foreach($dl->reviewslist as $review){ $title .= '<div><strong>' . ($review->patientls->name ?? '') . '</strong>: ' . substr(htmlspecialchars($review->description), 0, 50) . '</div>'; } } else { $title = 'No reviews yet'; } echo $title; ?>">
                                             <div class="inner-box">
                                                 <figure class="image-box">
                                                     {{-- <img src="{{asset('public/upload/doctors').'/'.$dl->image}}" alt="" style="height: 245px;"> --}}
@@ -237,7 +244,7 @@
                                                     </ul>
                                                     <span
                                                         class="designation">{{ isset($dl->departmentls) ? $dl->departmentls->name : '' }}</span>
-                                                    <div class="rating-box clearfix" data-toggle="tooltip" data-placement="top" data-html="true" title="@if($dl->reviewslist->count() > 0) @foreach($dl->reviewslist as $review) <div><strong>{{ $review->patientls->name ?? '' }}</strong>: {{ substr($review->description, 0, 50) }}</div> @endforeach @else No reviews yet @endif">
+                                                    <div class="rating-box clearfix">
                                                         <ul class="rating clearfix">
                                                             <?php
                                                             $arr = $dl->avgratting;

@@ -738,6 +738,10 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'Please Fillup All Field' => 'Please Fillup All Field',
   'please choose payment type' => 'please choose payment type',
   'Enter Your address' => 'Enter Your address',
-  'Search Hospital' => 'Search Hospital'
-
+  'Search Hospital' => 'Search Hospital',
+  'Current Password' => 'Current Password',
+  'New Password' => 'New Password',
+  'Edit Hospital Profile' => 'Edit Hospital Profile',
+  'All Reviews' => 'All Reviews',
+  'No reviews yet' => 'No reviews yet'
 );

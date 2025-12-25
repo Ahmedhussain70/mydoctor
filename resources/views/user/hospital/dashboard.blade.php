@@ -133,7 +133,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-details mb-4">
+                    <!-- <div class="profile-details mb-4">
                         <div class="title-box">
                             <h3>{{ __('message.Hospital Profile') }}</h3>
                         </div>
@@ -183,7 +183,7 @@
                                 <p>{{ __('message.No reviews yet') }}</p>
                             @endforelse
                         </div>
-                    </div>
+                    </div> -->
                     <div class="doctors-appointment">
                         <div class="title-box">
                             <h3>{{ __('message.Order') }}</h3>

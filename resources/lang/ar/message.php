@@ -694,5 +694,11 @@ return array(
     'Please Fillup All Field' => 'يرجى ملء جميع الحقول',
     'please choose payment type' => 'يرجى اختيار نوع الدفع',
     'Enter Your address' => 'أدخل عنوانك',
-    'Search Hospital' => 'ابحث عن مستشفى'
+    'Search Hospital' => 'ابحث عن مستشفى',
+    'Current Password' => 'كلمة المرور الحالية',
+    'New Password' => 'كلمة المرور الجديدة',
+    'Edit Hospital Profile' => 'تعديل ملف المستشفى الشخصي',
+    'All Reviews' => 'جميع التقييمات',
+    'No reviews yet' => 'لا توجد مراجعات بعد',
+    'Hospital Profile' => 'الملف الشخصي للمستشفى'
 );

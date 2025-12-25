@@ -150,23 +150,23 @@ class HospitalController extends Controller
         return redirect()->back();
     }
 
-    public function hospitalorder()
-    {
-        $orderdata = HospitalOrder::get();
-        foreach ($orderdata as $order) {
-            $doctor = Doctors::find($order->hospital_id);
-            $patient = Patient::find($order->user_id);
+    // public function hospitalorder()
+    // {
+    //     $orderdata = HospitalOrder::get();
+    //     foreach ($orderdata as $order) {
+    //         $doctor = Doctors::find($order->hospital_id);
+    //         $patient = Patient::find($order->user_id);
 
-            if ($doctor) {
-                $order->hospital_id = $doctor->name;
-            }
+    //         if ($doctor) {
+    //             $order->hospital_id = $doctor->name;
+    //         }
 
-            if ($patient) {
-                $order->user_id = $patient->name;
-            }
-        }
-        return view('admin.hospital.hospitalorder', compact('orderdata'));
-    }
+    //         if ($patient) {
+    //             $order->user_id = $patient->name;
+    //         }
+    //     }
+    //     return view('admin.hospital.hospitalorder', compact('orderdata'));
+    // }
 
 
     // this function for map_api_key
@@ -178,19 +178,19 @@ class HospitalController extends Controller
     }
 
 
-     public function get_reportdata($id)
-    {
-        $setting = Setting::find(1);
-        $currency = explode("-", $setting->currency);
-        $orderdata = HospitalOrder::find($id);
-        $u = Patient::find($orderdata->user_id);
-        $p = Doctors::find($orderdata->hospital_id);
-        $orderdata->hospital_id = $p->name;
-        $orderdata->user_id = $u->name;
+    //  public function get_reportdata($id)
+    // {
+    //     $setting = Setting::find(1);
+    //     $currency = explode("-", $setting->currency);
+    //     $orderdata = HospitalOrder::find($id);
+    //     $u = Patient::find($orderdata->user_id);
+    //     $p = Doctors::find($orderdata->hospital_id);
+    //     $orderdata->hospital_id = $p->name;
+    //     $orderdata->user_id = $u->name;
 
-        $data = HospitalOrderData::where('order_id', $id)->get();
-        return array($data, $orderdata,$currency);
-    }
+    //     $data = HospitalOrderData::where('order_id', $id)->get();
+    //     return array($data, $orderdata,$currency);
+    // }
 
     public function hospitallogin(Request $request)
     {

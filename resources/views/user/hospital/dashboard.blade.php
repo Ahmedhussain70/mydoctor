@@ -91,9 +91,9 @@
                                                 style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-80.png') }}');">
                                             </div>
                                         </div>
-                                        <div class="icon-box"><i class="icon-Dashboard-1"></i></div>
+                                        <!-- <div class="icon-box"><i class="icon-Dashboard-1"></i></div>
                                         <h3>{{ count($orderdata) }}</h3>
-                                        <h5>{{ __('message.Total Order') }}</h5>
+                                        <h5>{{ __('message.Total Order') }}</h5> -->
                                     </div>
                                 </div>
                             </div>
@@ -125,9 +125,9 @@
                                                 style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-84.png') }}');">
                                             </div>
                                         </div>
-                                        <div class="icon-box"><i class="icon-Dashboard-3"></i></div>
+                                        <!-- <div class="icon-box"><i class="icon-Dashboard-3"></i></div>
                                         <h3>{{ $today }}</h3>
-                                        <h5>{{ __('message.New Order') }}</h5>
+                                        <h5>{{ __('message.New Order') }}</h5> -->
                                     </div>
                                 </div>
                             </div>

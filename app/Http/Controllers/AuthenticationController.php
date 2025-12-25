@@ -112,6 +112,7 @@ class AuthenticationController extends Controller
     {
         $totaldoctor = Doctors::where('profile_type','1')->count();
         $totalpharmacy = Doctors::where('profile_type','2')->count();
+        $totalhospital = Doctors::where('profile_type','4')->count();
         $totalpharmacyorder = PharmacyOrder::count();
         $totalappointment = count(BookAppointment::all());
         $totalreview = count(Review::all());
@@ -138,7 +139,7 @@ class AuthenticationController extends Controller
         foreach ($monthlyEarnings as $data) {
             $earnings[$data->month] = $data->total; // Replace 0 with actual earnings
         }
-        return view("admin.dashboard")->with("months", $months)->with("earnings", $earnings)->with("pharmacy", $pharmacy)->with("totaldoctor", $totaldoctor)->with("totalpharmacy", $totalpharmacy)->with("totalpharmacyorder", $totalpharmacyorder)->with("totalappointment", $totalappointment)->with("totalreview", $totalreview)->with("totalpatient", $totalpatient);
+        return view("admin.dashboard")->with("months", $months)->with("earnings", $earnings)->with("pharmacy", $pharmacy)->with("totaldoctor", $totaldoctor)->with("totalpharmacy", $totalpharmacy)->with("totalpharmacyorder", $totalpharmacyorder)->with("totalappointment", $totalappointment)->with("totalreview", $totalreview)->with("totalpatient", $totalpatient)->with("totalhospital", $totalhospital);
     }
 
     public  function check_password_same($pwd)

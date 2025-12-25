@@ -370,6 +370,74 @@ class HospitalController extends Controller
             return redirect("/");
         }
     }
+
+    public function updatehospitalprofile(Request $request)
+    {
+        if (Session::get("user_id") != "" && Session::get("role_id") == '5') {
+            $store = Doctors::find($request->get("id"));
+            if ($store->id != Session::get("user_id")) {
+                return redirect("/");
+            }
+            $img_url = $store->image;
+            if ($request->hasFile('upload_image')) {
+                $file = $request->file('upload_image');
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension() ?: 'png';
+                $folderName = '/upload/doctors/';
+                $picture = time() . '.' . $extension;
+                $destinationPath = public_path() . $folderName;
+                $request->file('upload_image')->move($destinationPath, $picture);
+                $img_url = $picture;
+                $image_path = public_path() . "/upload/doctors/" . $store->image;
+                if (file_exists($image_path) && $store->image != "") {
+                    try {
+                        unlink($image_path);
+                    } catch (Exception $e) {
+                    }
+                }
+            }
+            $store->name = $request->get("name");
+            $store->phoneno = $request->get("phoneno");
+            $store->aboutus = $request->get("aboutus");
+            $store->services = $request->get("services");
+            $store->address = $request->get("address");
+            $store->working_time = $request->get("working_time");
+            $store->city_id = $request->get("city_id");
+            $store->image = $img_url;
+            $store->save();
+
+            Session::flash('message', __("message.Profile Update Successfully"));
+            Session::flash('alert-class', 'alert-success');
+            return redirect()->back();
+        } else {
+            return redirect("/");
+        }
+    }
+
+    public function updatehospitalpassword(Request $request)
+    {
+        if (Session::get("user_id") != "" && Session::get("role_id") == '5') {
+            $doctordata = Doctors::find(Session::get("user_id"));
+            if ($doctordata->password != $request->get("current_password")) {
+                Session::flash('message', __("message.Current Password is Wrong"));
+                Session::flash('alert-class', 'alert-danger');
+                return redirect()->back();
+            }
+            if ($request->get("password") != $request->get("password_confirmation")) {
+                Session::flash('message', __("message.Password And Confirm Password Must Be Same"));
+                Session::flash('alert-class', 'alert-danger');
+                return redirect()->back();
+            }
+            $doctordata->password = $request->get("password");
+            $doctordata->save();
+
+            Session::flash('message', __("message.Password Update Successfully"));
+            Session::flash('alert-class', 'alert-success');
+            return redirect()->back();
+        } else {
+            return redirect("/");
+        }
+    }
         public function rattinglinescal($id){
         $totalreview=count(Review::where("doc_id",$id)->get());
         if($totalreview!=0){

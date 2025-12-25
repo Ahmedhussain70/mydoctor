@@ -226,6 +226,11 @@ Route::group(['middleware' => ['Localization']], function () {
         Route::get('userhospitalreportlist', [HospitalController::class, 'userhospitalreportlist']);
         Route::view('hospitaldashboard', 'user.hospital.dashboard');
         Route::get('hospitaldashboard', [HospitalController::class, "hospitaldashboard"]);
+        Route::get('hospitaleditprofile', [HospitalController::class, "hospitaleditprofile"]);
+        Route::get('hospitalchangepassword', [HospitalController::class, "hospitalchangepassword"]);
+        Route::get('hospitalreview', [HospitalController::class, "hospitalreview"]);
+        Route::post('updatehospitalprofile', [HospitalController::class, "updatehospitalprofile"]);
+        Route::post('updatehospitalpassword', [HospitalController::class, "updatehospitalpassword"]);
 
 
 

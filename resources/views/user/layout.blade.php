@@ -201,6 +201,13 @@
             .doctors-sidebar .form-widget .custom-check-box {
                 border: unset !important;
             }
+
+            .logo-text {
+                font-size: 22px;
+                font-weight: 700;
+                color: #222;
+                line-height: 1;
+            }
         </style>
     @else
     @endif
@@ -301,15 +308,14 @@
                     <div class="auto-container">
                         <div class="outer-box">
                             <div class="logo-box d-flex align-items-center">
+                                <span class="ml-2 logo-text">
+                                    MyDoctor
+                                </span>
                                 <figure class="logo mb-0">
                                     <a href="{{ url('/') }}">
                                         <img src="{{ asset('public/image_web/' . $setting->logo) }}" alt="Logo">
                                     </a>
                                 </figure>
-
-                                <span class="ml-2 logo-text">
-                                    MyDoctor
-                                </span>
                             </div>
 
                             <div class="menu-area">

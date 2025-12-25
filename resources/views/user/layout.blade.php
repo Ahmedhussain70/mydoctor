@@ -551,38 +551,63 @@
                     }
                 </style>
 
-                <div class="p-3 bg-light">
-                    <form id="chatForm" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row align-items-center">
+                <button type="button" class="theme-btn-one" id="bottomright" data-toggle="modal" data-target="#ai_chat">
+                    {{ __('message.al_chat') }} <span class="far fas fa-comment-dots"></span>
+                </button>
 
-                            <div class="col-7">
-                                <input type="text" name="user_input" id="user_input" class="form-control rounded-pill"
-                                    placeholder="{{ __('message.type_msg_here') }}">
+                <div class="modal fade" id="ai_chat" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-dialog-scrollable mb-0">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h3 class="modal-title">{{ __('message.al_chat') }}</h3>
+                                <button type="button" class="close" id="clearChat" data-dismiss="modal">&times;</button>
                             </div>
 
-                            <input type="file" id="fileInput" name="file" hidden>
-
-                            <div class="col-2 text-center">
-                                <button type="button" id="uploadBtn" class="btn btn-outline-secondary rounded-circle"
-                                    title="Upload file">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
+                            <div class="chat-box p-3 bg-light" id="chatHistory" style="height:400px; overflow-y:auto;">
+                                <div id="defaultMessage" class="text-center">
+                                    <strong>{{ __('message.Hello') }}</strong><br>
+                                    {{ __('message.how_can_I_help_you') }}
+                                </div>
                             </div>
 
-                            <div class="col-3">
-                                <button class="btn btn-info w-100 rounded-pill">
-                                    {{ __('message.Send') }}
-                                    <i class="fas fa-paper-plane ml-1"></i>
-                                </button>
+                            <div class="p-3 bg-light">
+                                <form id="chatForm" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row align-items-center">
+
+                                        <div class="col-7">
+                                            <input type="text" name="user_input" id="user_input"
+                                                class="form-control rounded-pill"
+                                                placeholder="{{ __('message.type_msg_here') }}">
+                                        </div>
+
+                                        <input type="file" id="fileInput" name="file" hidden>
+
+                                        <div class="col-2 text-center">
+                                            <button type="button" id="uploadBtn"
+                                                class="btn btn-outline-secondary rounded-circle" title="Upload file">
+                                                <i class="fas fa-paperclip"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="col-3">
+                                            <button class="btn btn-info w-100 rounded-pill">
+                                                {{ __('message.Send') }}
+                                                <i class="fas fa-paper-plane ml-1"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- File name preview -->
+                                    <div class="mt-2 text-muted small d-none" id="fileName"></div>
+                                </form>
                             </div>
 
                         </div>
-
-                        <div class="mt-2 text-muted small d-none" id="fileName"></div>
-                    </form>
+                    </div>
                 </div>
-
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -591,13 +616,16 @@
                     $('#uploadBtn').click(function () {
                         $('#fileInput').click();
                     });
-
                     $('#fileInput').change(function () {
                         if (this.files.length > 0) {
                             $('#fileName')
                                 .removeClass('d-none')
                                 .text('📎 ' + this.files[0].name);
                         }
+                    })
+
+                    $('#file').click(function () {
+                        $('<input type="file" name="file" id="fileInput" class="form-control mt-2" hidden/>').click();
                     });
 
                     $('#chatForm').submit(function (e) {

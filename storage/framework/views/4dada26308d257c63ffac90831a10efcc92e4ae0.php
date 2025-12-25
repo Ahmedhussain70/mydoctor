@@ -559,56 +559,58 @@
                 </style>
 
                 <button type="button" class="theme-btn-one" id="bottomright" data-toggle="modal" data-target="#ai_chat">
-                    <?php echo e(__('message.al_chat')); ?> <span class="far fas fa-comment-dots"></span>
-                </button>
+                    <?php echo e(__('message.al_chat')); ?> <span class="far fas fa-comment-dots"></span> </button>
 
-                <div class="modal fade" id="ai_chat" tabindex="-1" data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-scrollable mb-0">
-                        <div class="modal-content">
+                <div class="p-3 bg-light">
+                    <form id="chatForm" enctype="multipart/form-data">
+                        <?php echo csrf_field(); ?>
+                        <div class="row align-items-center">
 
-                            <div class="modal-header">
-                                <h3 class="modal-title"><?php echo e(__('message.al_chat')); ?></h3>
-                                <button type="button" class="close" id="clearChat" data-dismiss="modal">&times;</button>
+                            <div class="col-7">
+                                <input type="text" name="user_input" id="user_input" class="form-control rounded-pill"
+                                    placeholder="<?php echo e(__('message.type_msg_here')); ?>">
                             </div>
 
-                            <div class="chat-box p-3 bg-light" id="chatHistory" style="height:400px; overflow-y:auto;">
-                                <div id="defaultMessage" class="text-center">
-                                    <strong><?php echo e(__('message.Hello')); ?></strong><br>
-                                    <?php echo e(__('message.how_can_I_help_you')); ?>
+                            <input type="file" id="fileInput" name="file" hidden>
 
-                                </div>
+                            <div class="col-2 text-center">
+                                <button type="button" id="uploadBtn" class="btn btn-outline-secondary rounded-circle"
+                                    title="Upload file">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
                             </div>
 
-                            <div class="p-3 bg-light">
-                                <form id="chatForm" enctype="multipart/form-data">
-                                    <?php echo csrf_field(); ?>
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <input type="text" name="user_input" id="user_input" class="form-control"
-                                                placeholder="Type message">
-                                        </div>
-                                        <div class="col-2">
-                                            <input id="file" type="button" value="upload file" name="file" class="form-control btn btn-primary"/>
-                                        </div>
-                                        <div class="col-2">
-                                            <button class="btn btn-info w-100">Send</button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div class="col-3">
+                                <button class="btn btn-info w-100 rounded-pill">
+                                    <?php echo e(__('message.Send')); ?>
+
+                                    <i class="fas fa-paper-plane ml-1"></i>
+                                </button>
                             </div>
 
                         </div>
-                    </div>
+
+                        <div class="mt-2 text-muted small d-none" id="fileName"></div>
+                    </form>
                 </div>
+
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
                 <script>
 
-                    $('#file').click(function(){
-                        $('<input type="file" name="file" id="fileInput" class="form-control mt-2" hidden/>').click();
+                    $('#uploadBtn').click(function () {
+                        $('#fileInput').click();
                     });
-                    
+
+                    $('#fileInput').change(function () {
+                        if (this.files.length > 0) {
+                            $('#fileName')
+                                .removeClass('d-none')
+                                .text('📎 ' + this.files[0].name);
+                        }
+                    });
+
                     $('#chatForm').submit(function (e) {
                         e.preventDefault();
 

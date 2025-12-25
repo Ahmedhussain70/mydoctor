@@ -300,11 +300,18 @@
                 <div class="header-lower">
                     <div class="auto-container">
                         <div class="outer-box">
-                            <div class="logo-box">
-                                <figure class="logo"><a href="{{ url('/') }}"><img
-                                            src="{{ asset('public/image_web/') . '/' . $setting->logo }}" alt=""></a>
+                            <div class="logo-box d-flex align-items-center">
+                                <figure class="logo mb-0">
+                                    <a href="{{ url('/') }}">
+                                        <img src="{{ asset('public/image_web/' . $setting->logo) }}" alt="Logo">
+                                    </a>
                                 </figure>
+
+                                <span class="ml-2 logo-text">
+                                    MyDoctor
+                                </span>
                             </div>
+
                             <div class="menu-area">
                                 <div class="mobile-nav-toggler">
                                     <i class="icon-bar"></i>

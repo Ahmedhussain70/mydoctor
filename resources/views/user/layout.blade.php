@@ -313,7 +313,7 @@
                                 </span>
                                 <figure class="logo mb-0">
                                     <a href="{{ url('/') }}">
-                                        <img src="{{ asset('public/image_web/' . $setting->logo) }}" alt="Logo">
+                                        <img src="{{ asset('public/image_web/' . $setting->logo) }}" alt="Logo" style="width: 60px;">
                                     </a>
                                 </figure>
                             </div>

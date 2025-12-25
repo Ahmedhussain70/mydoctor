@@ -743,5 +743,6 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'New Password' => 'New Password',
   'Edit Hospital Profile' => 'Edit Hospital Profile',
   'All Reviews' => 'All Reviews',
-  'No reviews yet' => 'No reviews yet'
+  'No reviews yet' => 'No reviews yet',
+  'Total Hospitals' => 'Total Hospitals',
 );

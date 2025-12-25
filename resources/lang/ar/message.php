@@ -700,5 +700,6 @@ return array(
     'Edit Hospital Profile' => 'تعديل ملف المستشفى الشخصي',
     'All Reviews' => 'جميع التقييمات',
     'No reviews yet' => 'لا توجد مراجعات بعد',
-    'Hospital Profile' => 'الملف الشخصي للمستشفى'
+    'Hospital Profile' => 'الملف الشخصي للمستشفى',
+    'Total Hospitals' => 'إجمالي المستشفيات'
 );

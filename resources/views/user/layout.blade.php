@@ -658,7 +658,6 @@
     `);
 
                         if (aiBox.length > 0) {
-                            aiBox.find('.ai-response').html('<i class="fas fa-spinner fa-pulse"></i>');
                             $('#fileName')
                                 .addClass('d-none')
                         }

@@ -622,11 +622,8 @@
                                 .removeClass('d-none')
                                 .text('📎 ' + this.files[0].name);
                         }
-                    })
 
-                    $('#file').click(function () {
-                        $('<input type="file" name="file" id="fileInput" class="form-control mt-2" hidden/>').click();
-                    });
+                    })
 
                     $('#chatForm').submit(function (e) {
                         e.preventDefault();
@@ -659,6 +656,12 @@
             </div>
         </div>
     `);
+
+                        if (aiBox.length > 0) {
+                            aiBox.find('.ai-response').html('<i class="fas fa-spinner fa-pulse"></i>');
+                            $('#fileName')
+                                .addClass('d-none')
+                        }
 
                         $('#chatHistory').append(aiBox);
                         $('#chatHistory').scrollTop($('#chatHistory')[0].scrollHeight);

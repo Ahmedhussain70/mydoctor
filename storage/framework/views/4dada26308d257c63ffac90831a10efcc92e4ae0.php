@@ -200,6 +200,13 @@
             .doctors-sidebar .form-widget .custom-check-box {
                 border: unset !important;
             }
+
+            .logo-text {
+                font-size: 22px;
+                font-weight: 700;
+                color: #222;
+                line-height: 1;
+            }
         </style>
     <?php else: ?>
     <?php endif; ?>
@@ -312,7 +319,7 @@
                                 </span>
                                 <figure class="logo mb-0">
                                     <a href="<?php echo e(url('/')); ?>">
-                                        <img src="<?php echo e(asset('public/image_web/' . $setting->logo)); ?>" alt="Logo">
+                                        <img src="<?php echo e(asset('public/image_web/' . $setting->logo)); ?>" alt="Logo" style="width: 60px;">
                                     </a>
                                 </figure>
                             </div>
@@ -392,9 +399,14 @@
                 <div class="sticky-header">
                     <div class="auto-container">
                         <div class="outer-box">
-                            <div class="logo-box">
-                                <figure class="logo"><a href="<?php echo e(url('/')); ?>">
-                                        <img src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt=""></a>
+                            <div class="logo-box d-flex align-items-center">
+                                <span class="ml-2 logo-text">
+                                    MyDoctor
+                                </span>
+                                <figure class="logo mb-0">
+                                    <a href="<?php echo e(url('/')); ?>">
+                                        <img src="<?php echo e(asset('public/image_web/' . $setting->logo)); ?>" alt="Logo" style="width: 60px;">
+                                    </a>
                                 </figure>
                             </div>
                             <div class="menu-area">
@@ -433,7 +445,7 @@
                 <div class="close-btn"><i class="fas fa-times"></i></div>
                 <nav class="menu-box">
                     <div class="nav-logo"><a href="<?php echo e(url('/')); ?>"><img
-                                src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt="" title=""></a>
+                                src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>" alt="" title="" style="width: 60px;"></a>
                     </div>
                     <div class="menu-outer"></div>
                     <div class="contact-info">
@@ -473,7 +485,7 @@
                                     <div class="footer-widget logo-widget">
                                         <figure class="footer-logo"><a href="<?php echo e(url('/')); ?>">
                                                 <img src="<?php echo e(asset('public/image_web/') . '/' . $setting->logo); ?>"
-                                                    alt=""></a></figure>
+                                                    alt="" style="width: 60px;"></a></figure>
                                         <div class="text">
                                             <p><?php echo e(__('message.Footer Content')); ?></p>
                                         </div>

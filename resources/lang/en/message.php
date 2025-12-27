@@ -1,12 +1,9 @@
 <?php
 
-use App\Models\Laboratory;
-use GrahamCampbell\ResultType\Success;
-
 return array(
   'RTL' => '1',
   'notification' => 'Notification',
-  'System Name' => 'Appointment Book System',
+  'System Name' => 'My Doctor',
   'Log In' => 'Log In',
   'meta_description' => 'Easy And Fast Appointment Book Management System',
   'Meta Keyword' => 'Book Appointment,Fast Appointment',
@@ -745,4 +742,6 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'All Reviews' => 'All Reviews',
   'No reviews yet' => 'No reviews yet',
   'Total Hospitals' => 'Total Hospitals',
+  'City' => 'City',
+  'Select City' => 'Select City'
 );

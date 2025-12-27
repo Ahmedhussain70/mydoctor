@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\AnswerController;
+use App\Http\Controllers\API\QuestionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ApiController;
@@ -25,7 +27,7 @@ Route::group(['middleware' => ['Localization']], function () {
     Route::post("register", [ApiController::class, "postregisterpatient"]);
     Route::any("user_reject_appointment", [ApiController::class, "user_reject_appointment"]);
 
-    Route::post("connectycube_register",[ApiController::class,"connectycube_register"]);
+    Route::post("connectycube_register", [ApiController::class, "connectycube_register"]);
 
     Route::any("savetoken", [ApiController::class, "storetoken"]);
     Route::any("login", [ApiController::class, "showlogin"]);
@@ -104,7 +106,7 @@ Route::group(['middleware' => ['Localization']], function () {
     Route::any("pharmacy_income_report", [ApiController::class, "pharmacy_income_report"]);
     Route::any("get_city", [ApiController::class, "get_city"]);
 
-    Route::any("add_laboratory_report",[ApiController::class,"add_laboratory_report"]);
+    Route::any("add_laboratory_report", [ApiController::class, "add_laboratory_report"]);
     Route::any("laboratory_report", [ApiController::class, "laboratory_report"]);
     Route::any("report_detail", [ApiController::class, "report_detail"]);
     Route::any("delete_laboratory_report", [ApiController::class, "delete_laboratory_report"]);
@@ -114,4 +116,11 @@ Route::group(['middleware' => ['Localization']], function () {
     Route::any("get_laboratory_report_list", [ApiController::class, "get_laboratory_report_list"]);
     Route::any("change_laboratoryreport_status", [ApiController::class, "change_laboratoryreport_status"]);
 
+    Route::get('/questions', [QuestionController::class, 'index']);
+    Route::get('/questions/{id}', [QuestionController::class, 'show']);
+    Route::post('/questions', [QuestionController::class, 'store']);
+    Route::delete('/questions/{id}', [QuestionController::class, 'destroy']);
+
+    Route::get('/questions/{question}/answers', [AnswerController::class, 'index']);
+    Route::post('/answers', [AnswerController::class, 'store']);
 });

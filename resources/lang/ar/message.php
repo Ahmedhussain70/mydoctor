@@ -3,7 +3,7 @@
 return array(
     "RTL" => "0", // 0=>RTL ,1=>LTR
     "notification" => "إشعار",
-    "System Name" => "نظام حجز المواعيد",
+    "System Name" => "ماي دكنور",
     "Log In" => "تسجيل الدخول",
     "meta_description" => "نظام إدارة حجز المواعيد بسهولة وسرعة",
     "Meta Keyword" => "حجز موعد، حجز سريع",
@@ -701,5 +701,6 @@ return array(
     'All Reviews' => 'جميع التقييمات',
     'No reviews yet' => 'لا توجد مراجعات بعد',
     'Hospital Profile' => 'الملف الشخصي للمستشفى',
-    'Total Hospitals' => 'إجمالي المراكز الطبيه'
+    'Total Hospitals' => 'إجمالي المراكز الطبيه',
+    'City' => 'المدينة'
 );

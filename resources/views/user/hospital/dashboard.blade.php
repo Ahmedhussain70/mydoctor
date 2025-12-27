@@ -61,8 +61,8 @@
                     <ul class="list clearfix">
                         <li><a href="{{ url('hospitaldashboard') }}" class="current"><i
                                     class="fas fa-columns"></i>{{ __('message.Dashboard') }}</a></li>
-                        <li><a href="{{ url('hospitalreport') }}"><i
-                                    class="fas fa-pills"></i>{{ __('message.Report') }}</a></li>
+                        {{--  <li><a href="{{ url('hospitalreport') }}"><i
+                                    class="fas fa-pills"></i>{{ __('message.Report') }}</a></li> --}}
                         <li><a href="{{ url('hospitalreview') }}"><i
                                     class="fas fa-star"></i>{{ __('message.Reviews') }}</a></li>
                         <li><a href="{{ url('hospitaleditprofile') }}"><i

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
@@ -14,16 +14,16 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'question_id' => 'required|exists:questions,id',
-            'doctor_id' => 'required|exists:doctors,id',
+        $data = $request->validate([
+            'question_id' => 'required',
+            'doctor_id' => 'required',
             'answer' => 'required|string',
         ]);
 
-        $answer = Answer::create($request->all());
+        $answer = Answer::create($data);
 
         // Update question status
-        Question::where('id', $request->question_id)
+        Question::where('id', $data['question_id'])
             ->update(['status' => 'answered']);
 
         return success('Answer added successfully', 201, $answer);

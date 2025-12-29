@@ -2001,14 +2001,14 @@ class ApiController extends Controller
         $rules = [
             'email' => 'required',
             'password' => 'required',
-            'type' => 'required',
+            // 'type' => 'required',
             // 'token' => 'required'
         ];
 
         $messages = array(
             'email.required' => "Email is required",
             'password.required' => "password is required",
-            'type.required' => "type is required",
+            // 'type.required' => "type is required",
             //   'token.required' => "token is required"
         );
 

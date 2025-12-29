@@ -4771,3 +4771,4 @@
 #39 C:\\xampp\\htdocs\\mydoctor\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
 #40 {main}
 "} 
+[2025-12-29 17:12:49] production.ERROR: ConnectyCube session or token missing {"response":{"errors":{"base":["Your account is temporary blocked due to limit usage violation. Please upgrade your account in Dashboard https://admin.connectycube.com or contact support@connectycube.com to get more details"]}}} 

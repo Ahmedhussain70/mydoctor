@@ -382,7 +382,7 @@
                                                             /* hide radio inputs */
                                                             .rating__input {
                                                                 position: absolute !important;
-                                                                left: -9999px !important;
+                                                                display: none;
                                                             }
 
                                                             /* hide 'none' input from screenreaders */

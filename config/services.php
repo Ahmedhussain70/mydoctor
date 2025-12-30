@@ -37,6 +37,10 @@ return [
         'channel' => env('PAYTM_CHANNEL'),
         'industry_type' => env('PAYTM_INDUSTRY_TYPE'),
     ],
+    'google' => [
+        'maps_key' => env('MAPS_KEY'),
+    ],
+
 
 
     // 'connectycube' => [  this code for coonectycube app_id and auth_key add in evn file

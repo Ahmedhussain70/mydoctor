@@ -367,83 +367,53 @@
         }
     </script>
     <script>
-        function initMap() {
-            // Initialize the map with a default center and zoom level
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(-33.863276, 151.207977), // Default center
-                zoom: 12 // Default zoom level
-            });
+    window.initMap = function () {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -33.863276, lng: 151.207977 },
+            zoom: 12
+        });
 
-            // Create an InfoWindow instance
-            var infoWindow = new google.maps.InfoWindow();
+        var infoWindow = new google.maps.InfoWindow();
+        var markerBounds = new google.maps.LatLngBounds();
 
-            // Create LatLngBounds instance to adjust the map to fit all markers
-            var markerBounds = new google.maps.LatLngBounds();
+        var markers = @json($doctorslistmap);
 
-            // Parse the markers data passed from PHP
-            var markers = <?= json_encode($doctorslistmap) ?>;
+        markers.forEach(function(markerElem) {
+            if (markerElem.lat && markerElem.lon) {
+                var point = new google.maps.LatLng(
+                    parseFloat(markerElem.lat),
+                    parseFloat(markerElem.lon)
+                );
 
-            // Loop through each marker and add it to the map
-            markers.forEach(function(markerElem) {
-                // Ensure latitude and longitude are not null
-                if (markerElem.lat !== null && markerElem.lon !== null) {
-                    // Extract details for the marker
-                    var name = markerElem.name;
-                    var address = markerElem.address;
-                    var point = new google.maps.LatLng(
-                        parseFloat(markerElem.lat),
-                        parseFloat(markerElem.lon)
-                    );
+                markerBounds.extend(point);
 
-                    // Extend markerBounds to include this marker's position
-                    markerBounds.extend(point);
+                var infowincontent = `
+                    <strong>${markerElem.name}</strong><br>
+                    ${markerElem.address}
+                `;
 
-                    // Create content for InfoWindow
-                    var infowincontent = document.createElement('div');
-                    var strong = document.createElement('strong');
-                    strong.textContent = name;
-                    infowincontent.appendChild(strong);
-                    infowincontent.appendChild(document.createElement('br'));
-
-                    var text = document.createElement('text');
-                    text.textContent = address;
-                    infowincontent.appendChild(text);
-
-                    // Define marker icon
-                    var icon = {
-                        url: "{{ asset('public/front_pro/assets/images/icons/map-marker.png') }}",
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: point,
+                    icon: {
+                        url: "{{ asset('front_pro/assets/images/icons/map-marker.png') }}",
                         scaledSize: new google.maps.Size(40, 40),
-                        origin: new google.maps.Point(0, 0),
                         anchor: new google.maps.Point(20, 40)
-                    };
+                    }
+                });
 
-                    // Create the marker
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: point,
-                        icon: icon
-                    });
-
-                    // Add click listener to open InfoWindow
-                    marker.addListener('click', function() {
-                        infoWindow.setContent(infowincontent);
-                        infoWindow.open(map, marker);
-                    });
-                }
-            });
-
-            // Adjust the map view to fit all markers
-            if (!markerBounds.isEmpty()) {
-                map.fitBounds(markerBounds); // Ensures all markers are visible
-            } else {
-                // No markers, keep the default center and zoom
-                map.setCenter(new google.maps.LatLng(-33.863276, 151.207977));
-                map.setZoom(12);
+                marker.addListener('click', function() {
+                    infoWindow.setContent(infowincontent);
+                    infoWindow.open(map, marker);
+                });
             }
-        }
+        });
 
-        // Call the initMap function
-        initMap();
-    </script>
+        if (!markerBounds.isEmpty()) {
+            map.fitBounds(markerBounds);
+        }
+    }
+</script>
+
 
 @stop

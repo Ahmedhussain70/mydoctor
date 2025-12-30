@@ -357,8 +357,8 @@
 
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {
-                lat: {{ config('mapdetail.lat', 30.0444) }},
-                lng: {{ config('mapdetail.long', 31.2357) }}
+                lat: {{ config('mapdetail.lat') }},
+                lng: {{ config('mapdetail.long') }}
             },
             zoom: 12
         });

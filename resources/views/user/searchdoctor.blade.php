@@ -369,7 +369,7 @@
     <script>
     window.initMap = function () {
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -33.863276, lng: 151.207977 },
+            center: { lat: {{ config('mapdetail.google.lat') }}, lng: {{ config('mapdetail.google.long') }} },
             zoom: 12
         });
 

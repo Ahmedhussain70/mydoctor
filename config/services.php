@@ -38,7 +38,7 @@ return [
         'industry_type' => env('PAYTM_INDUSTRY_TYPE'),
     ],
     'google' => [
-        'maps_key' => env('MAPS_KEY'),
+        'maps_key' => env('MAP_KEY'),
     ],
 
 

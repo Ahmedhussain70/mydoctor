@@ -353,59 +353,56 @@
         }
     </script>
     <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: {{ config('mapdetail.lat') }}, lng: {{ config('mapdetail.long') }} },
-                zoom: 12
-            });
-            var infoWindow = new google.maps.InfoWindow;
-            var markerBounds = new google.maps.LatLngBounds();
-            var markers = <?= json_encode($doctorslistmap) ?>;
-            Array.prototype.forEach.call(markers, function(markerElem) {
+    window.initMap = function () {
 
-                if (markerElem.lat != null && markerElem.lon != null) {
-                    var id = markerElem.id;
-                    var name = markerElem.name;
-                    var address = markerElem.address;
-                    var type = "D";
-                    var point = new google.maps.LatLng(
-                        parseFloat(markerElem.lat),
-                        parseFloat(markerElem.lon));
-                    markerBounds.extend(point);
-                    var infowincontent = document.createElement('div');
-                    var strong = document.createElement('strong');
-                    strong.textContent = name
-                    infowincontent.appendChild(strong);
-                    infowincontent.appendChild(document.createElement('br'));
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: {{ config('mapdetail.lat', 30.0444) }},
+                lng: {{ config('mapdetail.long', 31.2357) }}
+            },
+            zoom: 12
+        });
 
-                    var text = document.createElement('text');
-                    text.textContent = address
-                    infowincontent.appendChild(text);
-                    var icon = {
-                        url: "{{ asset('public/front_pro/assets/images/icons/map-marker.png') }}", // url
-                        scaledSize: new google.maps.Size(40, 40), // scaled size
-                        origin: new google.maps.Point(0, 0), // origin
-                        anchor: new google.maps.Point(0, 0) // anchor
-                    };
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: point,
-                        icon: icon
-                    });
-                    marker.addListener('click', function() {
-                        infoWindow.setContent(infowincontent);
-                        infoWindow.open(map, marker);
-                    });
+        var infoWindow = new google.maps.InfoWindow();
+        var markerBounds = new google.maps.LatLngBounds();
+        var markers = @json($doctorslistmap);
 
-                    map.fitBounds(markerBounds);
-                    map.panToBounds(markerBounds);
-                }
+        markers.forEach(function(markerElem) {
+            if (markerElem.lat && markerElem.lon) {
 
-            });
+                var point = new google.maps.LatLng(
+                    parseFloat(markerElem.lat),
+                    parseFloat(markerElem.lon)
+                );
 
+                markerBounds.extend(point);
+
+                var infowincontent = `
+                    <strong>${markerElem.name}</strong><br>
+                    ${markerElem.address}
+                `;
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: point,
+                    icon: {
+                        url: "{{ asset('front_pro/assets/images/icons/map-marker.png') }}",
+                        scaledSize: new google.maps.Size(40, 40),
+                        anchor: new google.maps.Point(20, 40)
+                    }
+                });
+
+                marker.addListener('click', function() {
+                    infoWindow.setContent(infowincontent);
+                    infoWindow.open(map, marker);
+                });
+            }
+        });
+
+        if (!markerBounds.isEmpty()) {
+            map.fitBounds(markerBounds);
         }
-
-        initMap();
-    </script>
+    }
+</script>
 
 @stop

@@ -355,7 +355,7 @@
     <script>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: {{ config('mapdetail.google.lat') }}, lng: {{ config('mapdetail.google.long') }} },
+                center: { lat: {{ config('mapdetail.lat') }}, lng: {{ config('mapdetail.long') }} },
                 zoom: 12
             });
             var infoWindow = new google.maps.InfoWindow;

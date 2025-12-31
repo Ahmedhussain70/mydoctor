@@ -255,18 +255,13 @@
                 </ul>
 
                 {{-- Location --}}
-                <p class="location">
+                <p class="location mt-2">
                     <i class="fas fa-map-marker-alt"></i>
                     {{ Str::limit($dl->address, 38) }}
                 </p>
 
                 {{-- Working Time --}}
-                <div class="lower-box clearfix">
-                    <span class="text">
-                        <i class="fas fa-clock"></i>
-                        {{ $dl->working_time }}
-                    </span>
-
+                <div class="lower-box clearfix mt-2">
                     <a href="{{ url('viewlaboratory/'.$dl->id) }}">
                         {{ __('message.Visit Now') }}
                     </a>

@@ -258,13 +258,12 @@
                                                         </li>
                                                     </ul>
 
-                                                    <p class="location">
+                                                    <p class="location mt-2">
                                                         <i class="fas fa-map-marker-alt"></i>
                                                         {{ Str::limit($dl->address, 38) }}
                                                     </p>
 
-                                                    <div class="lower-box clearfix">
-                                                        <span>{{ $dl->working_time }}</span>
+                                                    <div class="lower-box clearfix mt-2">
                                                         <a href="{{ url('viewhospital/'.$dl->id) }}">
                                                             {{ __('message.Visit Now') }}
                                                         </a>

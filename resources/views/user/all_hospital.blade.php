@@ -207,79 +207,67 @@
                             <div class="row clearfix">
                                 @foreach ($doctorlist as $dl)
                                     <div class="col-lg-6 col-md-6 col-sm-12 team-block">
-                                        <div class="team-block-three" data-toggle="tooltip" data-placement="top" data-html="true" title="<?php $title = ''; if($dl->reviewslist->count() > 0){ foreach($dl->reviewslist as $review){ $title .= '<div><strong>' . ($review->patientls->name ?? '') . '</strong>: ' . substr(htmlspecialchars($review->description), 0, 50) . '</div>'; } } else { $title = 'No reviews yet'; } echo $title; ?>">
+                                        <div class="team-block-three"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            title="">
+
                                             <div class="inner-box">
                                                 <figure class="image-box">
-                                                    {{-- <img src="{{asset('public/upload/doctors').'/'.$dl->image}}" alt="" style="height: 245px;"> --}}
-                                                    @if ($dl->image != '')
-                                                        <img src="{{ asset('public/upload/doctors') . '/' . $dl->image }}"
-                                                            alt="" style="height: 245px;">
-                                                    @else
-                                                        <img src="{{ asset('public/upload/doctors/defaultdoctor.png') }}"
-                                                            alt="" style="height: 245px;">
-                                                    @endif
-                                                    @if ($dl->is_fav == '0')
-                                                        @if (empty(Session::has('user_id')))
-                                                            <a href="{{ url('patientlogin') }}"
-                                                                id="favdoc{{ $dl->id }}">
-                                                            @else
-                                                                <a href="javascript:userfavorite1('{{ $dl->id }}')"
-                                                                    id="favdoc1{{ $dl->id }}">
-                                                        @endif
+                                                    <img
+                                                        src="{{ $dl->image
+                                                            ? asset('public/upload/doctors/'.$dl->image)
+                                                            : asset('public/upload/doctors/defaultdoctor.png') }}"
+                                                        style="height:245px"
+                                                        alt="Doctor Image">
+
+                                                    {{-- Favorite --}}
+                                                    @if ($dl->is_fav == 0)
+                                                        <a href="{{ Session::has('user_id') ? 'javascript:userfavorite1('.$dl->id.')' : url('patientlogin') }}"
+                                                        id="favdoc{{ $dl->id }}">
                                                     @else
                                                         <a href="javascript:userfavorite1('{{ $dl->id }}')"
-                                                            class="activefav" id="favdoc1{{ $dl->id }}">
+                                                        class="activefav"
+                                                        id="favdoc{{ $dl->id }}">
                                                     @endif
-                                                    <i class="far fa-heart"></i></a>
+                                                        <i class="far fa-heart"></i>
+                                                    </a>
                                                 </figure>
+
                                                 <div class="lower-content">
-                                                    <ul class="name-box clearfix">
-                                                        <li class="name">
-                                                            <h3><a
-                                                                    href="{{ url('viewhospital') . '/' . $dl->id }}">{{ $dl->name }}</a>
-                                                            </h3>
-                                                        </li>
-                                                        <!-- <li><i class="icon-Trust-1"></i></li>
-                                                                    <li><i class="icon-Trust-2"></i></li> -->
-                                                    </ul>
-                                                    <span
-                                                        class="designation">{{ isset($dl->departmentls) ? $dl->departmentls->name : '' }}</span>
-                                                    <div class="rating-box clearfix">
-                                                        <ul class="rating clearfix">
-                                                            <?php
-                                                            $arr = $dl->avgratting;
+                                                    <h3>
+                                                        <a href="{{ url('viewhospital/'.$dl->id) }}">{{ $dl->name }}</a>
+                                                    </h3>
 
-                                                            if (!empty($arr)) {
-                                                                $i = 0;
-                                                                if (isset($arr)) {
-                                                                    for ($i = 0; $i < $arr; $i++) {
-                                                                        echo '<li><i class="icon-Star"></i></li>';
-                                                                    }
-                                                                }
+                                                    <span class="designation">
+                                                        {{ $dl->departmentls->name ?? '' }}
+                                                    </span>
 
-                                                                $remaing = 5 - $i;
-                                                                for ($j = 0; $j < $remaing; $j++) {
-                                                                    echo '<li class="light"><i class="icon-Star"></i></li>';
-                                                                }
-                                                            } else {
-                                                                for ($j = 0; $j < 5; $j++) {
-                                                                    echo '<li class="light"><i class="icon-Star"></i></li>';
-                                                                }
-                                                            } ?>
-                                                            <li><a
-                                                                    href="{{ url('viewhospital') . '/' . $dl->id }}">({{ $dl->totalreview }})</a>
+                                                    {{-- Rating --}}
+                                                    <ul class="rating clearfix d-flex justify-content-start">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            <li class="{{ $i <= $dl->avgratting ? '' : 'light' }}">
+                                                                <i class="icon-Star"></i>
                                                             </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="location-box">
-                                                        <p><i
-                                                                class="fas fa-map-marker-alt"></i>{{ substr($dl->address, 0, 38) }}
-                                                        </p>
-                                                    </div>
+                                                        @endfor
+                                                        <li>
+                                                            <a href="{{ url('viewhospital/'.$dl->id) }}">
+                                                                ({{ $dl->totalreview }})
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+
+                                                    <p class="location">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        {{ Str::limit($dl->address, 38) }}
+                                                    </p>
+
                                                     <div class="lower-box clearfix">
-                                                        <span class="text">{{ $dl->working_time }}</span>
-                                                        <a
-                                                            href="{{ url('viewhospital') . '/' . $dl->id }}">{{ __('message.Visit Now') }}</a>
+                                                        <span>{{ $dl->working_time }}</span>
+                                                        <a href="{{ url('viewhospital/'.$dl->id) }}">
+                                                            {{ __('message.Visit Now') }}
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

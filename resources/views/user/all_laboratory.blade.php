@@ -168,7 +168,7 @@
                                                 <div class="link">
                                                     <i class="fas fa-clock"></i>
                                                     <a href="{{ url('viewlaboratory/'.$dl->id) }}">
-                                                        {{ $dl->working_time }}
+                                                        
                                                     </a>
                                                 </div>
                                             </div>

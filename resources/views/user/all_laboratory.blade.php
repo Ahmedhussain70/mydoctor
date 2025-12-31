@@ -200,84 +200,83 @@
                             <div class="row clearfix">
                                 @foreach ($doctorlist as $dl)
                                     <div class="col-lg-6 col-md-6 col-sm-12 team-block">
-                                        <div class="team-block-three">
-                                            <div class="inner-box">
-                                                <figure class="image-box">
-                                                    {{-- <img src="{{asset('public/upload/doctors').'/'.$dl->image}}" alt="" style="height: 245px;"> --}}
-                                                    @if ($dl->image != '')
-                                                        <img src="{{ asset('public/upload/doctors') . '/' . $dl->image }}"
-                                                            alt="" style="height: 245px;">
-                                                    @else
-                                                        <img src="{{ asset('public/upload/doctors/defaultlaboratory.png') }}"
-                                                            alt="" style="height: 245px;">
-                                                    @endif
-                                                    @if ($dl->is_fav == '0')
-                                                        @if (empty(Session::has('user_id')))
-                                                            <a href="{{ url('patientlogin') }}"
-                                                                id="favdoc{{ $dl->id }}">
-                                                            @else
-                                                                <a href="javascript:userfavorite1('{{ $dl->id }}')"
-                                                                    id="favdoc1{{ $dl->id }}">
-                                                        @endif
-                                                    @else
-                                                        <a href="javascript:userfavorite1('{{ $dl->id }}')"
-                                                            class="activefav" id="favdoc1{{ $dl->id }}">
-                                                    @endif
-                                                    <i class="far fa-heart"></i></a>
-                                                </figure>
-                                                <div class="lower-content">
-                                                    <ul class="name-box clearfix">
-                                                        <li class="name">
-                                                            <h3><a
-                                                                    href="{{ url('viewlaboratory') . '/' . $dl->id }}">{{ $dl->name }}</a>
-                                                            </h3>
-                                                        </li>
-                                                        <!-- <li><i class="icon-Trust-1"></i></li>
-                                                                    <li><i class="icon-Trust-2"></i></li> -->
-                                                    </ul>
-                                                    <span
-                                                        class="designation">{{ isset($dl->departmentls) ? $dl->departmentls->name : '' }}</span>
-                                                    <div class="rating-box clearfix">
-                                                        <ul class="rating clearfix">
-                                                            <?php
-                                                            $arr = $dl->avgratting;
+    <div class="team-block-three">
+        <div class="inner-box">
 
-                                                            if (!empty($arr)) {
-                                                                $i = 0;
-                                                                if (isset($arr)) {
-                                                                    for ($i = 0; $i < $arr; $i++) {
-                                                                        echo '<li><i class="icon-Star"></i></li>';
-                                                                    }
-                                                                }
+            {{-- Image --}}
+            <figure class="image-box">
+                <img
+                    src="{{ !empty($dl->image)
+                        ? asset('public/upload/doctors/'.$dl->image)
+                        : asset('public/upload/doctors/defaultlaboratory.png') }}"
+                    alt="Laboratory"
+                    style="height:245px;">
 
-                                                                $remaing = 5 - $i;
-                                                                for ($j = 0; $j < $remaing; $j++) {
-                                                                    echo '<li class="light"><i class="icon-Star"></i></li>';
-                                                                }
-                                                            } else {
-                                                                for ($j = 0; $j < 5; $j++) {
-                                                                    echo '<li class="light"><i class="icon-Star"></i></li>';
-                                                                }
-                                                            } ?>
-                                                            <li><a
-                                                                    href="{{ url('viewlaboratory') . '/' . $dl->id }}">({{ $dl->totalreview }})</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="location-box">
-                                                        <p><i
-                                                                class="fas fa-map-marker-alt"></i>{{ substr($dl->address, 0, 38) }}
-                                                        </p>
-                                                    </div>
-                                                    <div class="lower-box clearfix">
-                                                        <span class="text">{{ $dl->working_time }}</span>
-                                                        <a
-                                                            href="{{ url('viewlaboratory') . '/' . $dl->id }}">{{ __('message.Visit Now') }}</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                {{-- Favorite --}}
+                @php
+                    $favUrl = Session::has('user_id')
+                        ? "javascript:userfavorite1('{$dl->id}')"
+                        : url('patientlogin');
+                @endphp
+
+                <a href="{{ $favUrl }}"
+                   id="favdoc{{ $dl->id }}"
+                   class="{{ $dl->is_fav ? 'activefav' : '' }}">
+                    <i class="far fa-heart"></i>
+                </a>
+            </figure>
+
+            <div class="lower-content">
+
+                {{-- Name --}}
+                <h3>
+                    <a href="{{ url('viewlaboratory/'.$dl->id) }}">
+                        {{ $dl->name }}
+                    </a>
+                </h3>
+
+                {{-- Department --}}
+                <span class="designation">
+                    {{ $dl->departmentls->name ?? '' }}
+                </span>
+
+                {{-- Rating --}}
+                <ul class="rating clearfix">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <li class="{{ $i <= ($dl->avgratting ?? 0) ? '' : 'light' }}">
+                            <i class="icon-Star"></i>
+                        </li>
+                    @endfor
+                    <li>
+                        <a href="{{ url('viewlaboratory/'.$dl->id) }}">
+                            ({{ $dl->totalreview }})
+                        </a>
+                    </li>
+                </ul>
+
+                {{-- Location --}}
+                <p class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ Str::limit($dl->address, 38) }}
+                </p>
+
+                {{-- Working Time --}}
+                <div class="lower-box clearfix">
+                    <span class="text">
+                        <i class="fas fa-clock"></i>
+                        {{ $dl->working_time }}
+                    </span>
+
+                    <a href="{{ url('viewlaboratory/'.$dl->id) }}">
+                        {{ __('message.Visit Now') }}
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
                                 @endforeach
                             </div>
                             @if (isset($type) && $type != '' && isset($term) && $term != '')

@@ -104,85 +104,93 @@
                                                 style="background-image: url('{{ asset('public/front_pro/assets/images/shape/shape-25.png') }}');">
                                             </div>
                                         </div>
-                                        <figure class="image-box">
-                                            @if ($dl->image != '')
-                                                <img src="{{ asset('public/upload/doctors') . '/' . $dl->image }}"
-                                                    alt="" style="height: 155px;">
-                                            @else
-                                                <img src="{{ asset('public/upload/doctors/defaultpharmacy.png') }}"
-                                                    alt="" style="height: 155px;">
-                                            @endif
 
+                                        {{-- Image --}}
+                                        <figure class="image-box">
+                                            <img
+                                                src="{{ $dl->image
+                                                    ? asset('public/upload/doctors/'.$dl->image)
+                                                    : asset('public/upload/doctors/defaultpharmacy.png') }}"
+                                                alt="Laboratory Image"
+                                                style="height:155px">
                                         </figure>
+
                                         <div class="content-box">
+                                            {{-- Favorite --}}
                                             <div class="like-box">
-                                                @if ($dl->is_fav == '0')
-                                                    @if (empty(Session::has('user_id')))
-                                                        <a href="{{ url('patientlogin') }}"
-                                                            id="favdoc{{ $dl->id }}">
-                                                        @else
-                                                            <a href="javascript:userfavorite('{{ $dl->id }}')"
-                                                                id="favdoc{{ $dl->id }}">
-                                                    @endif
+                                                @if ($dl->is_fav == 0)
+                                                    <a href="{{ Session::has('user_id')
+                                                        ? "javascript:userfavorite('{$dl->id}')"
+                                                        : url('patientlogin') }}"
+                                                    id="favdoc{{ $dl->id }}">
                                                 @else
                                                     <a href="javascript:userfavorite('{{ $dl->id }}')"
-                                                        class="activefav" id="favdoc{{ $dl->id }}">
+                                                    class="activefav"
+                                                    id="favdoc{{ $dl->id }}">
                                                 @endif
-                                                <i class="far fa-heart"></i></a>
+                                                    <i class="far fa-heart"></i>
+                                                </a>
                                             </div>
-                                            <ul class="name-box clearfix">
-                                                <li class="name">
-                                                    <h3><a
-                                                            href="{{ url('viewlaboratory') . '/' . $dl->id }}">{{ $dl->name }}</a>
-                                                    </h3>
-                                                </li>
-                                                <!-- <li><i class="icon-Trust-1"></i></li>
-                                                            <li><i class="icon-Trust-2"></i></li> -->
-                                            </ul>
-                                            <span
-                                                class="designation">{{ isset($dl->departmentls) ? $dl->departmentls->name : '' }}</span>
+
+                                            {{-- Name --}}
+                                            <h3 class="name">
+                                                <a href="{{ url('viewlaboratory/'.$dl->id) }}">
+                                                    {{ $dl->name }}
+                                                </a>
+                                            </h3>
+
+                                            {{-- Department --}}
+                                            <span class="designation">
+                                                {{ $dl->departmentls->name ?? '' }}
+                                            </span>
+
+                                            {{-- About --}}
                                             <div class="text">
-                                                <p>{{ substr($dl->aboutus, 0, 200) }}</p>
+                                                <p>{{ \Illuminate\Support\Str::limit($dl->aboutus, 200) }}</p>
                                             </div>
+
+                                            {{-- Rating --}}
                                             <div class="rating-box clearfix">
                                                 <ul class="rating clearfix">
-                                                    <?php
-                                                    $arr = $dl->avgratting;
-                                                    if (!empty($arr)) {
-                                                        $i = 0;
-                                                        if (isset($arr)) {
-                                                            for ($i = 0; $i < $arr; $i++) {
-                                                                echo '<li><i class="icon-Star"></i></li>';
-                                                            }
-                                                        }
-
-                                                        $remaing = 5 - $i;
-                                                        for ($j = 0; $j < $remaing; $j++) {
-                                                            echo '<li class="light"><i class="icon-Star"></i></li>';
-                                                        }
-                                                    } else {
-                                                        for ($j = 0; $j < 5; $j++) {
-                                                            echo '<li class="light"><i class="icon-Star"></i></li>';
-                                                        }
-                                                    } ?>
-                                                    <li><a
-                                                            href="{{ url('viewlaboratory') . '/' . $dl->id }}">({{ $dl->totalreview }})</a>
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        <li class="{{ $i <= $dl->avgratting ? '' : 'light' }}">
+                                                            <i class="icon-Star"></i>
+                                                        </li>
+                                                    @endfor
+                                                    <li>
+                                                        <a href="{{ url('viewlaboratory/'.$dl->id) }}">
+                                                            ({{ $dl->totalreview }})
+                                                        </a>
                                                     </li>
                                                 </ul>
-                                                <div class="link"><a
-                                                        href="{{ url('viewlaboratory') . '/' . $dl->id }}">{{ $dl->working_time }}</a>
+
+                                                {{-- Working Time --}}
+                                                <div class="link">
+                                                    <i class="fas fa-clock"></i>
+                                                    <a href="{{ url('viewlaboratory/'.$dl->id) }}">
+                                                        {{ $dl->working_time }}
+                                                    </a>
                                                 </div>
                                             </div>
+
+                                            {{-- Location --}}
                                             <div class="location-box">
-                                                <p><i class="fas fa-map-marker-alt"></i>{{ substr($dl->address, 0, 38) }}
+                                                <p>
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                    {{ \Illuminate\Support\Str::limit($dl->address, 38) }}
                                                 </p>
                                             </div>
-                                            <div class="btn-box"><a
-                                                    href="{{ url('viewlaboratory') . '/' . $dl->id }}">{{ __('message.Visit Now') }}</a>
+
+                                            {{-- Action --}}
+                                            <div class="btn-box">
+                                                <a href="{{ url('viewlaboratory/'.$dl->id) }}">
+                                                    {{ __('message.Visit Now') }}
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             @endforeach
                             @if (isset($type) && $type != '' && isset($term) && $term != '')
                                 {{ $doctorlist->appends(['term' => $term, 'type' => $type])->links() }}

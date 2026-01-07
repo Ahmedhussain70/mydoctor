@@ -7,7 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="{{ Session::get('favicon') }}" rel="icon">
+    <!-- <link href="{{ Session::get('favicon') }}" rel="icon"> -->
+     @php
+        $fav = app\models\Setting::find(1)->favicon;
+    @endphp
+
+    <link rel="icon" href="{{ asset('public/upload/image_web/' . $fav) }}">
+    
     <title>@yield('title')</title>
     <link href="{{ asset('public/admin') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('public/admin') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">

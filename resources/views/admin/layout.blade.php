@@ -149,6 +149,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
                 href="{{ url('backend/dashboard') }}">
                 <div class="sidebar-brand-icon">
+                    <?php $setting = App\Models\Setting::find(1); ?>
                     <img src="{{ asset('public/image_web/' . $setting->logo) }}" alt="Logo" style="width: 60px;">
                 </div>
 

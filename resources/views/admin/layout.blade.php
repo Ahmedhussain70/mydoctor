@@ -7,13 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link href="{{ Session::get('favicon') }}" rel="icon"> -->
-     @php
-        $fav = app\models\Setting::find(1)->favicon;
-    @endphp
-
-    <link rel="icon" href="{{ asset('public/upload/image_web/' . $fav) }}">
-    
+    <link href="{{ Session::get('favicon') }}" rel="icon">
     <title>@yield('title')</title>
     <link href="{{ asset('public/admin') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('public/admin') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -155,7 +149,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
                 href="{{ url('backend/dashboard') }}">
                 <div class="sidebar-brand-icon">
-                    <img src="{{ Session::get('logo') }}" style="color: white;background-color: white;">
+                    <img src="{{ asset('public/image_web/' . $setting->logo) }}" alt="Logo" style="width: 60px;">
                 </div>
 
 

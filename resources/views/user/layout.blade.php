@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>@yield('title')</title>
     @yield('meta-data')
-    <link href="{{ Session::get('favicon') }}" rel="icon">
+    @php
+        $fav = app\models\Setting::find(1)->favicon;
+    @endphp
 
     <link rel="icon" href="{{ asset('public/upload/image_web/' . $fav) }}">
 

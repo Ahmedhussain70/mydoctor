@@ -357,7 +357,7 @@ class AuthenticationController extends Controller
         $store->commission = $request->get("commission");
         $store->timezone = $request->get("timezone");
         $store->currency = $request->get("currency");
-        $store->map = $request->get("map");
+        // $store->map = $request->get("map");
         $store->doctor_approved = $request->get("doctor_approved") ? $request->get("doctor_approved") : "0";
         $store->is_rtl = $request->get("is_rtl") ? $request->get("is_rtl") : "0";
 

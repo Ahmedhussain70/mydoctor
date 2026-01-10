@@ -4432,7 +4432,8 @@ class ApiController extends Controller
 
     public function banner_list(Request $request)
     {
-        $data = Banner::select('id', 'image')->orderby('id', 'DESC')->get();
+        $data = Banner::with('doctor')->orderby('banner.id', 'DESC')->get();
+    
         if (count($data) > 0) {
             $response['status'] = 1;
             $response['msg'] = "Banner List";

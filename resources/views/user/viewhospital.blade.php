@@ -55,7 +55,7 @@
                                 <figure class="image-box">
                                     <?php
                                         if ($data->image == '') {
-                                            $path = asset('public/upload/doctors/defaultdoctor.png');
+                                            $path = asset('public/upload/doctors/defaulthospital.png');
                                         } else {
                                             $path = asset('public/upload/doctors') . '/' . $data->image;
                                         }

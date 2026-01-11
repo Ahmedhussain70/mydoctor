@@ -47,7 +47,7 @@
                                                 @if($hos->image)
                                                      <img src="{{asset('public/upload/doctors/'.$hos->image)}}" width="65px;" alt="">
                                                      @else
-                                                      <img src="{{asset('public/upload/doctors/defaultdoctor.png')}}" width="65px;" alt="">
+                                                      <img src="{{asset('public/upload/doctors/defaulthospital.png')}}" width="65px;" alt="">
                                                      @endif
                                             </td>
                                             <td>{{$hos->name}}</td>

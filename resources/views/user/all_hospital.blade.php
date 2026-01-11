@@ -218,9 +218,9 @@
                                                     <img
                                                         src="{{ $dl->image
                                                             ? asset('public/upload/doctors/'.$dl->image)
-                                                            : asset('public/upload/doctors/defaultdoctor.png') }}"
+                                                            : asset('public/upload/doctors/defaulthospital.jpeg') }}"
                                                         style="height:245px"
-                                                        alt="Doctor Image">
+                                                        alt="hospital Image">
 
                                                     {{-- Favorite --}}
                                                     @if ($dl->is_fav == 0)

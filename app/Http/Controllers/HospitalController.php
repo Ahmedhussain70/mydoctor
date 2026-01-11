@@ -267,7 +267,7 @@ class HospitalController extends Controller
 
         $term = $request->term;
         $city_id = $request->city_id;
-        $type = (array) $request->type; // ["1","2"]
+        $type = $request->type;
 
         $query = Doctors::with('departmentls')
             ->where('is_approve', 1)

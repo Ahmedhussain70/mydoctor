@@ -263,41 +263,46 @@ class HospitalController extends Controller
 
         $setting = Setting::find(1);
         $services = Services::all();
-        $term = $request->get("term");
-        $city_id = $request->get("city_id");
-        $type    = (array) $request->get("type"); // department_id as array ["1","2"]
+        $city = City::all();
 
-    $query = Doctors::with('departmentls')
-        ->where('is_approve', 1)
-        ->where('profile_type', 4)
-        ->when($term, function ($q) use ($term) {
-            $q->where('name', 'like', "%{$term}%");
-        })
-        ->when(!empty($type), function ($q) use ($type) {
-            $q->whereIn('department_id', $type);
-        })
-        ->when($city_id, function ($q) use ($city_id) {
-            $q->where('city_id', $city_id);
-        });
+        $term = $request->term;
+        $city_id = $request->city_id;
+        $type = (array) $request->type; // ["1","2"]
 
-    // Paginated list
-    $doctorslist = $query->paginate(10);
+        $query = Doctors::with('departmentls')
+            ->where('is_approve', 1)
+            ->where('profile_type', 4);
 
-    // Full list for map
-    $doctorslistmap = (clone $query)->get();
+        if (!empty($term)) {
+            $query->where('name', 'like', '%' . $term . '%');
+        }
+
+        if (!empty($type)) {
+            $query->whereIn('department_id', $type);
+        }
+
+        if (!empty($city_id)) {
+            $query->where('city_id', $city_id);
+        }
+
+        $doctorslist = $query->paginate(10);
 
         if (!empty($term) && !empty($type)) { //11
             $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->where("department_id", $type)->Where('name', 'like', '%' . $term . '%')->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
-                return $query->where('city_id', $city_id); })->get();
+                return $query->where('city_id', $city_id);
+            })->get();
         } else if (!empty($term) && empty($type)) { //10
             $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->Where('name', 'like', '%' . $term . '%')->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
-                return $query->where('city_id', $city_id); })->get();
+                return $query->where('city_id', $city_id);
+            })->get();
         } else if (empty($term) && !empty($type)) { //01
             $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->where("department_id", $type)->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
-                return $query->where('city_id', $city_id); })->get();
+                return $query->where('city_id', $city_id);
+            })->get();
         } else { //00
             $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
-                return $query->where('city_id', $city_id); })->get();
+                return $query->where('city_id', $city_id);
+            })->get();
         }
 
 

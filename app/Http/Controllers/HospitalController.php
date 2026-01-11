@@ -284,6 +284,8 @@ class HospitalController extends Controller
         // Paginated list
         $doctorslist = $query->paginate(10);
 
+        $doctorslistmap = (clone $query)->get();
+
         foreach ($doctorslist as $doctor) {
             $doctor->avgratting  = Review::where('doc_id', $doctor->id)->avg('rating');
             $doctor->totalreview = Review::where('doc_id', $doctor->id)->count();
@@ -308,7 +310,8 @@ class HospitalController extends Controller
             'city_id'         => $city_id,
             'term'            => $term,
             'type'            => $type,
-            'doctorlist'      => $doctorslist
+            'doctorlist'      => $doctorslist,
+            'doctorslistmap'  => $doctorslistmap,
         ]);
     }
 

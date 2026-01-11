@@ -702,5 +702,6 @@ return array(
     'No reviews yet' => 'لا توجد مراجعات بعد',
     'Hospital Profile' => 'الملف الشخصي للمستشفى',
     'Total Hospitals' => 'إجمالي المراكز الطبيه',
+    'Total Labs' => 'إجمالي المختبرات',
     'City' => 'المدينة'
 );

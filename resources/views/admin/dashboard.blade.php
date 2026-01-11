@@ -164,7 +164,7 @@
                                         </div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-hospital fa-2x text-primary"></i>
+                                        <i class="fas fa-microscope fa-2x text-primary"></i>
                                     </div>
                                 </div>
                             </div>

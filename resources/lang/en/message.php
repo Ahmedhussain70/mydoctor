@@ -742,6 +742,7 @@ Complete medical solution for users. You can find nearby doctors with complete p
   'All Reviews' => 'All Reviews',
   'No reviews yet' => 'No reviews yet',
   'Total Hospitals' => 'Total Hospitals',
+  'Total Labs' => 'Total Labs',
   'City' => 'City',
   'Select City' => 'Select City'
 );

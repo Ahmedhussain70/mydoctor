@@ -260,60 +260,67 @@ class HospitalController extends Controller
 
     public function searchhospital(Request $request)
     {
-        $setting  = Setting::find(1);
+
+        $setting = Setting::find(1);
         $services = Services::all();
-        $city     = City::all();
+        $term = $request->get("term");
+        $city_id = $request->get("city_id");
+        $type    = (array) $request->get("type"); // department_id as array ["1","2"]
 
-        $term    = $request->term;
-        $city_id = $request->city_id;
-        $type    = (array) $request->type;
+    $query = Doctors::with('departmentls')
+        ->where('is_approve', 1)
+        ->where('profile_type', 4)
+        ->when($term, function ($q) use ($term) {
+            $q->where('name', 'like', "%{$term}%");
+        })
+        ->when(!empty($type), function ($q) use ($type) {
+            $q->whereIn('department_id', $type);
+        })
+        ->when($city_id, function ($q) use ($city_id) {
+            $q->where('city_id', $city_id);
+        });
 
-        $query = Doctors::with('departmentls')
-            ->where('is_approve', 1)
-            ->where('profile_type', 4)
-            ->when($term, function ($q) use ($term) {
-                $q->where('name', 'like', "%{$term}%");
-            })
-            ->when(!empty($type), function ($q) use ($type) {
-                $q->whereIn('department_id', $type);
-            })
-            ->when($city_id, function ($q) use ($city_id) {
-                $q->where('city_id', $city_id);
-            });
+    // Paginated list
+    $doctorslist = $query->paginate(10);
 
-        // Paginated list
-        $doctorslist = $query->paginate(10);
+    // Full list for map
+    $doctorslistmap = (clone $query)->get();
 
-        $doctorslistmap = (clone $query)->get();
-
-        foreach ($doctorslist as $doctor) {
-            $doctor->avgratting  = Review::where('doc_id', $doctor->id)->avg('rating');
-            $doctor->totalreview = Review::where('doc_id', $doctor->id)->count();
-            $doctor->reviewslist = Review::with('patientls')
-                ->where('doc_id', $doctor->id)
-                ->orderBy('created_at', 'desc')
-                ->take(3)
-                ->get();
-
-            $doctor->is_fav = 0;
-            if (Session::get('user_id') && Session::get('role_id') == 1) {
-                $doctor->is_fav = FavoriteDoc::where('doctor_id', $doctor->id)
-                    ->where('user_id', Session::get('user_id'))
-                    ->exists() ? 1 : 0;
-            }
+        if (!empty($term) && !empty($type)) { //11
+            $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->where("department_id", $type)->Where('name', 'like', '%' . $term . '%')->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
+                return $query->where('city_id', $city_id); })->get();
+        } else if (!empty($term) && empty($type)) { //10
+            $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->Where('name', 'like', '%' . $term . '%')->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
+                return $query->where('city_id', $city_id); })->get();
+        } else if (empty($term) && !empty($type)) { //01
+            $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->where("department_id", $type)->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
+                return $query->where('city_id', $city_id); })->get();
+        } else { //00
+            $doctorslistmap = Doctors::with('departmentls')->where("is_approve", "1")->where('profile_type', 4)->when($city_id, function ($query, $city_id) {
+                return $query->where('city_id', $city_id); })->get();
         }
 
-        return view('user.all_hospital')->with([
-            'setting'         => $setting,
-            'services'        => $services,
-            'city'            => $city,
-            'city_id'         => $city_id,
-            'term'            => $term,
-            'type'            => $type,
-            'doctorlist'      => $doctorslist,
-            'doctorslistmap'  => $doctorslistmap,
-        ]);
+
+        foreach ($doctorslist as $k) {
+            $k->avgratting = Review::where('doc_id', $k->id)->avg('rating');
+            $k->totalreview = count(Review::where('doc_id', $k->id)->get());
+            $k->reviewslist = Review::with('patientls')->where('doc_id', $k->id)->orderBy('created_at', 'desc')->take(3)->get();
+            if (!empty(Session::get("user_id")) && Session::get('role_id') == '1') {
+                $lsfav = FavoriteDoc::where("doctor_id", $k->id)->where("user_id", Session::get("user_id"))->first();
+                if ($lsfav) {
+                    $k->is_fav = 1;
+                } else {
+                    $k->is_fav = 0;
+                }
+            } else {
+                $k->is_fav = 0;
+            }
+        }
+        $city = City::all();
+        return view("user.all_hospital")->with("city_id", $city_id)->with("city", $city)->with("services", $services)->with("setting", $setting)->with("doctorlist", $doctorslist)->with("term", $term)->with("type", $type)->with("doctorslistmap", $doctorslistmap);
     }
+
+
 
     public function hospitaldashboard(Request $request)
     {

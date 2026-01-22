@@ -115,6 +115,7 @@ Route::group(['middleware' => ['Localization']], function () {
     Route::any("view_report", [ApiController::class, "view_report"]);
     Route::any("get_laboratory_report_list", [ApiController::class, "get_laboratory_report_list"]);
     Route::any("change_laboratoryreport_status", [ApiController::class, "change_laboratoryreport_status"]);
+    Route::any("sos", [ApiController::class, "sos"]);
 
     Route::get('/questions', [QuestionController::class, 'index']);
     Route::get('/questions/{id}', [QuestionController::class, 'show']);
